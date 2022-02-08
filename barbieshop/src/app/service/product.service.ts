@@ -8,7 +8,9 @@ import { Product } from '../model/product';
   providedIn: 'root'
 })
 export class ProductService {
-  apiUrl: string = environment.apiUrl;
+
+  apiUrl: string = "http://localhost:3000/"
+  // apiUrl: string = environment.apiUrl;
 
   entityName: string = 'product';
 
