@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <button routerLink="/add-product" class="btn btn-light btn-block btn-lg py-3">Új Termék hozzáadása
+        <i class="fa fa-user-plus" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr>
+            <th *ngFor="let key of keys$"> {{ key | titlecase}} </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productList$ | async">
+            <td>{{product.id}}</td>
+            <td>{{product.name}} </td>
+            <td>{{product.type}}</td>
+            <td>{{product.catID}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td><select name="featured" [value]="product.featured" [disabled]="disabled">
+              <option value="true">featured</option>
+              <option value="false">not featured</option>
+            </select>
+          </td>
+          <td><select name="active" [value]="product.active" [disabled]="disabled">
+              <option value="true">active</option>
+              <option value="false">inactive</option>
+            </select></td>
+            <td>
+                <div class="btn-group" role="group">
+                  <button [routerLink]="['/', 'edit-product', product.id]" class="btn btn-info"><i
+                      class="fa fa-eye"></i></button>
+                  <button (click)="onRemoveProduct(product)" type="button" class="btn btn-danger"><i
+                      class="fa fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
