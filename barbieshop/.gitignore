@@ -45,3 +45,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# NODE
+/node_modules
+package-lock.json
+npm-debug.log
+yarn-error.log
