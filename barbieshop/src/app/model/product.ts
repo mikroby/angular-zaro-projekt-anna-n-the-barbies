@@ -15,6 +15,6 @@ export class Product {
 //             "type": "Campanulaceae",
 //             "catID": 33,
 //             "description": "phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id",
-//             "price": "67,16",
+//             "price": 67.16,
 //             "featured": false,
 //             "active": false

@@ -8,6 +8,8 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { ProductListComponent } from './common/product-list/product-list.component';
+import { CustomerListComponent } from './common/customer-list/customer-list.component';
+import { CustomerComponent } from './page/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ProductListComponent } from './common/product-list/product-list.compone
     SidebarComponent,
     HeaderComponent,
     DashboardComponent,
-    ProductListComponent
+    ProductListComponent,
+    CustomerListComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
