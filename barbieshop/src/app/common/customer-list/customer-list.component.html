@@ -1,0 +1,21 @@
+<div class="row mt-5">
+  <div class="col-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th *ngFor="let key of keys">{{ key | titlecase }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customerList$ | async">
+          <td *ngFor="let key of keys">{{ customer[key] }}</td>
+          <td>
+            <button class="btn btn-info"><i class="fa fa-eye"></i></button>
+            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
