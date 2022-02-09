@@ -23,9 +23,7 @@ export class CustomerListComponent implements OnInit {
 
   ngOnInit(): void { }
 
-
-
-  onDeleteCustomer(customer: Customer): void {
+  onRemoveCustomer(customer: Customer): void {
     this.customerService.delete(customer.id).subscribe(
       customer => this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/', 'customer'])}
