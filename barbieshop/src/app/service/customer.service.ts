@@ -14,7 +14,7 @@ export class CustomerService {
   //apiUrl: string = environment.apiUrl
   entityName: string = 'customer'
 
-  constructor(
+  /*constructor(
     public override http: HttpClient,
   ) {
     super(http);
