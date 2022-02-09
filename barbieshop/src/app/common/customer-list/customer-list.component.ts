@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Address } from 'src/app/model/address';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
@@ -12,31 +12,36 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  customerList$: Observable<Customer[]> = this.customerService.getAllCustomer()
+  //customerList$: Observable<Customer[]> = this.customerService.getAll()
 
   keys: string[] = Object.keys(new Customer());
 
-  //customerAddress: string = new Address().getFullAddress()
+  //<tr *ngFor="let customer of customerList$ | async">
+  //<td *ngFor="let key of keys">{{ customer[key] }}</td>
 
+  /*      <td>{{ customer.id }}</td>
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.address.full }}</td>
+          <td>{{ customer.active }}</td>
+          */
 
   constructor(
     private customerService: CustomerService,
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.customerService.getOneCustomer(2).subscribe(
-        customer => Object.values(customer.address[0]).join(" "))
-  }
+  ngOnInit(): void { }
 
 
 
-  onDeleteCustomer(customer: Customer): void {
-    this.customerService.deleteCustomer(customer.id).subscribe(
+  /*onDeleteCustomer(customer: Customer): void {
+    this.customerService.delete(customer.id).subscribe(
       customer => this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/', 'customer'])}
       )
     )
-  }
+  }*/
 
 }

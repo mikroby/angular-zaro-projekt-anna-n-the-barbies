@@ -8,6 +8,7 @@ export class Customer {
   email: string = '';
   address: Address = new Address();
   active: boolean = true;
+
 }
 
 // id, firstName, lastName, email, address: Address, active
