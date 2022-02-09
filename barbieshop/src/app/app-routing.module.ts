@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditCustomerComponent } from './common/edit-customer/edit-customer.component';
 import { CustomerComponent } from './page/customer/customer.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { ProductComponent } from './page/product/product.component'
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
   },
   {
@@ -26,31 +27,15 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'product-list',
+    path: 'edit-product/:id',
     component: DashboardComponent,
   },
   {
-    path: 'customer-list',
-    component: DashboardComponent,
+    path: 'edit-customer/:id',
+    component: EditCustomerComponent,
   },
   {
-    path: 'order-list',
-    component: DashboardComponent,
-  },
-  {
-    path: 'bill-list',
-    component: DashboardComponent,
-  },
-  {
-    path: 'edit-product',
-    component: DashboardComponent,
-  },
-  {
-    path: 'edit-customer',
-    component: DashboardComponent,
-  },
-  {
-    path: 'edit-order',
+    path: 'edit-order/:id',
     component: DashboardComponent,
   },
   {

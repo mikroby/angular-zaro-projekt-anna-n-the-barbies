@@ -1,9 +1,9 @@
 <div class="row mt-5">
   <div class="col-12">
-    <table class="table table-striped">
+    <table class="table table-striped mt-3">
       <thead>
         <tr>
-          <th *ngFor="let key of keys">{{ key | titlecase }}</th>
+          <th *ngFor="let key of keys" class="text-center font-weight-bold">{{ key | titlecase }}</th>
           <th></th>
         </tr>
       </thead>
@@ -14,10 +14,12 @@
           <td>{{ customer.lastName }}</td>
           <td>{{ customer.email }}</td>
           <td>{{ customer.address.full }}</td>
-          <td>{{ customer.active }}</td>
+          <td *ngIf="customer.active == true"><i class="fa fa-check"></i></td>
+          <td *ngIf="customer.active == false"><i class="fa fa-ban"></i></td>
           <td>
-            <button class="btn btn-info"><i class="fa fa-eye"></i></button>
-            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            <button [routerLink]="['/', 'edit-customer', customer.id]" class="btn btn-info"><i
+                class="fa fa-pencil"></i></button>
+            <button (click)="onRemoveCustomer(customer)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
           </td>
         </tr>
       </tbody>
