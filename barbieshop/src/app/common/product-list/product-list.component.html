@@ -36,7 +36,7 @@
                 <div class="btn-group" role="group">
                   <button [routerLink]="['/', 'edit-product', product.id]" class="btn btn-info"><i
                       class="fa fa-eye"></i></button>
-                  <button (click)="onRemoveProduct(product)" type="button" class="btn btn-danger"><i
+                  <button (click)="onRemoveProduct(product.id)" type="button" class="btn btn-danger"><i
                       class="fa fa-trash"></i></button>
               </div>
             </td>
