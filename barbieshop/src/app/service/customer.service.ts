@@ -4,17 +4,15 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Address } from '../model/address';
 import { Customer } from '../model/customer';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class CustomerService extends BaseService<Customer>
+{
 
-  apiUrl: string = "http://localhost:3000/"
-  //apiUrl: string = environment.apiUrl
-  entityName: string = 'customer'
-
-  /*constructor(
+  constructor(
     public override http: HttpClient,
   ) {
     super(http);
@@ -54,9 +52,9 @@ export class CustomerService {
     );
   }
 
-  override get(id: number): Observable<Customer> {
-    return super.get(id).pipe(
+  override getOne(id: number): Observable<Customer> {
+    return super.getOne(id).pipe(
       map(customer => this.createAddress(customer) )
     );
-  }*/
+  }
 }

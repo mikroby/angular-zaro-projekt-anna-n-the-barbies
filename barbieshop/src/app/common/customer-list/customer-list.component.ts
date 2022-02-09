@@ -12,20 +12,9 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  //customerList$: Observable<Customer[]> = this.customerService.getAll()
+  customerList$: Observable<Customer[]> = this.customerService.getAll()
 
   keys: string[] = Object.keys(new Customer());
-
-  //<tr *ngFor="let customer of customerList$ | async">
-  //<td *ngFor="let key of keys">{{ customer[key] }}</td>
-
-  /*      <td>{{ customer.id }}</td>
-          <td>{{ customer.firstName }}</td>
-          <td>{{ customer.lastName }}</td>
-          <td>{{ customer.email }}</td>
-          <td>{{ customer.address.full }}</td>
-          <td>{{ customer.active }}</td>
-          */
 
   constructor(
     private customerService: CustomerService,
@@ -36,12 +25,12 @@ export class CustomerListComponent implements OnInit {
 
 
 
-  /*onDeleteCustomer(customer: Customer): void {
+  onDeleteCustomer(customer: Customer): void {
     this.customerService.delete(customer.id).subscribe(
       customer => this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/', 'customer'])}
       )
     )
-  }*/
+  }
 
 }
