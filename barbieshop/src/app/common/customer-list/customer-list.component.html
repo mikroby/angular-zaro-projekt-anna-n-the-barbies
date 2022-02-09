@@ -8,7 +8,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let customer of customerList$ | async">
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.address.full }}</td>
+          <td>{{ customer.active }}</td>
           <td>
             <button class="btn btn-info"><i class="fa fa-eye"></i></button>
             <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
