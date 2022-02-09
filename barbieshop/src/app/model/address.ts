@@ -4,7 +4,7 @@ export class Address {
   country: string = '';
   city: string = '';
   street: string = '';
-  notes: string = '';
+  notes?: string = '';
 
   /*constructor(zip: string, country: string, city: string, street: string, notes: string) {
     this.zip = zip;

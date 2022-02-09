@@ -38,7 +38,11 @@ export class ProductService {
     );
   }
 
-  removeProduct(product: Product): Observable<any> {
-    return this.http.delete(`${this.apiUrl}${this.entityName}/${product.id}`);
+  // removeProduct(product: Product): Observable<any> {
+  //   return this.http.delete(`${this.apiUrl}${this.entityName}/${product.id}`);
+  // }
+
+  removeProduct(id: number): Observable<Product> {
+    return this.http.delete<Product>(`${this.apiUrl}${this.entityName}/${id}`);
   }
 }

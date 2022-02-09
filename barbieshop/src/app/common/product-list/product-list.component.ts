@@ -21,8 +21,15 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onRemoveProduct(product: Product): void {
-    this.productService.removeProduct(product).subscribe(
+  // onRemoveProduct(product: Product): void {
+  //   this.productService.removeProduct(product).subscribe(
+  //     product => location.reload(),
+  //     err => console.error(err)
+  //   );
+  // }
+
+  onRemoveProduct(id: number): void {
+    this.productService.removeProduct(id).subscribe(
       product => location.reload(),
       err => console.error(err)
     );
