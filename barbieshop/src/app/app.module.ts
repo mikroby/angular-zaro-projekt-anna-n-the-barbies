@@ -35,7 +35,7 @@ import { CustomCurrencyPipe } from './pipe/custom-currency.pipe';
     BillListComponent,
     BillComponent,
     AddBillComponent,
-    BillViewerComponent
+    BillViewerComponent,
     CustomCurrencyPipe
   ],
   imports: [
