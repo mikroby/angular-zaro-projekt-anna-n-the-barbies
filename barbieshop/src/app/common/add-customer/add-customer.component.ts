@@ -25,12 +25,7 @@ export class AddCustomerComponent implements OnInit {
     }
 
     onCreate(customer: Customer, temp:Address) :void {
-      customer.address = this.temp;
-      // customer.address.zip = this.temp.zip,
-      // customer.address.country = this.temp.country,
-      // customer.address.city = this.temp.city,
-      // customer.address.street = this.temp.street,
-      // customer.address.notes =  this.temp.notes
+    customer.address = this.temp;
     this.customerService.create(customer).subscribe(
       customer => {
         this.router.navigate(['/', 'customer'])},
