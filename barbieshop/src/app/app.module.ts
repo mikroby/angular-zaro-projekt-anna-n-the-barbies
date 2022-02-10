@@ -33,12 +33,12 @@ import { EditProductComponent } from './common/edit-product/edit-product.compone
     ProductComponent,
     EditCustomerComponent,
     AddCustomerComponent,
-    EditProductComponent
+    EditProductComponent,
     BillListComponent,
     BillComponent,
     AddBillComponent,
     BillViewerComponent,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
   ],
   imports: [
     BrowserModule,
