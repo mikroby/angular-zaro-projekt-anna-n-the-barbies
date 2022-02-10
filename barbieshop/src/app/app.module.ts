@@ -15,6 +15,7 @@ import { ProductComponent } from './page/product/product.component';
 import { EditCustomerComponent } from './common/edit-customer/edit-customer.component';
 import { AddCustomerComponent } from './common/add-customer/add-customer.component';
 import { CustomCurrencyPipe } from './pipe/custom-currency.pipe';
+import { EditProductComponent } from './common/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CustomCurrencyPipe } from './pipe/custom-currency.pipe';
     ProductComponent,
     EditCustomerComponent,
     AddCustomerComponent,
-    CustomCurrencyPipe
+    CustomCurrencyPipe,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
