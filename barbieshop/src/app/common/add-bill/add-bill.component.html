@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-6 offset-3">
+    <form #billForm="ngForm" (ngSubmit)="onAddBill(bill)" >
+
+      <input [(ngModel)]="bill.id" type="hidden" name="id">
+      <div class="form-group">
+        <label for="name-orderID">OrderID</label>
+        <input
+        [(ngModel)]="bill.orderID"
+        class="form-control"
+        type="text"
+        name="orderID"
+        id="name-orderID"
+        required
+        pattern="[0-9]{3}"
+        placeholder="Add meg a számla azonosítóját!">
+        <div class="error-message" [hidden]="billForm.controls['orderID']?.valid">
+          A számla azonosítója egy háromjegyű szám kell legyen!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name-amount">Amount</label>
+        <input
+        [(ngModel)]="bill.amount"
+        class="form-control"
+        type="number"
+        name="amount"
+        id="name-amount"
+        required
+        pattern="[0-9]{1}"
+        placeholder="Add meg a számla végösszegét!">
+        <div class="error-message" [hidden]="billForm.controls['amount']?.valid">
+          A számla végösszege csak számokat tartalmazhat!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name-status">Status</label>
+        <select
+        [(ngModel)]="bill.status"
+        class="form-control"
+        type="text"
+        name="status"
+        id="name-status"
+        required>
+          <option value="new">new</option>
+          <option value="paid">paid</option>
+        </select>
+      </div>
+      <div>
+        <button [disabled]="!billForm.valid" class="btn btn-primary" type="submit">Mentés</button>
+      </div>
+    </form>
+  </div>
+</div>
+
