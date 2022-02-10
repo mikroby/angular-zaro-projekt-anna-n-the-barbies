@@ -1,3 +1,4 @@
+import { AddCustomerComponent } from './common/add-customer/add-customer.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EditCustomerComponent } from './common/edit-customer/edit-customer.component';
@@ -44,7 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'add-customer',
-    component:  DashboardComponent,
+    component:  AddCustomerComponent,
   },
   {
     path: 'add-order',
