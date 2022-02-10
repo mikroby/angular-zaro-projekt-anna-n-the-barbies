@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mb-5">
     <div class="col-12 mt-3">
-      <form #customerForm="ngForm" (ngSubmit)="onCreate(customerForm.value)">
+      <form #customerForm="ngForm" (ngSubmit)="onCreate(customer,temp)">
         <div class="row">
           <div class="form-group">
             <input class="form-control" [(ngModel)]="customer.id" type="hidden" name="id">

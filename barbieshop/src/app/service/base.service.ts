@@ -8,8 +8,8 @@ import { Injectable } from '@angular/core';
 })
 export class BaseService<T extends { id: number }> {
 
-  //apiUrl: string = environment.apiUrl;
-  apiUrl: string = "http://localhost:3000/"
+  apiUrl: string = environment.apiUrl;
+  // apiUrl: string = "http://localhost:3000/"
 
   entityName: string = '';
 
