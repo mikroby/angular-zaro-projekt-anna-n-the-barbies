@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Address } from '../model/address';
 import { Customer } from '../model/customer';
 import { BaseService } from './base.service';
@@ -42,18 +41,6 @@ export class CustomerService extends BaseService<Customer>
     return customer;
   }
 
-  /*createAddressObcejt(customer: Customer): Customer {
-    customer.address = new Address()
-    console.log(customer['zip'])
-    customer.address.zip= customer['zip'],
-    customer.address.country = customer['country'],
-    customer.address.city = customer['city'],
-    customer.address.street = customer['street'],
-    customer.address.notes =  customer['notes']
-    console.log(customer.address)
-    return customer;
-  }*/
-
   override getAll(): Observable<Customer[]> {
     return super.getAll().pipe(
       map(list => {
@@ -69,9 +56,4 @@ export class CustomerService extends BaseService<Customer>
     );
   }
 
-  /*override create(customer: Customer): Observable<Customer> {
-    return super.create(customer).pipe(
-      map(customer => this.createAddressObcejt(customer) )
-    );
-  }*/
 }
