@@ -42,6 +42,17 @@ export class CustomerService extends BaseService<Customer>
     return customer;
   }
 
+  /*createAddressObcejt(customer: Customer): Customer {
+    customer.address = new Address()
+    console.log(customer['zip'])
+    customer.address.zip= customer['zip'],
+    customer.address.country = customer['country'],
+    customer.address.city = customer['city'],
+    customer.address.street = customer['street'],
+    customer.address.notes =  customer['notes']
+    console.log(customer.address)
+    return customer;
+  }*/
 
   override getAll(): Observable<Customer[]> {
     return super.getAll().pipe(
@@ -57,4 +68,10 @@ export class CustomerService extends BaseService<Customer>
       map(customer => this.createAddress(customer) )
     );
   }
+
+  /*override create(customer: Customer): Observable<Customer> {
+    return super.create(customer).pipe(
+      map(customer => this.createAddressObcejt(customer) )
+    );
+  }*/
 }
