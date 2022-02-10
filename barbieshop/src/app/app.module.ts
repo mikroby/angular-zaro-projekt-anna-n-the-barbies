@@ -14,6 +14,10 @@ import { CustomerComponent } from './page/customer/customer.component';
 import { ProductComponent } from './page/product/product.component';
 import { EditCustomerComponent } from './common/edit-customer/edit-customer.component';
 import { AddCustomerComponent } from './common/add-customer/add-customer.component';
+import { BillListComponent } from './common/bill-list/bill-list.component';
+import { BillComponent } from './page/bill/bill.component';
+import { AddBillComponent } from './common/add-bill/add-bill.component';
+import { BillViewerComponent } from './page/bill-viewer/bill-viewer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { AddCustomerComponent } from './common/add-customer/add-customer.compone
     CustomerComponent,
     ProductComponent,
     EditCustomerComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    BillListComponent,
+    BillComponent,
+    AddBillComponent,
+    BillViewerComponent
   ],
   imports: [
     BrowserModule,
