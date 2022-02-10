@@ -10,8 +10,8 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  productList$: Observable<Product[]> = this.productService.getAllProducts();
-  keys$: string[] = Object.keys(new Product());
+  productList$: Observable<Product[]> = this.productService.getAll();
+  keys: string[] = Object.keys(new Product());
   disabled: boolean = true;
 
   constructor(
@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit {
   // }
 
   onRemoveProduct(id: number): void {
-    this.productService.removeProduct(id).subscribe(
+    this.productService.delete(id).subscribe(
       product => location.reload(),
       err => console.error(err)
     );

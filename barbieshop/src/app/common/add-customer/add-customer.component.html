@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mb-5">
     <div class="col-12 mt-3">
-      <form #customerForm="ngForm" (ngSubmit)="onCreate(customerForm.value)">
+      <form #customerForm="ngForm" (ngSubmit)="onCreate(customer,temp)">
         <div class="row">
           <div class="form-group">
             <input class="form-control" [(ngModel)]="customer.id" type="hidden" name="id">
@@ -26,14 +26,14 @@
           <div class="form-group col-3">
             <label for="customerAddressZip">Zip</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="customer.address.zip" type="text" name="zip"
-                id="customerAddressZip" required>
+              <input class="form-control" [(ngModel)]="temp.zip" type="text" name="zip" id="customerAddressZip"
+                required>
             </div>
           </div>
           <div class="form-group col-3">
             <label for="customerAddressCountry">Country</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="customer.address.country" type="text" name="country"
+              <input class="form-control" [(ngModel)]="temp.country" type="text" name="country"
                 id="customerAddressCountry" required>
             </div>
           </div>
@@ -42,22 +42,22 @@
           <div class="form-group col-3">
             <label for="customerAddressCity">City</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="customer.address.city" type="text" name="city"
-                id="customerAddressCity" required>
+              <input class="form-control" [(ngModel)]="temp.city" type="text" name="city" id="customerAddressCity"
+                required>
             </div>
           </div>
           <div class="form-group col-3">
             <label for="customerAddressStreet">Street</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="customer.address.street" type="text" name="street"
-                id="customerAddressStreet" required>
+              <input class="form-control" [(ngModel)]="temp.street" type="text" name="street" id="customerAddressStreet"
+                required>
             </div>
           </div>
           <div class="form-group col-3">
             <label for="customerAddressNotes">Notes</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="customer.address.notes" type="text" name="notes"
-                id="customerAddressNotes" required>
+              <input class="form-control" [(ngModel)]="temp.notes" type="text" name="notes" id="customerAddressNotes"
+                required>
             </div>
           </div>
         </div>

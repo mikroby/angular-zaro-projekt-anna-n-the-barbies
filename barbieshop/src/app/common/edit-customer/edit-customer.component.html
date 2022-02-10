@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mb-5">
     <div *ngIf="customers$ | async as customer" class="col-12 mt-3">
-      <form #customerFrom="ngForm">
+      <form #customerForm="ngForm">
         <div class="row">
           <div class="form-group">
             <input class="form-control" [(ngModel)]="customer['id']" type="hidden" name="id">
@@ -69,9 +69,9 @@
           </div>
         </div>
         <div class="button-group mt-5">
-          <button [disabled]="customerFrom.invalid" class="btn btn-info mr-3"
+          <button [disabled]="customerForm.invalid" class="btn btn-info mr-3"
             (click)="onUpdateCustomer(customer)">Mentés</button>
-          <button [disabled]="customerFrom.invalid" class="btn btn-warning mr-3"
+          <button [disabled]="customerForm.invalid" class="btn btn-warning mr-3"
             (click)="onRemoveCustomer(customer)">Törlés</button>
           <button [routerLink]="['/customer']" class="btn btn-secondary" type="submit">Mégsem</button>
         </div>
