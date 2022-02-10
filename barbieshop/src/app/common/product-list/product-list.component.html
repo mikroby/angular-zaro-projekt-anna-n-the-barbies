@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <button routerLink="/add-product" class="btn btn-light btn-block btn-lg py-3">Új Termék hozzáadása
-        <i class="fa fa-user-plus" aria-hidden="true"></i></button>
+        <i class="fa fa-plus-square" aria-hidden="true"></i></button>
     </div>
   </div>
 
@@ -11,7 +11,7 @@
       <table class="table table-striped mt-3">
         <thead>
           <tr>
-            <th *ngFor="let key of keys$"> {{ key | titlecase}} </th>
+            <th *ngFor="let key of keys"> {{ key | titlecase }} </th>
             <th></th>
           </tr>
         </thead>
@@ -22,7 +22,7 @@
             <td>{{product.type}}</td>
             <td>{{product.catID}}</td>
             <td>{{product.description}}</td>
-            <td>{{product.price}}</td>
+            <td>{{product.price | customCurrency}}</td>
             <td><select name="featured" [value]="product.featured" [disabled]="disabled">
               <option value="true">featured</option>
               <option value="false">not featured</option>
