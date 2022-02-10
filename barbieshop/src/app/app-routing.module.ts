@@ -5,6 +5,7 @@ import { EditCustomerComponent } from './common/edit-customer/edit-customer.comp
 import { CustomerComponent } from './page/customer/customer.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { ProductComponent } from './page/product/product.component'
+import { EditProductComponent } from './common/edit-product/edit-product.component';
 import { BillListComponent } from './common/bill-list/bill-list.component';
 import { BillComponent } from './page/bill/bill.component';
 import { AddBillComponent } from './common/add-bill/add-bill.component';
@@ -33,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-product/:id',
-    component: DashboardComponent,
+    component: EditProductComponent,
   },
   {
     path: 'edit-customer/:id',
