@@ -1,3 +1,4 @@
+import { OrderComponent } from './page/order/order.component';
 import { AddCustomerComponent } from './common/add-customer/add-customer.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -26,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'order',
-    component: DashboardComponent,
+    component: OrderComponent,
   },
   {
     path: 'bill',

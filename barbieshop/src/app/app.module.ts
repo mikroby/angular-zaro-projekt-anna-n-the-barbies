@@ -20,6 +20,8 @@ import { AddBillComponent } from './common/add-bill/add-bill.component';
 import { BillViewerComponent } from './page/bill-viewer/bill-viewer.component';
 import { CustomCurrencyPipe } from './pipe/custom-currency.pipe';
 import { EditProductComponent } from './common/edit-product/edit-product.component';
+import { OrderComponent } from './page/order/order.component';
+import { OrderListComponent } from './common/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { EditProductComponent } from './common/edit-product/edit-product.compone
     AddBillComponent,
     BillViewerComponent,
     CustomCurrencyPipe,
+    OrderComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,
