@@ -14,7 +14,6 @@ import { CustomerComponent } from './page/customer/customer.component';
 import { ProductComponent } from './page/product/product.component';
 import { EditCustomerComponent } from './common/edit-customer/edit-customer.component';
 import { AddCustomerComponent } from './common/add-customer/add-customer.component';
-import { OrderComponent } from './page/order/order.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { OrderComponent } from './page/order/order.component';
     CustomerComponent,
     ProductComponent,
     EditCustomerComponent,
-    AddCustomerComponent,
-    OrderComponent
+    AddCustomerComponent
   ],
   imports: [
     BrowserModule,
