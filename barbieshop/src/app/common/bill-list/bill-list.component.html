@@ -1,0 +1,24 @@
+<div class="row mt-5">
+  <div class="col-12">
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th *ngFor="let key of keys"class="text-center font-weight-bold"> {{ key | uppercase }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" *ngFor="let bill of billList$ | async" >
+          <td>{{ bill.id }}</td>
+          <td>{{ bill.orderID }}</td>
+          <td>{{ bill.amount }}</td>
+          <td>{{ bill.status }}</td>
+          <td>
+            <button
+              [routerLink]="['/', 'bill', 'viewer', bill.id ]"
+              class="btn btn-info"><i class="fa fa-eye"></i></button> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

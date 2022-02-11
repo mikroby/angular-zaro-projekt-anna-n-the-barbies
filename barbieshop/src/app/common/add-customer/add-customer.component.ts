@@ -12,17 +12,20 @@ import { CustomerService } from 'src/app/service/customer.service';
 export class AddCustomerComponent implements OnInit {
 
   customer: Customer = new Customer()
+  temp: Address = new Address()
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService,
     private router: Router,
-  ) { }
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  onCreate(customer: Customer) :void {
+    onCreate(customer: Customer, temp:Address) :void {
+    customer.address = this.temp;
     this.customerService.create(customer).subscribe(
       customer => {
         this.router.navigate(['/', 'customer'])},
