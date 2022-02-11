@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Address } from 'src/app/model/address';
+import { Observable, switchMap } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
 
@@ -11,9 +11,11 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class AddCustomerComponent implements OnInit {
 
-  customer: Customer = new Customer()
-  temp: Address = new Address()
+  customers$: Observable<Customer> = this.activatedRoute.params.pipe(
+    switchMap( params => this.customerService.getOne(params['id']))
+    )
 
+  customer: Customer = new Customer()
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,13 +26,27 @@ export class AddCustomerComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onCreate(customer: Customer, temp:Address) :void {
-    customer.address = this.temp;
+    onCreate(customer: Customer) :void {
     this.customerService.create(customer).subscribe(
       customer => {
         this.router.navigate(['/', 'customer'])},
       err => console.error(err)
     )
   }
+
+  onUpdateCustomer(customer: Customer): void {
+    this.customerService.update(customer).subscribe(
+      product => this.router.navigate(['/', 'customer']),
+      err => console.error(err)
+    )
+  }
+
+
+  onRemoveCustomer(customer: Customer): void {
+    this.customerService.delete(customer.id).subscribe(
+      product => this.router.navigate(['/', 'customer']),
+      err => console.error(err)
+    )
+}
 
 }

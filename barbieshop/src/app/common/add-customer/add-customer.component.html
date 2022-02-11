@@ -1,74 +1,76 @@
 <div class="container">
   <div class="row mb-5">
-    <div class="col-12 mt-3">
-      <form #customerForm="ngForm" (ngSubmit)="onCreate(customer,temp)">
+    <div *ngIf="customers$ | async as customer" class="col-12 mt-3">
+      <form #customerForm="ngForm">
         <div class="row">
           <div class="form-group">
             <input class="form-control" [(ngModel)]="customer.id" type="hidden" name="id">
           </div>
           <div class="form-group col-3">
-            <label for="customerFirstName">Firstname</label>
+            <label for="customerFirstName font-weight-bold">Keresztnév</label>
             <input class="form-control" [(ngModel)]="customer.firstName" type="text" name="firstName"
-              id="customerFirstName" required>
+              id="customerFirstName" placeholder="Keresztnév" required>
           </div>
           <div class="form-group col-3">
-            <label for="customerLastName">Lastname</label>
+            <label for="customerLastName font-weight-bold">Vezetéknév</label>
             <input class="form-control" [(ngModel)]="customer.lastName" type="text" name="lastName"
-              id="customerLastName" required>
+              id="customerLastName" placeholder="Vezetéknév" required>
           </div>
           <div class="form-group col-4">
-            <label for="customerEmail">Email</label>
+            <label for="customerEmail font-weight-bold">Email cím</label>
             <input class="form-control" [(ngModel)]="customer.email" type="email" name="email" id="customerEmail"
-              required>
+              placeholder="Email cím" required>
           </div>
         </div>
         <div class="row mt-2">
           <div class="form-group col-3">
-            <label for="customerAddressZip">Zip</label>
+            <label for="customerAddressZip font-weight-bold">Irányítószám</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="temp.zip" type="text" name="zip" id="customerAddressZip"
-                required>
+              <input class="form-control" [(ngModel)]="customer.address.zip" type="text" name="zip"
+                id="customerAddressZip" placeholder="Irányítószám" required>
             </div>
           </div>
           <div class="form-group col-3">
-            <label for="customerAddressCountry">Country</label>
+            <label for="customerAddressCountry font-weight-bold">Ország</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="temp.country" type="text" name="country"
-                id="customerAddressCountry" required>
+              <input class="form-control" [(ngModel)]="customer.address.country" type="text" name="country"
+                id="customerAddressCountry" placeholder="Ország neve" required>
             </div>
           </div>
         </div>
         <div class="row mt-2">
           <div class="form-group col-3">
-            <label for="customerAddressCity">City</label>
+            <label for="customerAddressCity">Város</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="temp.city" type="text" name="city" id="customerAddressCity"
-                required>
+              <input class="form-control" [(ngModel)]="customer.address.city" type="text" name="city"
+                id="customerAddressCity" placeholder="Város neve" required>
             </div>
           </div>
           <div class="form-group col-3">
-            <label for="customerAddressStreet">Street</label>
+            <label for="customerAddressStreet">Közterület</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="temp.street" type="text" name="street" id="customerAddressStreet"
-                required>
+              <input class="form-control" [(ngModel)]="customer.address.street" type="text" name="street"
+                id="customerAddressStreet" placeholder="Közterület neve" required>
             </div>
           </div>
           <div class="form-group col-3">
-            <label for="customerAddressNotes">Notes</label>
+            <label for="customerAddressNotes">Megjegyzés</label>
             <div class="input-group">
-              <input class="form-control" [(ngModel)]="temp.notes" type="text" name="notes" id="customerAddressNotes"
-                required>
+              <input class="form-control" [(ngModel)]="customer.address.notes" type="text" name="notes"
+                id="customerAddressNotes" placeholder="Egyéb megjegyzés" required>
             </div>
           </div>
         </div>
         <div class="row mt-2">
           <div class="form-check col-3">
-            <label for="customerActive" class="form-check-label">Active</label>
+            <label for="customerActive" class="form-check-label">Elérhető</label>
             <input class="form-control" [(ngModel)]="customer.active" type="checkbox" name="active" id="customerActive">
           </div>
         </div>
         <div class="button-group mt-5">
-          <button [disabled]="customerForm.invalid" class="btn btn-primary mr-3" type="submit">Létrehozás</button>
+          <button (click)="onUpdateCustomer(customer)" [disabled]=" customerForm.invalid" class="btn btn-primary mr-3"
+            type="submit">Létrehozás</button>
+          <button (click)="onRemoveCustomer(customer)" class="btn btn-warning mr-3" type="submit">Törlés</button>
           <button [routerLink]="['/customer']" class="btn btn-secondary" type="submit">Mégsem</button>
         </div>
       </form>
