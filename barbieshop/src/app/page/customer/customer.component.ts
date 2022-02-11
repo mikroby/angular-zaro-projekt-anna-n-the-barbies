@@ -1,3 +1,4 @@
+import { Customer } from 'src/app/model/customer';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
+
+  new: boolean = true
 
   constructor() { }
 

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mb-5">
-    <div *ngIf="customers$ | async as customer" class="col-12 mt-3">
+    <div *ngIf="customer" class="col-12 mt-3">
       <form #customerForm="ngForm">
         <div class="row">
           <div class="form-group">
@@ -9,17 +9,17 @@
           <div class="form-group col-3">
             <label for="customerFirstName">Keresztnév</label>
             <input class="form-control" [(ngModel)]="customer['firstName']" type="text" name="firstname"
-              id="customerFirstName" placeholder="Keresztnév" required>
+              id="customerFirstName" required>
           </div>
           <div class="form-group col-3">
             <label for="customerLastName">Vezetéknév</label>
             <input class="form-control" [(ngModel)]="customer['lastName']" type="text" name="lastname"
-              id="customerLastName" placeholder="Vezetéknév" required>
+              id="customerLastName" required>
           </div>
           <div class="form-group col-4">
             <label for="customerEmail">Email cím</label>
             <input class="form-control" [(ngModel)]="customer['email']" type="email" name="email" id="customerEmail"
-              placeholder="Email cím" required>
+              required>
           </div>
         </div>
         <div class="row mt-2">
@@ -27,14 +27,14 @@
             <label for="customerAddressZip">Irányítószám</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.zip" type="text" name="zip"
-                id="customerAddressZip" placeholder="Irányítószám" required>
+                id="customerAddressZip" required>
             </div>
           </div>
           <div class="form-group col-3">
             <label for="customerAddressCountry">Ország</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.country" type="text" name="country"
-                id="customerAddressCountry" placeholder="Ország neve" required>
+                id="customerAddressCountry" required>
             </div>
           </div>
         </div>
@@ -43,21 +43,21 @@
             <label for="customerAddressCity">Város</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.city" type="text" name="city"
-                id="customerAddressCity" placeholder="Város neve" required>
+                id="customerAddressCity" required>
             </div>
           </div>
           <div class="form-group col-3">
             <label for="customerAddressStreet">Közterület</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.street" type="text" name="street"
-                id="customerAddressStreet" placeholder="Közterület neve" required>
+                id="customerAddressStreet" required>
             </div>
           </div>
           <div class="form-group col-3">
-            <label for="customerAddressNotes">Megjegyzés</label>
+            <label for="customerAddressNotes">Egyéb megjegyzés</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.notes" type="text" name="notes"
-                id="customerAddressNotes" placeholder="Egyéb megjegyzés" required>
+                id="customerAddressNotes" required>
             </div>
           </div>
         </div>
