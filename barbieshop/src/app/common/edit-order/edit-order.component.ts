@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { Order } from 'src/app/model/order';
+import { Order, StatusKey } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
 
 @Component({
@@ -16,6 +16,8 @@ export class EditOrderComponent implements OnInit {
   newOrder: Order = new Order();
 
   id!: string;
+
+  selectionKeys: string[] = new StatusKey().keys;
 
 
   constructor(
@@ -42,11 +44,19 @@ export class EditOrderComponent implements OnInit {
       );
   }
 
-  onUpdateorder(order: Order): void {
+  onSaveOrder(order: Order): void {
 
+    if (this.id === '0') {
+      this.orderService.create(order).subscribe(
+        order => this.router.navigate(['/', 'order']))
+    } else {
+      this.orderService.update(order).subscribe(
+        order => this.router.navigate(['/', 'order']))
+    }
   }
 
-  onRemoveorder(order: Order): void {
-
+  onRemoveOrder(order: Order): void {
+    this.orderService.delete(order.id).subscribe(
+      order => this.router.navigate(['/', 'order']))
   }
 }
