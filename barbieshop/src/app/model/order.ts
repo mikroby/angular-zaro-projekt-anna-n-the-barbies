@@ -4,7 +4,11 @@ export class Order {
   customerID: number = 0;
   productID: number = 0;
   amount: number = 0;
-  status: string = '';
+  status: string = 'new';
+}
+
+export class StatusKey {
+  keys: string[] = ['new', 'shipped', 'paid'];
 }
 
 // id, customerID, productID, amount, status: new|shipped|paid

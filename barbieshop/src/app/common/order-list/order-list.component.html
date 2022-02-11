@@ -1,1 +1,26 @@
-<p>order-list works!</p>
+<div class="row mt-5">
+  <div class="col-12">
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr class="sticky-top bg-white">
+          <th *ngFor="let key of keys" class="font-weight-bold">{{ key | titlecase }}</th>
+          <th class="font-weight-bold">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orderList$ | async">
+          <td>{{ order.id }}</td>
+          <td>{{ order.customerID }}</td>
+          <td>{{ order.productID }}</td>
+          <td>{{ order.amount }}</td>
+          <td>{{ order.status }}</td>
+          <td>
+            <button [routerLink]="['/', 'edit-order', order.id]" class="btn btn-info"><i
+                class="fa fa-pencil"></i></button>
+            <button (click)="onRemoveOrder(order)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

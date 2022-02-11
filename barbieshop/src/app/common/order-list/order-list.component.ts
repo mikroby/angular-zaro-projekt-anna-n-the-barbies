@@ -1,4 +1,8 @@
+import { Router } from '@angular/router';
+import { OrderService } from './../../service/order.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Order } from 'src/app/model/order';
 
 @Component({
   selector: 'app-order-list',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderListComponent implements OnInit {
 
-  constructor() { }
+  orderList$: Observable<Order[]> = this.orderService.getAll()
+
+  keys: string[] = Object.keys(new Order());
+
+  constructor(
+    private orderService:OrderService,
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onRemoveOrder(order: Order): void {
+    this.orderService.delete(order.id).subscribe(
+      order => this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/', 'order'])}
+      )
+    )
   }
 
 }

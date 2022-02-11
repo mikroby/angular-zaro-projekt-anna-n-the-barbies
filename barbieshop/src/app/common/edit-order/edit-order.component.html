@@ -1,1 +1,75 @@
-<p>edit-order works!</p>
+<div class="container">
+  <div class="row mb-5">
+    <div *ngIf="order" class="col-12 mt-3">
+
+      <form #orderForm="ngForm" (ngSubmit)="onSaveOrder(order)">
+
+        <div class="row">
+
+          <div class="form-group col-2">
+            <label for="order-ID" class="font-weight-bold">Order ID</label>
+            <input class="form-control" [(ngModel)]="order.id" type="number"
+              disabled name="id" id="order-ID">
+          </div>
+
+          <div class="form-group col-2">
+            <label for="customer-ID" class="font-weight-bold">Customer ID</label>
+            <input class="form-control" [(ngModel)]="order.customerID" type="number"
+              name="customerID" id="customer-ID" required min="1">
+          </div>
+
+          <div class="form-group col-2">
+            <label for="product-ID" class="font-weight-bold">Product ID</label>
+            <input class="form-control" [(ngModel)]="order.productID" type="number"
+              name="productID" id="product-ID" required min="1">
+          </div>
+
+          <div class="form-group col-2">
+            <label for="amount" class="font-weight-bold">Amount</label>
+            <input class="form-control" [(ngModel)]="order.amount" type="number"
+              name="amount" id="amount" required min="0">
+          </div>
+        
+          <div class="form-group col-2">
+            <label for="status" class="font-weight-bold">Status</label>
+            <select class="form-control" [(ngModel)]="order.status" type="text"
+              name="status" id="status" required>
+              <option *ngFor="let key of selectionKeys" [value]="key">
+                {{key}}
+              </option>              
+            </select>            
+          </div>
+          
+          <div class="error-message">
+            Hiba üzenetek:
+            <div [hidden]="orderForm.controls['customerID']?.valid">
+              Customer ID-nek 0-tól különbözőnek kell lennie!
+            </div>
+            <div [hidden]="orderForm.controls['productID']?.valid">
+              Product ID-nek 0-tól különbözőnek kell lennie!
+            </div>
+          </div>
+
+        </div>
+
+        <div class="button-group mt-5">
+          <button [disabled]="orderForm.invalid"
+            class="btn btn-primary mr-3" type="submit">
+            Mentés
+          </button>
+          
+          <button (click)="onRemoveOrder(order)" class="btn btn-warning mr-3"
+            type="button" [disabled]="id==='0'">
+            Törlés
+          </button>
+          
+          <button [routerLink]="['/order']" class="btn btn-secondary"
+            type="button">
+            Mégsem
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
