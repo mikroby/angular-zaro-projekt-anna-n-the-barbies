@@ -1,4 +1,3 @@
-import { OrderComponent } from './page/order/order.component';
 import { AddCustomerComponent } from './common/add-customer/add-customer.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,6 +10,8 @@ import { BillListComponent } from './common/bill-list/bill-list.component';
 import { BillComponent } from './page/bill/bill.component';
 import { AddBillComponent } from './common/add-bill/add-bill.component';
 import { BillViewerComponent } from './page/bill-viewer/bill-viewer.component';
+import { EditOrderComponent } from './common/edit-order/edit-order.component';
+import { OrderComponent } from './page/order/order.component';
 
 const routes: Routes = [
   {
@@ -43,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-order/:id',
-    component: DashboardComponent,
+    component: EditOrderComponent,
   },
   {
     path: 'add-product',

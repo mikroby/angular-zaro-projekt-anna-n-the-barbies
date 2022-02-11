@@ -22,6 +22,7 @@ import { CustomCurrencyPipe } from './pipe/custom-currency.pipe';
 import { EditProductComponent } from './common/edit-product/edit-product.component';
 import { OrderComponent } from './page/order/order.component';
 import { OrderListComponent } from './common/order-list/order-list.component';
+import { EditOrderComponent } from './common/edit-order/edit-order.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { OrderListComponent } from './common/order-list/order-list.component';
     CustomCurrencyPipe,
     OrderComponent,
     OrderListComponent,
+    EditOrderComponent,
   ],
   imports: [
     BrowserModule,
