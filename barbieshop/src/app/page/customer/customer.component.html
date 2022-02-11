@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <button routerLink="/add-customer" class="btn btn-light btn-block btn-lg py-3">Új Vásárló hozzáadása
+      <button [routerLink]="['/', 'edit-customer', 0]" class="btn btn-light btn-block btn-lg py-3">Új Vásárló
+        hozzáadása
         <i class="fa fa-user-plus" aria-hidden="true"></i></button>
     </div>
   </div>

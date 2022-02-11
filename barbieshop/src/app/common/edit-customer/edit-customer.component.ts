@@ -11,9 +11,8 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class EditCustomerComponent implements OnInit {
 
-  customers$: Observable<Customer> = this.activatedRoute.params.pipe(
-    switchMap( params => this.customerService.getOne(params['id']))
-  )
+  customer: Customer = new Customer()
+  newcustomer: Customer = new Customer()
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,13 +21,31 @@ export class EditCustomerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  }
+    if (this.activatedRoute.snapshot.params['id'] === '0') {
+      this.customer = this.newcustomer
+    }
+    else {
+      this.activatedRoute.params.pipe(
+        switchMap( params => this.customerService.getOne(params['id']))
+        ).subscribe(customer => this.customer = customer)
+    }
+}
+
 
   onUpdateCustomer(customer: Customer): void {
+    if (customer.id === 0) {
+      this.customerService.create(customer).subscribe(
+        customer => {
+          this.router.navigate(['/', 'customer'])},
+        err => console.error(err)
+      )
+    }
+    else {
     this.customerService.update(customer).subscribe(
       product => this.router.navigate(['/', 'customer']),
       err => console.error(err)
     )
+    }
   }
 
 

@@ -13,7 +13,6 @@ import { CustomerListComponent } from './common/customer-list/customer-list.comp
 import { CustomerComponent } from './page/customer/customer.component';
 import { ProductComponent } from './page/product/product.component';
 import { EditCustomerComponent } from './common/edit-customer/edit-customer.component';
-import { AddCustomerComponent } from './common/add-customer/add-customer.component';
 import { CustomCurrencyPipe } from './pipe/custom-currency.pipe';
 import { AddBillComponent } from './common/add-bill/add-bill.component';
 import { BillListComponent } from './common/bill-list/bill-list.component';
@@ -35,7 +34,6 @@ import { EditOrderComponent } from './common/edit-order/edit-order.component';
     CustomerComponent,
     ProductComponent,
     EditCustomerComponent,
-    AddCustomerComponent,
     EditProductComponent,
     BillListComponent,
     BillComponent,
