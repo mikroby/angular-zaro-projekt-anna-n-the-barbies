@@ -21,10 +21,10 @@ export class EditCustomerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.activatedRoute.snapshot.params['id'] === 0) {
+    if (this.activatedRoute.snapshot.params['id'] === '0') {
       this.customer = this.newcustomer
     }
-    if (this.activatedRoute.snapshot.params['id'] > 0) {
+    else {
       this.activatedRoute.params.pipe(
         switchMap( params => this.customerService.getOne(params['id']))
         ).subscribe(customer => this.customer = customer)
@@ -40,7 +40,7 @@ export class EditCustomerComponent implements OnInit {
         err => console.error(err)
       )
     }
-    if (customer.id > 0) {
+    else {
     this.customerService.update(customer).subscribe(
       product => this.router.navigate(['/', 'customer']),
       err => console.error(err)

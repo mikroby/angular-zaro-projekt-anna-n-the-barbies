@@ -8,18 +8,30 @@
           </div>
           <div class="form-group col-3">
             <label for="customerFirstName">Keresztnév</label>
-            <input class="form-control" [(ngModel)]="customer['firstName']" type="text" name="firstname"
-              id="customerFirstName" required>
+            <input class="form-control" [(ngModel)]="customer['firstName']" type="text" name="firstName"
+              id="customerFirstName" required pattern="^[a-űA-Ű ]{3,}$">
+            <div [hidden]="customerForm.controls['firstName']?.valid || customerForm.controls['firstName']?.pristine"
+              class="error-message">
+              A keresztnév hossza legalább 3 karakter és csak betűket tartalmazhat
+            </div>
           </div>
           <div class="form-group col-3">
             <label for="customerLastName">Vezetéknév</label>
-            <input class="form-control" [(ngModel)]="customer['lastName']" type="text" name="lastname"
-              id="customerLastName" required>
+            <input class="form-control" [(ngModel)]="customer['lastName']" type="text" name="lastName"
+              id="customerLastName" required pattern="^[a-űA-Ű ]{3,}$">
+            <div [hidden]="customerForm.controls['lastName']?.valid || customerForm.controls['lastName']?.pristine"
+              class="error-message">
+              A vezetéknév hossza legalább 3 karakter és csak betűket tartalmazhat
+            </div>
           </div>
           <div class="form-group col-4">
             <label for="customerEmail">Email cím</label>
             <input class="form-control" [(ngModel)]="customer['email']" type="email" name="email" id="customerEmail"
-              required>
+              required patter="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}(\.[a-z]{2,})*$">
+            <div [hidden]="customerForm.controls['email']?.valid || customerForm.controls['email']?.pristine"
+              class="error-message">
+              Nem érvényes email cím formátum
+            </div>
           </div>
         </div>
         <div class="row mt-2">
@@ -27,14 +39,22 @@
             <label for="customerAddressZip">Irányítószám</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.zip" type="text" name="zip"
-                id="customerAddressZip" required>
+                id="customerAddressZip" required required pattern="^[\d-]{3,}$">
+              <div [hidden]="customerForm.controls['zip']?.valid || customerForm.controls['zip']?.pristine"
+                class="error-message">
+                Az irányítószám hossza legalább 3 karakter és csak számokat tartalmazhet
+              </div>
             </div>
           </div>
           <div class="form-group col-3">
             <label for="customerAddressCountry">Ország</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.country" type="text" name="country"
-                id="customerAddressCountry" required>
+                id="customerAddressCountry" required pattern="^[a-űA-Ű\s]{3,}$">
+              <div [hidden]="customerForm.controls['country']?.valid || customerForm.controls['country']?.pristine"
+                class="error-message">
+                A ország nevének hossza legalább 3 karakter
+              </div>
             </div>
           </div>
         </div>
@@ -43,21 +63,33 @@
             <label for="customerAddressCity">Város</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.city" type="text" name="city"
-                id="customerAddressCity" required>
+                id="customerAddressCity" required pattern="^[a-űA-Ű\s-]{3,}$">
+              <div [hidden]="customerForm.controls['city']?.valid || customerForm.controls['city']?.pristine"
+                class="error-message">
+                A város nevének hossza legalább 3 karakter
+              </div>
             </div>
           </div>
           <div class="form-group col-3">
             <label for="customerAddressStreet">Közterület</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.street" type="text" name="street"
-                id="customerAddressStreet" required>
+                id="customerAddressStreet" required pattern="^([a-űA-Ű0-9_'\s-]{5,}){1,3}$">
+              <div [hidden]="customerForm.controls['street']?.valid || customerForm.controls['street']?.pristine"
+                class="error-message">
+                A közterület nevének hossza legalább 5 karakter és nem tartalmazhat speciális karaktert
+              </div>
             </div>
           </div>
           <div class="form-group col-3">
             <label for="customerAddressNotes">Egyéb megjegyzés</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.notes" type="text" name="notes"
-                id="customerAddressNotes" required>
+                id="customerAddressNotes" required pattern="^[a-űA-Ű0-9_\s-]{5,}$">
+              <div [hidden]="customerForm.controls['notes']?.valid || customerForm.controls['notes']?.pristine"
+                class="error-message">
+                A város nevének hossza legalább 5 karakter
+              </div>
             </div>
           </div>
         </div>
