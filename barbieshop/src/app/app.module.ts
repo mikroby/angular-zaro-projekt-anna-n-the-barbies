@@ -22,6 +22,8 @@ import { EditProductComponent } from './common/edit-product/edit-product.compone
 import { OrderComponent } from './page/order/order.component';
 import { OrderListComponent } from './common/order-list/order-list.component';
 import { EditOrderComponent } from './common/edit-order/edit-order.component';
+import { SorterPipe } from './pipe/sorter.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { EditOrderComponent } from './common/edit-order/edit-order.component';
     OrderComponent,
     OrderListComponent,
     EditOrderComponent,
+    SorterPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
