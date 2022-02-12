@@ -1,3 +1,4 @@
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -11,9 +12,14 @@ export class SorterPipe<T extends { [key: string]: any }> implements PipeTransfo
       return value;
     }
 
+
     return value.sort((a, b) => {
       if (typeof a[sortBy] === 'number' && typeof b[sortBy] === 'number') {
         return (a[sortBy] - b[sortBy]) * direction;
+      }
+      if (sortBy === "address") {
+        return ((Object.values(a[sortBy])).join('').toLowerCase().localeCompare((Object.values(b[sortBy])).join(' ').toLowerCase()
+        )) * direction;
       }
       return (String(a[sortBy]).toLowerCase().localeCompare(String(b[sortBy])
         .toLowerCase())) * direction;
