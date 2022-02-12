@@ -1,42 +1,46 @@
-<div class="row mt-5">
-  <div class="col-12 col-lg-8 mx-auto">
-    <div class="input-group input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-sm">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </span>
-      </div>
-      <input [(ngModel)]="phrase" type="text" class="form-control"
-        placeholder="keresés ...">
+<div class="row mt-4 mx-0">
+  <div class="col-12 bg-light p-2 rounded">
+    <div class="col-8 mx-auto">
+      <div class="input-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </span>
+        </div>
+        <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="keresés ...">
 
-      <select [(ngModel)]="filterKey" class="custom-select">
-        <option value="">bármilyen egyezés</option>
-        <option *ngFor="let key of keys" [value]="key">{{ key | titlecase }}
-        </option>
-      </select>
+        <select [(ngModel)]="filterKey" class="custom-select col-4">
+          <option value="">bármilyen egyezés</option>
+          <option *ngFor="let key of keys" [value]="key">{{ key | titlecase }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row mt-5">
+<div class="row mt-3">
   <div class="col-12">
     <table class="table table-striped mt-3">
       <thead>
         <tr class="sticky-top bg-white">
-          <th *ngFor="let key of keys" class="font-weight-bold">{{ key | titlecase }}</th>
+          <th *ngFor="let key of keys; index as i" class="font-weight-bold"
+            (click)="changeSortDirection(key,i)">
+            {{ key | titlecase }}
+            {{dirSymbol[i]}}
+          </th>
           <th class="font-weight-bold">Options</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of orderList$ | async | filter:phrase:filterKey">
+        <tr *ngFor="let order of orderList$ | async | filter:phrase:filterKey | sorter:sorterKey:direction">
           <td>{{ order.id }}</td>
           <td>{{ order.customerID }}</td>
           <td>{{ order.productID }}</td>
           <td>{{ order.amount }}</td>
           <td>{{ order.status }}</td>
           <td>
-            <button [routerLink]="['/', 'edit-order', order.id]"
-              class="btn btn-info">
+            <button [routerLink]="['/', 'edit-order', order.id]" class="btn btn-info">
               <i class="fa fa-pencil"></i>
             </button>
             <button (click)="onRemoveOrder(order)" class="btn btn-danger">
