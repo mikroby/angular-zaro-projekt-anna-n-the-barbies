@@ -15,14 +15,8 @@ export class FilterPipe<T extends { [key: string]: any }> implements PipeTransfo
 
     if (!key) {
       return value.filter(
-        item => (Object.values(item) + ' ' + (Object.values(item['address'])).join(' ')).toLowerCase().includes(phrase)
+        item => Object.values(item).join(' ').toLowerCase().includes(phrase)
       );
-    }
-
-    if (key === "address") {
-      return value.filter(
-        item => ((Object.values(item['address'])).join(' ').toLowerCase().includes(phrase)
-          ));
     }
 
     return value.filter(item => {
