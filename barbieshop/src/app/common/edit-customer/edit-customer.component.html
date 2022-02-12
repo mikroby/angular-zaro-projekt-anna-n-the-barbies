@@ -103,7 +103,8 @@
         <div class="button-group mt-5">
           <button [disabled]="customerForm.invalid" class="btn btn-info mr-3"
             (click)="onUpdateCustomer(customer)">Mentés</button>
-          <button class="btn btn-warning mr-3" (click)="onRemoveCustomer(customer)">Törlés</button>
+          <button [hidden]="customer.id === 0" class="btn btn-warning mr-3"
+            (click)="onRemoveCustomer(customer)">Törlés</button>
           <button [routerLink]="['/customer']" class="btn btn-secondary" type="submit">Mégsem</button>
         </div>
       </form>
