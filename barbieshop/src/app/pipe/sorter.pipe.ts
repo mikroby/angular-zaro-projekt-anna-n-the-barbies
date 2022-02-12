@@ -13,10 +13,11 @@ export class SorterPipe<T extends { [key: string]: any }> implements PipeTransfo
 
     return value.sort((a, b) => {
       if (typeof a[sortBy] === 'number' && typeof b[sortBy] === 'number') {
-        return (a[sortBy] - b[sortBy])*direction;
+        return (a[sortBy] - b[sortBy]) * direction;
       }
-      return (String(a[sortBy]).toLowerCase().localeCompare(String(b[sortBy]).toLowerCase()))*direction;
-    });    
+      return (String(a[sortBy]).toLowerCase().localeCompare(String(b[sortBy])
+        .toLowerCase())) * direction;
+    });
   }
 }
 

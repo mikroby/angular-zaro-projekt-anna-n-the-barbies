@@ -47,11 +47,7 @@ const routes: Routes = [
   {
     path: 'add-product',
     component:  DashboardComponent,
-  },
-  {
-    path: 'add-order',
-    component:  DashboardComponent,
-  },
+  },  
   {
     path: 'add-bill',
     component:  AddBillComponent,
