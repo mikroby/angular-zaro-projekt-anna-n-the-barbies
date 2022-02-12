@@ -15,6 +15,15 @@ export class OrderListComponent implements OnInit {
 
   keys: string[] = Object.keys(new Order());
 
+  phrase: string = '';
+
+  filterKey: string = '';
+
+  sorterKey: string = '';
+
+  direction: number = 1;
+
+
   constructor(
     private orderService:OrderService,
     private router:Router
