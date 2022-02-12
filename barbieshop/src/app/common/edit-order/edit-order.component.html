@@ -15,19 +15,19 @@
           <div class="form-group col-2">
             <label for="customer-ID" class="font-weight-bold">Customer ID</label>
             <input class="form-control" [(ngModel)]="order.customerID" type="number"
-              name="customerID" id="customer-ID" required min="1">
+              name="customerID" id="customer-ID" required min="1" pattern="^\d+$">
           </div>
 
           <div class="form-group col-2">
             <label for="product-ID" class="font-weight-bold">Product ID</label>
             <input class="form-control" [(ngModel)]="order.productID" type="number"
-              name="productID" id="product-ID" required min="1">
+              name="productID" id="product-ID" required min="1" pattern="^\d+$">
           </div>
 
           <div class="form-group col-2">
             <label for="amount" class="font-weight-bold">Amount</label>
             <input class="form-control" [(ngModel)]="order.amount" type="number"
-              name="amount" id="amount" required min="0">
+              name="amount" id="amount" required min="0" pattern="^\d+$">
           </div>
         
           <div class="form-group col-2">
@@ -40,17 +40,23 @@
             </select>            
           </div>
           
-          <div class="error-message">
-            Hiba üzenetek:
+        </div>
+        
+        <div class="row mx-0">
+          <div class="error-message" [hidden]="orderForm.valid">
+            Hiba üzenet:
             <div [hidden]="orderForm.controls['customerID']?.valid">
-              Customer ID-nek 0-tól különbözőnek kell lennie!
+              Customer ID: 0-tól nagyobb egész számnak kell lennie!
             </div>
             <div [hidden]="orderForm.controls['productID']?.valid">
-              Product ID-nek 0-tól különbözőnek kell lennie!
+              Product ID: 0-tól nagyobb egész számnak kell lennie!
+            </div>
+            <div [hidden]="orderForm.controls['amount']?.valid">
+              Amount: 0, vagy pozitív egész számnak kell lennie!
             </div>
           </div>
-
         </div>
+
 
         <div class="button-group mt-5">
           <button [disabled]="orderForm.invalid"
