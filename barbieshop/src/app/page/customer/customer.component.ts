@@ -1,5 +1,5 @@
-import { Customer } from 'src/app/model/customer';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-customer',
@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class CustomerComponent implements OnInit {
 
   new: boolean = true
+  customerService: any;
 
   constructor() { }
 
