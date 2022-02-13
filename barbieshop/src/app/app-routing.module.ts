@@ -46,8 +46,8 @@ const routes: Routes = [
   },
   {
     path: 'add-product',
-    component:  DashboardComponent,
-  },  
+    component:  EditProductComponent,
+  },
   {
     path: 'add-bill',
     component:  AddBillComponent,

@@ -12,7 +12,7 @@ import { BillService } from 'src/app/service/bill.service';
 export class BillViewerComponent implements OnInit {
 
   bill$: Observable<Bill> = this.activatedRoute.params.pipe(
-    switchMap( params => this.billService.getOneBill(params['id']))
+    switchMap( params => this.billService.getOne(params['id']))
   )
 
   constructor(
