@@ -80,9 +80,7 @@
   </div>
 </div>
 
-<!-- spinner: egyelőre nem forog csak szövegesen üzen-->
-<div *ngIf="!(paidBillNumber$ | async)" class="d-flex justify-content-center mt-5">
-  <div class="spinner-border bg-primary rounded py-2 px-5" role="status">
-    <span class="text-white">Loading...</span>
-  </div>
-</div>
+<!-- spinner -->
+<ng-container *ngIf="!(paidBillNumber$ | async)">
+  <app-spinner></app-spinner>
+</ng-container>
