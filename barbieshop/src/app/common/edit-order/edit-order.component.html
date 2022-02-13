@@ -60,12 +60,12 @@
 
         <div class="button-group mt-5">
           <button [disabled]="orderForm.invalid"
-            class="btn btn-primary mr-3" type="submit">
+            class="btn btn-info mr-3" type="submit">
             Mentés
           </button>
           
           <button (click)="onRemoveOrder(order)" class="btn btn-warning mr-3"
-            type="button" [disabled]="id==='0'">
+            type="button" [hidden]="id==='0'">
             Törlés
           </button>
           
