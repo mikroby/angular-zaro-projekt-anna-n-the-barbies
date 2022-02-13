@@ -46,3 +46,8 @@
     </div>
   </div>
 </div>
+
+<!-- spinner -->
+<ng-container *ngIf="!(productList$ | async)">
+  <app-spinner></app-spinner>
+</ng-container>

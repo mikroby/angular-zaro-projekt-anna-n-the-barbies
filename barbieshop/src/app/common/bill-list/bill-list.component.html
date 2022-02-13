@@ -22,3 +22,8 @@
     </table>
   </div>
 </div>
+
+<!-- spinner -->
+<ng-container *ngIf="!(billList$ | async)">
+  <app-spinner></app-spinner>
+</ng-container>
