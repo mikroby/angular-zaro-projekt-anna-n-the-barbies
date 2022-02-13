@@ -25,6 +25,7 @@ import { EditOrderComponent } from './common/edit-order/edit-order.component';
 import { SorterPipe } from './pipe/sorter.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
 import { CustomerFilterPipe } from './pipe/customer-filter.pipe';
+import { SpinnerComponent } from './common/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { CustomerFilterPipe } from './pipe/customer-filter.pipe';
     SorterPipe,
     FilterPipe,
     CustomerFilterPipe,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
