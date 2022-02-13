@@ -33,6 +33,9 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.direction=1;
+    this.dirSymbol[0]=this.SymbolArray[0];
+    this.sorterKey=this.keys[0];
   }
 
   onRemoveOrder(order: Order): void {
