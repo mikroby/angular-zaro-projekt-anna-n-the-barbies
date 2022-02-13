@@ -32,7 +32,11 @@ export class CustomerListComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {
+    this.direction = 1;
+    this.dirSymbol[0] = this.SymbolArray[0];
+    this.sorterKey = this.keys[0]
+    }
 
   onRemoveCustomer(customer: Customer): void {
     this.customerService.delete(customer.id).subscribe(
