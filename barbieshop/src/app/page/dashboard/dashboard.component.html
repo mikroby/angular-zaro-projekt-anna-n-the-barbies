@@ -1,1 +1,88 @@
-<p>dashboard works!</p>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-6 offset-3">
+      <h2>Termékek</h2>
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+          <tr>
+            <th>Aktív</th>
+            <th>Inaktív</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ activeProductNumber$ | async }}</td>
+            <td>{{ inactiveProductNumber$ | async }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-6 offset-3">
+      <h2>Vásárlók</h2>
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+          <tr>
+            <th>Aktív</th>
+            <th>Inaktív</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ activeCustomerNumber$ | async }}</td>
+            <td>{{ inactiveCustomerNumber$ | async }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-6 offset-3">
+      <h2>Rendelések</h2>
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+          <tr>
+            <th>Új</th>
+            <th>Feladott</th>
+            <th>Fizetett</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ newOrderNumber$ | async }}</td>
+            <td>{{ shippedOrderNumber$ | async }}</td>
+            <td>{{ paidOrderNumber$ | async }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-6 offset-3">
+      <h2>Számlák</h2>
+      <table class="table table-bordered table-striped text-center">
+        <thead>
+          <tr>
+            <th>Új</th>
+            <th>Fizetett</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ newBillNumber$ | async }}</td>
+            <td>{{ paidBillNumber$ | async }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- spinner: egyelőre nem forog csak szövegesen üzen-->
+<div *ngIf="!(paidBillNumber$ | async)" class="d-flex justify-content-center mt-5">
+  <div class="spinner-border bg-primary rounded py-2 px-5" role="status">
+    <span class="text-white">Loading...</span>
+  </div>
+</div>

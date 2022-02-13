@@ -1,48 +1,62 @@
-<div class="container py-5">
-  <h5>Szűrés:</h5>
-  <div class="row ">
-    <div class="col-4">
-      <select [(ngModel)]="filterKey" class="form-control">
-        <option value="">bármilyen egyezés</option>
-        <option *ngFor='let key of keys' [value]="key">{{ key | titlecase }}</option>
-      </select>
-    </div>
-    <div class="col-8">
-      <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Keresés...">
-    </div>
-  </div>
-</div>
+<div class="container">
+  <div class="row my-5 mx-0">
+    <div class="col-12 bg-light p-2 rounded">
+      <div class="col-8 mx-auto">
+        <div class="input-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+          <input [(ngModel)]="phrase" type="text" class="form-control mt-1 mr-3" placeholder="keresés ...">
 
-<div class="row mt">
-  <div class="col-12">
-    <table class="table table-striped mt-3">
-      <thead>
-        <tr class="sticky-top bg-white">
-          <th *ngFor="let key of keys, index as i" class="text-center font-weight-bold"
-            (click)="changeSortDirection(key, i)">
-            {{ key | titlecase }}
-            <span class="text-muted">{{dirSymbol[i]}}</span>
-          </th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="let customer of customerList$ | async | customerFilter:phrase:filterKey | sorter:sorterKey:direction">
-          <td>{{ customer.id }}</td>
-          <td>{{ customer.firstName }}</td>
-          <td>{{ customer.lastName }}</td>
-          <td>{{ customer.email }}</td>
-          <td>{{ customer.address.full }}</td>
-          <td *ngIf="customer.active == true"><i class="fa fa-check"></i></td>
-          <td *ngIf="customer.active == false"><i class="fa fa-ban"></i></td>
-          <td>
-            <button [routerLink]="['/', 'edit-customer', customer.id]" class="btn btn-info"><i
-                class="fa fa-pencil"></i></button>
-            <button (click)="onRemoveCustomer(customer)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          <select [(ngModel)]="filterKey" class="custom-select col-4">
+            <option value="">bármilyen egyezés</option>
+            <option *ngFor="let key of keys" [value]="key">{{ key | titlecase }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr class="sticky-top bg-white">
+            <th *ngFor="let key of keys, index as i" class="text-center font-weight-bold"
+              (click)="changeSortDirection(key, i)">
+              {{ key | titlecase }}
+              <span class="text-muted">{{dirSymbol[i]}}</span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let customer of customerList$ | async | customerFilter:phrase:filterKey | sorter:sorterKey:direction">
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.firstName }}</td>
+            <td>{{ customer.lastName }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.address.full }}</td>
+            <td *ngIf="customer.active == true"><i class="fa fa-check"></i></td>
+            <td *ngIf="customer.active == false"><i class="fa fa-ban"></i></td>
+            <td>
+              <button [routerLink]="['/', 'edit-customer', customer.id]" class="btn btn-info"><i
+                  class="fa fa-pencil"></i></button>
+              <button (click)="onRemoveCustomer(customer)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- spinner: egyelőre nem forog csak szövegesen üzen-->
+  <div *ngIf="!(customerList$ | async)" class="d-flex justify-content-center mt-5">
+    <div class="spinner-border bg-primary rounded py-2 px-5" role="status">
+      <span class="text-white">Loading...</span>
+    </div>
+  </div>

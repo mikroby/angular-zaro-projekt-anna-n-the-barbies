@@ -10,7 +10,7 @@ import { Bill } from 'src/app/model/bill';
 })
 export class BillListComponent implements OnInit {
 
-  billList$: Observable<Bill[]> = this.billService.getAllBills();
+  billList$: Observable<Bill[]> = this.billService.getAll();
   keys: string[] = Object.keys(new Bill());
 
   constructor(

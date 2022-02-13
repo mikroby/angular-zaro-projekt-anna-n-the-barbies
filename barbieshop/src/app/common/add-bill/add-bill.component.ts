@@ -20,7 +20,7 @@ export class AddBillComponent implements OnInit {
   ngOnInit(): void {
   }
   onAddBill(bill: Bill): void {
-    this.billService.addBill(bill).subscribe(
+    this.billService.create(bill).subscribe(
       bill => this.router.navigate(['/bill']),
       err => console.error(err)
     );
