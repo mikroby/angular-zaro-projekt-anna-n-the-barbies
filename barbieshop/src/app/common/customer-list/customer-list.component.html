@@ -21,7 +21,7 @@
           <th *ngFor="let key of keys, index as i" class="text-center font-weight-bold"
             (click)="changeSortDirection(key, i)">
             {{ key | titlecase }}
-            {{dirSymbol[i]}}
+            <span class="text-muted">{{dirSymbol[i]}}</span>
           </th>
           <th></th>
         </tr>
