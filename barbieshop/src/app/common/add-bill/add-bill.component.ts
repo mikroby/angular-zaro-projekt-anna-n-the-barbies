@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { Bill } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
 
@@ -10,14 +11,30 @@ import { BillService } from 'src/app/service/bill.service';
 })
 export class AddBillComponent implements OnInit {
 
-  bill = new Bill();
+  newBill: Bill = new Bill();
+  bill!: Bill;
+  id!: string;
+
 
   constructor(
+    private ar: ActivatedRoute,
     private billService: BillService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.ar.params.pipe(
+      switchMap(params => this.id = params['id'])).subscribe(
+        () => {
+          if (this.id === '0') {
+            this.bill = this.newBill;
+          } else {
+            this.billService.getOne(Number(this.id)).subscribe(
+              (result) => this.bill = result
+            )
+          }
+        }
+      );
   }
   onAddBill(bill: Bill): void {
     this.billService.create(bill).subscribe(
