@@ -25,6 +25,7 @@ import { SorterPipe } from './pipe/sorter.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
 import { CustomerFilterPipe } from './pipe/customer-filter.pipe';
 import { SpinnerComponent } from './common/spinner/spinner.component';
+import { BaseListComponent } from './common/base-list/base-list.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { SpinnerComponent } from './common/spinner/spinner.component';
     FilterPipe,
     CustomerFilterPipe,
     SpinnerComponent,
+    BaseListComponent,
   ],
   imports: [
     BrowserModule,
