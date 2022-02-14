@@ -11,7 +11,7 @@
         <tr class="text-center" *ngFor="let bill of billList$ | async" >
           <td>{{ bill.id }}</td>
           <td>{{ bill.orderID }}</td>
-          <td>{{ bill.amount }}</td>
+          <td>{{ bill.amount | customCurrency }}</td>
           <td>{{ bill.status }}</td>
           <td>
             <button
