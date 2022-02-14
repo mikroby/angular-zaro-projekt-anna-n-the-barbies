@@ -1,35 +1,52 @@
 <div class="container">
   <div class="row">
-    <div *ngIf="editproduct$ | async as product" class="col-6 offset-3">
+    <div *ngIf="product" class="col-6 offset-3">
       <form #productForm="ngForm" (ngSubmit)="onUpdate(product)" class="mt-3">
         <input [(ngModel)]="product.id" name="id" type="hidden">
         <div class="form-group">
           <label for="">Név</label>
-          <input [(ngModel)]="product.name" name="name" type="text" class="form-control" required>
+          <input [(ngModel)]="product.name" name="name" type="text" class="form-control"
+          pattern="[A-Z].{2,}" required>
+          <div [hidden]="productForm.controls['name']?.valid" class="error-message">
+            Adja meg a termék nevét. A név legalább 3 betűből álljon, és nagybetűvel kezdődjön.
+          </div>
         </div>
         <div class="form-group">
           <label for="">Típus</label>
-          <input [(ngModel)]="product.type" name="type" type="text" class="form-control" required>
+          <input [(ngModel)]="product.type" name="type" type="text" class="form-control"
+          pattern="[A-Z].{2,}" required>
+          <div [hidden]="productForm.controls['type']?.valid" class="error-message">
+            Adja meg a termék típusát. A típus neve legalább 3 betűből álljon, és nagybetűvel kezdődjön.
+          </div>
         </div>
         <div class="form-group">
           <label for="">Kategória azonosítója</label>
           <input [(ngModel)]="product.catID" name="catID" type="number" class="form-control" required>
+          <div [hidden]="productForm.controls['catID']?.valid" class="error-message">
+            Adja meg a kategória azonosítóját. Az azonosító egy szám.
+          </div>
         </div>
         <div class="form-group">
           <label for="">Leírás</label>
           <input [(ngModel)]="product.description" name="description" type="text" class="form-control" required>
+          <div [hidden]="productForm.controls['description']?.valid" class="error-message">
+            Adja meg a termék jellemzőit.
+          </div>
         </div>
         <div class="form-group">
           <label for="">Ár</label>
-          <input [ngModel]="product.price | customCurrency" (ngModelChange)="product.price=$event" name="price" type="number" class="form-control" required>
+          <input [(ngModel)]="product.price" name="price" type="number" class="form-control" required>
+          <div [hidden]="productForm.controls['price']?.valid" class="error-message">
+            Adja meg a termék árát.
+          </div>
         </div>
         <div class="form-group">
           <label for="">Kiemelt</label>
-          <input [(ngModel)]="product.featured" name="featured" type="checkbox" class="form-control" required>
+          <input [(ngModel)]="product.featured" name="featured" type="checkbox" class="form-control">
         </div>
         <div class="form-group">
           <label for="">Aktív</label>
-          <input [(ngModel)]="product.active" name="active" type="checkbox" class="form-control" required>
+          <input [(ngModel)]="product.active" name="active" type="checkbox" class="form-control">
         </div>
         <button [disabled]="productForm.invalid" type="submit" class="btn btn-primary">Mentés</button>
         <button routerLink="/product" type="submit" class="btn btn-warning">Mégse</button>
