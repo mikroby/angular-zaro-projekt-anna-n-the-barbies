@@ -1,1 +1,70 @@
-<p>base-list works!</p>
+<div class="row mt-4 mx-0">
+  <div class="col-12 bg-light p-2 rounded">
+    <div class="col-8 mx-auto">
+      <div class="input-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </span>
+        </div>
+        <input [(ngModel)]="phrase" type="text" class="form-control mt-1 mr-3"
+          placeholder="keresés ...">
+
+        <select [(ngModel)]="filterKey" class="custom-select col-4">
+          <option value="">bármilyen egyezés</option>
+          <option *ngFor="let key of keys" [value]="key">{{ key | titlecase }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row mt-3">
+  <div class="col-12">
+    <table class="table table-sm table-striped mt-3">
+      <thead>
+        <tr class="sticky-top bg-white">
+          <th *ngFor="let key of keys; index as i" class="font-weight-bold"
+            (click)="changeSortDirection(key,i)">
+              {{ key | titlecase }}
+              <span class="text-muted">{{dirSymbol[i]}}</span>
+          </th>
+          <th class="font-weight-bold">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of List$ | async | filter:phrase:filterKey | sorter:sorterKey:direction">
+
+          <td *ngFor="let key of keys">
+            <ng-container *ngIf="typeof key !== 'boolean'">
+              {{row[key]}}
+            </ng-container>
+            
+            <ng-container *ngIf="typeof key === 'boolean'">
+               <i *ngIf="row[key] === true" class="fa fa-check">
+               <i *ngIf="row[key] === false" class="fa fa-ban"></i>
+            </ng-container>
+          </td>
+
+          <td>
+            <button [routerLink]="['/', 'edit-'+[componentName], row.id]" class="btn btn-info btn-sm">
+              <i class="fa fa-pencil"></i>
+            </button>
+            <button (click)="onRemove(row)" class="btn btn-danger btn-sm">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- spinner -->
+<ng-container *ngIf="!(List$ | async)">
+  <app-spinner></app-spinner>
+</ng-container>
