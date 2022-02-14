@@ -1,10 +1,10 @@
 .spinner {
   animation: rotate 1s linear infinite;
-
+ 
   & .path {
     stroke: hsl(210, 100%, 75%);
     stroke-linecap: round;
-    stroke-dasharray: 50;
+    stroke-dasharray: 35;
     stroke-dashoffset: 0;
   }
 }
