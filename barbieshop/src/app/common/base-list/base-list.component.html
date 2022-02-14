@@ -38,18 +38,18 @@
         <tr *ngFor="let row of List$ | async | filter:phrase:filterKey | sorter:sorterKey:direction">
 
           <td *ngFor="let key of keys">
-            <ng-container *ngIf="typeof key !== 'boolean'">
+            <ng-container *ngIf="!isBooleanKey(key)">
               {{row[key]}}
             </ng-container>
             
-            <ng-container *ngIf="typeof key === 'boolean'">
-               <i *ngIf="row[key] === true" class="fa fa-check">
+            <ng-container *ngIf="isBooleanKey(key)">
+               <i *ngIf="row[key] === true" class="fa fa-check"></i>
                <i *ngIf="row[key] === false" class="fa fa-ban"></i>
             </ng-container>
           </td>
 
           <td>
-            <button [routerLink]="['/', 'edit-'+{{componentName}}, row.id]" class="btn btn-info btn-sm">
+            <button [routerLink]="['/', 'edit-'+[componentName], row.id]" class="btn btn-info btn-sm">
               <i class="fa fa-pencil"></i>
             </button>
             <button (click)="onRemove(row.id)" class="btn btn-danger btn-sm">

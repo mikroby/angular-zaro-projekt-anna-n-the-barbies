@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class BaseListComponent implements OnInit {
 
-  @Input() List$: Observable<T[]>;
+  @Input() List$!: Observable<any[]>;
 
-  @Input() keys: string[];
+  @Input() keys!: string[];
 
-  @Input() componentName: string;
+  @Input() componentName!: string;
 
   @Output() removeById: EventEmitter<number> = new EventEmitter();
 
@@ -28,7 +28,7 @@ export class BaseListComponent implements OnInit {
   dirSymbol: string[] = new Array('');
   SymbolArray: string[] = ['▲', '▼'];
 
-  constructor(   
+  constructor(
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +52,10 @@ export class BaseListComponent implements OnInit {
       this.dirSymbol = new Array('');
       this.dirSymbol[i] = this.SymbolArray[0];
     }
+  }
+
+  isBooleanKey(key: any): boolean {
+    return typeof key === 'boolean';
   }
 
 }
