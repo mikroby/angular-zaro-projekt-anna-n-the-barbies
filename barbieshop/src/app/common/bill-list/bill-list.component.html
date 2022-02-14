@@ -11,11 +11,11 @@
         <tr class="text-center" *ngFor="let bill of billList$ | async" >
           <td>{{ bill.id }}</td>
           <td>{{ bill.orderID }}</td>
-          <td>{{ bill.amount }}</td>
+          <td>{{ bill.amount | customCurrency }}</td>
           <td>{{ bill.status }}</td>
           <td>
             <button
-              [routerLink]="['/', 'bill', 'viewer', bill.id ]"
+              [routerLink]="['/', 'add-bill', bill.id ]"
               class="btn btn-info"><i class="fa fa-eye"></i></button> </td>
         </tr>
       </tbody>

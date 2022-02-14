@@ -22,7 +22,7 @@
 
 <div class="row mt-3">
   <div class="col-12">
-    <table class="table table-striped mt-3">
+    <table class="table table-sm table-striped mt-3">
       <thead>
         <tr class="sticky-top bg-white">
           <th *ngFor="let key of keys; index as i" class="font-weight-bold"
@@ -41,10 +41,10 @@
           <td>{{ order.amount }}</td>
           <td>{{ order.status }}</td>
           <td>
-            <button [routerLink]="['/', 'edit-order', order.id]" class="btn btn-info">
+            <button [routerLink]="['/', 'edit-order', order.id]" class="btn btn-info btn-sm">
               <i class="fa fa-pencil"></i>
             </button>
-            <button (click)="onRemoveOrder(order)" class="btn btn-danger">
+            <button (click)="onRemoveOrder(order)" class="btn btn-danger btn-sm">
               <i class="fa fa-trash"></i>
             </button>
           </td>
