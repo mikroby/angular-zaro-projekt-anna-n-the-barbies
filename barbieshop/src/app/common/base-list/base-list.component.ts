@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-base-list',
@@ -7,9 +9,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BaseListComponent implements OnInit {
 
-  constructor() { }
+  @Input() List$!: Observable<any[]>;
+
+  @Input() keys!: string[];
+
+  @Input() componentName!: string;
+
+  @Output() removeById: EventEmitter<number> = new EventEmitter();
+
+  phrase: string = '';
+
+  filterKey: string = '';
+
+  sorterKey: string = '';
+
+  direction: number = 1;
+
+  dirSymbol: string[] = new Array('');
+  SymbolArray: string[] = ['▲', '▼'];
+
+  constructor(
+  ) { }
 
   ngOnInit(): void {
+    this.direction = 1;
+    this.dirSymbol[0] = this.SymbolArray[0];
+    this.sorterKey = this.keys[0];
+  }
+
+  onRemove(id: number): void {
+    this.removeById.emit(id);
+  }
+
+  changeSortDirection(key: string, i: number): void {
+    if (key === this.sorterKey) {
+      this.direction *= -1;
+      const dirIndex = this.direction === 1 ? 0 : 1;
+      this.dirSymbol[i] = this.SymbolArray[dirIndex];
+    } else {
+      this.direction = 1;
+      this.sorterKey = key;
+      this.dirSymbol = new Array('');
+      this.dirSymbol[i] = this.SymbolArray[0];
+    }
+  }
+
+  isBooleanKey(key: any): boolean {
+    return typeof key === 'boolean';
   }
 
 }

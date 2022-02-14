@@ -11,21 +11,11 @@ import { Order } from 'src/app/model/order';
 })
 export class OrderListComponent implements OnInit {
 
-  orderList$: Observable<Order[]> = this.orderService.getAll()
+  List$: Observable<Order[]> = this.orderService.getAll()
 
   keys: string[] = Object.keys(new Order());
 
-  phrase: string = '';
-
-  filterKey: string = '';
-
-  sorterKey: string = '';
-
-  direction: number = 1;
-
-  dirSymbol: string[] = new Array('');
-  SymbolArray: string[] = ['▲', '▼'];
-
+  componentName: string = 'order';
 
   constructor(
     private orderService: OrderService,
@@ -33,31 +23,16 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.direction=1;
-    this.dirSymbol[0]=this.SymbolArray[0];
-    this.sorterKey=this.keys[0];
+
   }
 
-  onRemoveOrder(order: Order): void {
-    this.orderService.delete(order.id).subscribe(
+  onRemove(id: number): void {
+    this.orderService.delete(id).subscribe(
       order => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/', 'order'])
+        this.router.navigate(['/', this.componentName])
       }
       )
     )
-  }
-
-  changeSortDirection(key: string, i: number): void {
-    if (key === this.sorterKey) {
-      this.direction *= -1;
-      const dirIndex = this.direction === 1 ? 0 : 1;
-      this.dirSymbol[i] = this.SymbolArray[dirIndex];
-    } else {
-      this.direction = 1;
-      this.sorterKey = key;
-      this.dirSymbol = new Array('');
-      this.dirSymbol[i] = this.SymbolArray[0];
-    }    
   }
 
 }
