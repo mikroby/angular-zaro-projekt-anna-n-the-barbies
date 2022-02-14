@@ -49,10 +49,10 @@
           </td>
 
           <td>
-            <button [routerLink]="['/', 'edit-'+[componentName], row.id]" class="btn btn-info btn-sm">
+            <button [routerLink]="['/', 'edit-'+{{componentName}}, row.id]" class="btn btn-info btn-sm">
               <i class="fa fa-pencil"></i>
             </button>
-            <button (click)="onRemove(row)" class="btn btn-danger btn-sm">
+            <button (click)="onRemove(row.id)" class="btn btn-danger btn-sm">
               <i class="fa fa-trash"></i>
             </button>
           </td>

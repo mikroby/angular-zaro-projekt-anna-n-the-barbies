@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -9,11 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class BaseListComponent implements OnInit {
 
-  @Input() List$: Observable<T[]>
+  @Input() List$: Observable<T[]>;
 
   @Input() keys: string[];
 
   @Input() componentName: string;
+
+  @Output() removeById: EventEmitter<number> = new EventEmitter();
 
   phrase: string = '';
 
@@ -26,23 +28,17 @@ export class BaseListComponent implements OnInit {
   dirSymbol: string[] = new Array('');
   SymbolArray: string[] = ['▲', '▼'];
 
-  constructor(
-    private router: Router
+  constructor(   
   ) { }
 
   ngOnInit(): void {
-    this.direction=1;
-    this.dirSymbol[0]=this.SymbolArray[0];
-    this.sorterKey=this.keys[0];
+    this.direction = 1;
+    this.dirSymbol[0] = this.SymbolArray[0];
+    this.sorterKey = this.keys[0];
   }
 
-  onRemove(row: Order): void {
-    this.orderService.delete(row.id).subscribe(
-      order => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/', `${this.componentName}`])
-      }
-      )
-    )
+  onRemove(id: number): void {
+    this.removeById.emit(id);
   }
 
   changeSortDirection(key: string, i: number): void {
@@ -55,7 +51,7 @@ export class BaseListComponent implements OnInit {
       this.sorterKey = key;
       this.dirSymbol = new Array('');
       this.dirSymbol[i] = this.SymbolArray[0];
-    }    
+    }
   }
 
 }
