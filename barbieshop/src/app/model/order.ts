@@ -7,9 +7,7 @@ export class Order {
   status: string = 'new';
 }
 
-export class StatusKey {
-  keys: string[] = ['new', 'shipped', 'paid'];
-}
+export const statusKeys = ['new', 'shipped', 'paid'];
 
 // id, customerID, productID, amount, status: new|shipped|paid
 
