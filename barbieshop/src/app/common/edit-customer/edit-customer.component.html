@@ -2,12 +2,15 @@
   <div class="row mb-5">
     <div *ngIf="customer" class="col-12 mt-3">
       <form #customerForm="ngForm">
+        <div class="row mb-2">
+          <h3>Személyes adatok</h3>
+        </div>
         <div class="row">
           <div class="form-group">
             <input class="form-control" [(ngModel)]="customer['id']" type="hidden" name="id">
           </div>
           <div class="form-group col-3">
-            <label for="customerFirstName">Keresztnév</label>
+            <label for="customerFirstName">Keresztnév*</label>
             <input class="form-control" [(ngModel)]="customer['firstName']" type="text" name="firstName"
               id="customerFirstName" required pattern="^[a-űA-Ű ]{3,}$">
             <div [hidden]="customerForm.controls['firstName']?.valid || customerForm.controls['firstName']?.pristine"
@@ -16,7 +19,7 @@
             </div>
           </div>
           <div class="form-group col-3">
-            <label for="customerLastName">Vezetéknév</label>
+            <label for="customerLastName">Vezetéknév*</label>
             <input class="form-control" [(ngModel)]="customer['lastName']" type="text" name="lastName"
               id="customerLastName" required pattern="^[a-űA-Ű ]{3,}$">
             <div [hidden]="customerForm.controls['lastName']?.valid || customerForm.controls['lastName']?.pristine"
@@ -25,7 +28,7 @@
             </div>
           </div>
           <div class="form-group col-4">
-            <label for="customerEmail">Email cím</label>
+            <label for="customerEmail">Email cím*</label>
             <input class="form-control" [(ngModel)]="customer['email']" type="email" name="email" id="customerEmail"
               required patter="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}(\.[a-z]{2,})*$">
             <div [hidden]="customerForm.controls['email']?.valid || customerForm.controls['email']?.pristine"
@@ -34,9 +37,12 @@
             </div>
           </div>
         </div>
+        <div class="row mb-2 mt-3">
+          <h3>Cím adatok</h3>
+        </div>
         <div class="row mt-2">
           <div class="form-group col-3">
-            <label for="customerAddressZip">Irányítószám</label>
+            <label for="customerAddressZip">Irányítószám*</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.zip" type="text" name="zip"
                 id="customerAddressZip" required required pattern="^[\d-]{3,}$">
@@ -47,7 +53,7 @@
             </div>
           </div>
           <div class="form-group col-3">
-            <label for="customerAddressCountry">Ország</label>
+            <label for="customerAddressCountry">Ország*</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.country" type="text" name="country"
                 id="customerAddressCountry" required pattern="^[a-űA-Ű\s]{3,}$">
@@ -57,10 +63,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="row mt-2">
-          <div class="form-group col-3">
-            <label for="customerAddressCity">Város</label>
+          <div class="form-group col-4">
+            <label for="customerAddressCity">Város*</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.city" type="text" name="city"
                 id="customerAddressCity" required pattern="^[a-űA-Ű\s-]{3,}$">
@@ -70,8 +74,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="row mt-4">
           <div class="form-group col-3">
-            <label for="customerAddressStreet">Közterület</label>
+            <label for="customerAddressStreet">Közterület*</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.street" type="text" name="street"
                 id="customerAddressStreet" required pattern="^([a-űA-Ű0-9_'\s-]{5,}){1,3}$">
@@ -82,7 +88,7 @@
             </div>
           </div>
           <div class="form-group col-3">
-            <label for="customerAddressNotes">Egyéb megjegyzés</label>
+            <label for="customerAddressNotes">Egyéb megjegyzés*</label>
             <div class="input-group">
               <input class="form-control" [(ngModel)]="customer.address.notes" type="text" name="notes"
                 id="customerAddressNotes" required pattern="^[a-űA-Ű0-9_\s-]{5,}$">
@@ -93,7 +99,7 @@
             </div>
           </div>
         </div>
-        <div class="row mt-2">
+        <div class="row mt-4">
           <div class="form-check col-3">
             <label for="customerActive" class="form-check-label">Elérhető</label>
             <input class="form-control" [(ngModel)]="customer['active']" type="checkbox" name="active"
