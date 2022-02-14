@@ -6,6 +6,8 @@ export class Bill {
   status: string = '';
 }
 
+export const statusKeys = ['new', 'paid'];
+
 // id, orderID, amount, status: new|paid
 // "id": 1,
 //             "orderID": 20,

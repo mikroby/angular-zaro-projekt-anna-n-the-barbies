@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { Order, StatusKey } from 'src/app/model/order';
+import { Order, statusKeys } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
 
 @Component({
@@ -16,8 +16,8 @@ export class EditOrderComponent implements OnInit {
   newOrder: Order = new Order();
 
   id!: string;
-
-  selectionKeys: string[] = new StatusKey().keys;
+ 
+  selectionKeys: string[] = statusKeys;
 
 
   constructor(
