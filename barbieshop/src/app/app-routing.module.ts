@@ -7,7 +7,6 @@ import { ProductComponent } from './page/product/product.component'
 import { EditProductComponent } from './common/edit-product/edit-product.component';
 import { BillComponent } from './page/bill/bill.component';
 import { AddBillComponent } from './common/add-bill/add-bill.component';
-import { BillViewerComponent } from './page/bill-viewer/bill-viewer.component';
 import { EditOrderComponent } from './common/edit-order/edit-order.component';
 import { OrderComponent } from './page/order/order.component';
 
@@ -45,16 +44,8 @@ const routes: Routes = [
     component: EditOrderComponent,
   },
   {
-    path: 'add-product',
-    component:  EditProductComponent,
-  },
-  {
-    path: 'add-bill',
+    path: 'add-bill/:id',
     component:  AddBillComponent,
-  },
-  {
-    path: 'bill/viewer/:id',
-    component:  BillViewerComponent,
   },
     {
     path: '**',
