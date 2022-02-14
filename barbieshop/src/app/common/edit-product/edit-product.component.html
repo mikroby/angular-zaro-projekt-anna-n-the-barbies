@@ -28,10 +28,16 @@
         </div>
         <div class="form-group">
           <label for="">Leírás</label>
-          <input [(ngModel)]="product.description" name="description" type="text" class="form-control" required>
+          <!-- <input [(ngModel)]="product.description" name="description" type="text" class="form-control" required>
           <div [hidden]="productForm.controls['description']?.valid" class="error-message">
             Adja meg a termék jellemzőit.
-          </div>
+          </div> -->
+        </div>
+        <div>
+          <textarea [(ngModel)]="product.description" name="description" type="text" class="form-control" required>
+          <!-- <div [hidden]="productForm.controls['description']?.valid" class="error-message">
+            Adja meg a termék jellemzőit.
+          </div> -->
         </div>
         <div class="form-group">
           <label for="">Ár</label>
