@@ -36,8 +36,8 @@
               </select>
             </div>
             <div>
-              <button [disabled]="!billForm.valid" class="btn btn-primary" type="submit">Mentés</button>
-              <button [routerLink]="['/bill']" class="btn btn-secondary" type="submit">Mégsem</button>
+              <button [disabled]="billForm.invalid" class="btn btn-primary" type="submit">Mentés</button>
+              <button [routerLink]="['/bill']" class="btn btn-secondary" type="button">Mégsem</button>
             </div>
           </form>
         </div>

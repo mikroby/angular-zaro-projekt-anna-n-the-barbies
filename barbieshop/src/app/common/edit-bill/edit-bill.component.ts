@@ -37,11 +37,15 @@ export class EditBillComponent implements OnInit {
         }
       );
   }
+  
   onAddBill(bill: Bill): void {
-    this.billService.create(bill).subscribe(
-      bill => this.router.navigate(['/bill']),
-      err => console.error(err)
-    );
+    if (this.id === '0') {
+      this.billService.create(bill).subscribe(
+        response => this.router.navigate(['/', 'bill']))
+    } else {
+      this.billService.update(bill).subscribe(
+        response => this.router.navigate(['/', 'bill']))
+    }
   }
 
 }
