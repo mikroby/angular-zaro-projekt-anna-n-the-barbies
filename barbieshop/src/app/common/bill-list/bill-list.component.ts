@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class BillListComponent implements OnInit {
 
+  tableTitle:string='Számlák';
+  color: string='rose';
+
   List$: Observable<Bill[]> = this.billService.getAll();
   keys: string[] = Object.keys(new Bill());
   componentName = 'bill';

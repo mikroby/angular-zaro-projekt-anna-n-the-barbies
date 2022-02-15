@@ -12,6 +12,9 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CustomerListComponent implements OnInit {
 
+  tableTitle:string='Vásárlók';
+  color: string='success';
+
   List$: Observable<Customer[]> = this.customerService.getAll()
   keys: string[] = Object.keys(new Customer());
   componentName = 'customer';

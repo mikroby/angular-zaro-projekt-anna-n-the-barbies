@@ -11,6 +11,9 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
 
+  tableTitle:string='Termékek';
+  color: string='warning';
+
   List$: Observable<Product[]> = this.productService.getAll();  
   keys: string[] = Object.keys(new Product());  
   componentName = 'product';
