@@ -4,11 +4,12 @@ import { map, Observable } from 'rxjs';
 import { Address } from '../model/address';
 import { Customer } from '../model/customer';
 import { BaseService } from './base.service';
+import { SummaryService } from './summary.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService extends BaseService<Customer>
+export class CustomerService extends SummaryService<Customer>
 {
 
   constructor(
