@@ -47,17 +47,13 @@ export class EditProductComponent implements OnInit {
       this.productService.create(product).subscribe(
         () => {
         this.router.navigate(['/', 'product']);
-        this.toastr.success('A termék létrehozása sikeres volt!', 'Hozzáadás',{
-          timeOut: 3000,
-        });
+        this.toastr.success('A termék létrehozása sikeres volt!', 'Hozzáadás');
      });
     } else {
       this.productService.update(product).subscribe(
         product => {
         this.router.navigate(['/', 'product']);
-        this.toastr.info('A módosítás megtörtént!', 'Update',{
-          timeOut: 3000,
-        });
+        this.toastr.info('A módosítás megtörtént!', 'Módosítás');
     });
    }
   }
@@ -66,9 +62,7 @@ export class EditProductComponent implements OnInit {
     this.productService.delete(product.id).subscribe(
       product => {
         this.router.navigate(['/', 'product']);
-        this.toastr.error('A törlés megtörtént!', 'Törlés',{
-          timeOut: 3000,
-        });
+        this.toastr.error('A törlés megtörtént!', 'Törlés');
       });
   }
   // onUpdate(productForm: NgForm): void {

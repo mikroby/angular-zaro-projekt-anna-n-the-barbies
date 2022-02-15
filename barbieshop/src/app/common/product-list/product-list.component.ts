@@ -34,10 +34,8 @@ export class ProductListComponent implements OnInit {
     this.productService.delete(id).subscribe(
       response => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/', this.componentName]);
-        this.toastr.error('A törlés megtörtént!', 'Törlés',{
-          timeOut: 3000,
-        });
-      }
+        this.toastr.error('A törlés megtörtént!', 'Törlés');
+        }
       )
     )
   }
