@@ -56,12 +56,8 @@ export class BaseListComponent implements OnInit {
     }
   }
 
-  typeOfKey(key: any): string {
-    return typeof key;
-  }
-  
-  isBooleanKey(key: any): boolean {
-    return typeof key === 'boolean';
+  isBooleanKey(value: any): boolean {
+    return (typeof value === 'boolean');
   }
 
 }
