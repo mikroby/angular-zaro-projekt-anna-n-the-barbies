@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
@@ -10,29 +11,26 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  productList$: Observable<Product[]> = this.productService.getAll();
-  keys: string[] = Object.keys(new Product());
-  disabled: boolean = true;
+  List$: Observable<Product[]> = this.productService.getAll();  
+  keys: string[] = Object.keys(new Product());  
+  componentName = 'product';
+  buttonHiddenOpts = { edit: false, delete: false };
 
   constructor(
     private productService: ProductService,
+    private router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
   }
-
-  // onRemoveProduct(product: Product): void {
-  //   this.productService.removeProduct(product).subscribe(
-  //     product => location.reload(),
-  //     err => console.error(err)
-  //   );
-  // }
-
-  onRemoveProduct(id: number): void {
+ 
+  onRemove(id: number): void {
     this.productService.delete(id).subscribe(
-      product => location.reload(),
-      err => console.error(err)
-    );
+      product => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/', this.componentName])
+      }
+      )
+    )
   }
 
 }

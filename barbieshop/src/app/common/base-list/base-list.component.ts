@@ -10,21 +10,16 @@ import { Observable } from 'rxjs';
 export class BaseListComponent implements OnInit {
 
   @Input() List$!: Observable<any[]>;
-
   @Input() keys!: string[];
-
   @Input() componentName!: string;
+  @Input() buttonHiddenOpts: {edit: boolean, delete: boolean} = { edit: false, delete: false };
 
   @Output() removeById: EventEmitter<number> = new EventEmitter();
 
   phrase: string = '';
-
   filterKey: string = '';
-
   sorterKey: string = '';
-
   direction: number = 1;
-
   dirSymbol: string[] = new Array('');
   SymbolArray: string[] = ['▲', '▼'];
 
@@ -54,8 +49,8 @@ export class BaseListComponent implements OnInit {
     }
   }
 
-  isBooleanKey(key: any): boolean {
-    return typeof key === 'boolean';
+  isBoolean(value: any): boolean {
+    return (typeof value === 'boolean');
   }
 
 }

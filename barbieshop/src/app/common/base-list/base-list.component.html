@@ -35,24 +35,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of List$ | async | filter:phrase:filterKey | sorter:sorterKey:direction">
+        <tr *ngFor="let row of List$
+          | async | filter:phrase:filterKey | sorter:sorterKey:direction">
 
           <td *ngFor="let key of keys">
-            <ng-container *ngIf="!isBooleanKey(key)">
-              {{row[key]}}
-            </ng-container>
+            <ng-container *ngIf="isBoolean(row[key]);
+              then booleanTrue else booleanFalse"></ng-container>
             
-            <ng-container *ngIf="isBooleanKey(key)">
-               <i *ngIf="row[key] === true" class="fa fa-check"></i>
-               <i *ngIf="row[key] === false" class="fa fa-ban"></i>
-            </ng-container>
+            <ng-template #booleanTrue>
+              <div class="text-center">
+                <i *ngIf="row[key] === true" class="fa fa-check"></i>
+                <i *ngIf="row[key] === false" class="fa fa-times"></i>
+              </div>           
+            </ng-template>
+            
+            <ng-template #booleanFalse>
+              <ng-container *ngIf="key === 'price'; else noPipe">
+                {{row[key] | customCurrency}}
+              </ng-container>
+              <ng-template #noPipe>{{row[key]}}</ng-template>
+            </ng-template>           
           </td>
 
           <td>
-            <button [routerLink]="['/', 'edit-'+[componentName], row.id]" class="btn btn-info btn-sm">
+            <button [hidden]="buttonHiddenOpts.edit"
+              [routerLink]="['/', 'edit-'+[componentName], row.id]"
+              class="btn btn-info btn-sm">
               <i class="fa fa-pencil"></i>
             </button>
-            <button (click)="onRemove(row.id)" class="btn btn-danger btn-sm">
+            <button [hidden]="buttonHiddenOpts.delete" (click)="onRemove(row.id)"
+              class="btn btn-danger btn-sm">
               <i class="fa fa-trash"></i>
             </button>
           </td>

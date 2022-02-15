@@ -12,10 +12,9 @@ import { Order } from 'src/app/model/order';
 export class OrderListComponent implements OnInit {
 
   List$: Observable<Order[]> = this.orderService.getAll()
-
   keys: string[] = Object.keys(new Order());
-
-  componentName: string = 'order';
+  componentName = 'order';
+  buttonHiddenOpts = { edit: false, delete: false };
 
   constructor(
     private orderService: OrderService,
@@ -23,7 +22,6 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
   }
 
   onRemove(id: number): void {
