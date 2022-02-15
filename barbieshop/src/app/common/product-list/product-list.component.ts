@@ -11,12 +11,9 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  List$: Observable<Product[]> = this.productService.getAll();
-  
-  keys: string[] = Object.keys(new Product());
-  
+  List$: Observable<Product[]> = this.productService.getAll();  
+  keys: string[] = Object.keys(new Product());  
   componentName = 'product';
-
   buttonHiddenOpts = { edit: false, delete: false };
 
   constructor(

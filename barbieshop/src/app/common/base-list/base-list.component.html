@@ -35,18 +35,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of List$ | async | filter:phrase:filterKey | sorter:sorterKey:direction">
+        <tr *ngFor="let row of List$
+          | async | filter:phrase:filterKey | sorter:sorterKey:direction">
 
           <td *ngFor="let key of keys">
-            <ng-container *ngIf="isBooleanKey(row[key]);then thenBlock else elseBlock"></ng-container>
+            <ng-container *ngIf="isBoolean(row[key]);
+              then booleanTrue else booleanFalse"></ng-container>
             
-            <ng-template #thenBlock>             
-              <i *ngIf="row[key] === true" class="fa fa-check"></i>
-              <i *ngIf="row[key] === false" class="fa fa-ban"></i>
-           </ng-template>
+            <ng-template #booleanTrue>
+              <div class="text-center">
+                <i *ngIf="row[key] === true" class="fa fa-check"></i>
+                <i *ngIf="row[key] === false" class="fa fa-times"></i>
+              </div>           
+            </ng-template>
             
-           <ng-template #elseBlock>{{row[key]}}</ng-template>            
-            
+            <ng-template #booleanFalse>
+              <ng-container *ngIf="key === 'price'; else noPipe">
+                {{row[key] | customCurrency}}
+              </ng-container>
+              <ng-template #noPipe>{{row[key]}}</ng-template>
+            </ng-template>           
           </td>
 
           <td>

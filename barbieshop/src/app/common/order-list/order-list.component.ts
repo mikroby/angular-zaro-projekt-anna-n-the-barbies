@@ -12,11 +12,8 @@ import { Order } from 'src/app/model/order';
 export class OrderListComponent implements OnInit {
 
   List$: Observable<Order[]> = this.orderService.getAll()
-
   keys: string[] = Object.keys(new Order());
-
   componentName = 'order';
-
   buttonHiddenOpts = { edit: false, delete: false };
 
   constructor(
