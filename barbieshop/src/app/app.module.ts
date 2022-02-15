@@ -23,7 +23,6 @@ import { OrderListComponent } from './common/order-list/order-list.component';
 import { EditOrderComponent } from './common/edit-order/edit-order.component';
 import { SorterPipe } from './pipe/sorter.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
-import { CustomerFilterPipe } from './pipe/customer-filter.pipe';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { BaseListComponent } from './common/base-list/base-list.component';
 
@@ -48,7 +47,6 @@ import { BaseListComponent } from './common/base-list/base-list.component';
     EditOrderComponent,
     SorterPipe,
     FilterPipe,
-    CustomerFilterPipe,
     SpinnerComponent,
     BaseListComponent,
   ],

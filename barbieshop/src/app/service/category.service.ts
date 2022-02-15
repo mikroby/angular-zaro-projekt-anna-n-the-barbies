@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../model/category';
 import { BaseService } from './base.service';
+import { SummaryService } from './summary.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService extends BaseService<Category> {
+export class CategoryService extends SummaryService<Category> {
 
   constructor(
     public override http: HttpClient,
