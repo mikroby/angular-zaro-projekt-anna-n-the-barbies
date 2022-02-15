@@ -53,8 +53,15 @@
               <ng-container *ngIf="key === currencyPipeOn; else noPipe">
                 {{row[key] | customCurrency}}
               </ng-container>
-              <ng-template #noPipe>{{row[key]}}</ng-template>
-            </ng-template>           
+              <ng-template #noPipe>
+                <ng-container *ngIf="key === 'address'; else noGetter">
+                  {{row[key].full}}
+                </ng-container>
+                <ng-template #noGetter>
+                  {{row[key]}}
+                </ng-template>
+              </ng-template>
+            </ng-template>
           </td>
 
           <td>

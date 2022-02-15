@@ -13,10 +13,22 @@ export class FilterPipe<T extends { [key: string]: any }> implements PipeTransfo
 
     phrase = phrase.toLowerCase();
 
-    if (!key) {
+    if (!key && !value[0]['address']) {
       return value.filter(
         item => Object.values(item).join(' ').toLowerCase().includes(phrase)
       );
+    }
+
+    if (!key && value[0]['address']) {
+      return value.filter(
+        item => (Object.values(item) + ' ' + (Object.values(item['address'])).join(' ')).toLowerCase().includes(phrase)
+      );
+    }
+
+    if (key === 'address') {
+      return value.filter(
+        item => ((Object.values(item['address'])).join(' ').toLowerCase().includes(phrase)
+          ));
     }
 
     return value.filter(item => {

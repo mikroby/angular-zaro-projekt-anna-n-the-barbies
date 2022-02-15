@@ -13,6 +13,8 @@ export class CustomerFilterPipe<T extends { [key: string]: any }> implements Pip
 
     phrase = phrase.toLowerCase();
 
+    console.log(value);
+
     if (!key) {
       return value.filter(
         item => (Object.values(item) + ' ' + (Object.values(item['address'])).join(' ')).toLowerCase().includes(phrase)
