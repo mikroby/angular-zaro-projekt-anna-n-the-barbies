@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, switchMap } from 'rxjs';
 import { Order, statusKeys } from 'src/app/model/order';
 import { OrderService } from 'src/app/service/order.service';
@@ -16,14 +17,15 @@ export class EditOrderComponent implements OnInit {
   newOrder: Order = new Order();
 
   id!: string;
- 
+
   selectionKeys: string[] = statusKeys;
 
 
   constructor(
     private orderService: OrderService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService,
   ) { }
 
 
@@ -48,15 +50,18 @@ export class EditOrderComponent implements OnInit {
 
     if (this.id === '0') {
       this.orderService.create(order).subscribe(
-        response => this.router.navigate(['/', 'order']))
+        response => this.router.navigate(['/', 'order']));
+        this.toastr.success('A rendelés hozzáadása sikeres volt!', 'Hozzáadás');
     } else {
       this.orderService.update(order).subscribe(
-        response => this.router.navigate(['/', 'order']))
+        response => this.router.navigate(['/', 'order']));
+        this.toastr.info('A módosítás megtörtént!', 'Módosítás');
     }
   }
 
   onRemoveOrder(order: Order): void {
     this.orderService.delete(order.id).subscribe(
-      response => this.router.navigate(['/', 'order']))
+      response => this.router.navigate(['/', 'order']));
+      this.toastr.error('A törlés megtörtént!', 'Törlés');
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
 import { Address } from 'src/app/model/address';
 import { Customer } from 'src/app/model/customer';
@@ -22,7 +23,8 @@ export class CustomerListComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,8 @@ export class CustomerListComponent implements OnInit {
   onRemove(id: number): void {
     this.customerService.delete(id).subscribe(
       response => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/', this.componentName])
+        this.router.navigate(['/', this.componentName]);
+        this.toastr.error('A törlés megtörtént!', 'Törlés');
       }
       )
     )

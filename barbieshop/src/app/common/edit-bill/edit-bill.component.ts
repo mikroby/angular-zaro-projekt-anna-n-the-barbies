@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { switchMap } from 'rxjs';
 import { Bill, statusKeys } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
@@ -20,7 +21,8 @@ export class EditBillComponent implements OnInit {
   constructor(
     private ar: ActivatedRoute,
     private billService: BillService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -37,14 +39,16 @@ export class EditBillComponent implements OnInit {
         }
       );
   }
-  
+
   onAddBill(bill: Bill): void {
     if (this.id === '0') {
       this.billService.create(bill).subscribe(
-        response => this.router.navigate(['/', 'bill']))
+        response => this.router.navigate(['/', 'bill']));
+        this.toastr.success('A számla hozzáadása sikeres volt!', 'Hozzáadás');
     } else {
       this.billService.update(bill).subscribe(
-        response => this.router.navigate(['/', 'bill']))
+        response => this.router.navigate(['/', 'bill']));
+        this.toastr.info('A módosítás megtörtént!', 'Módosítás');
     }
   }
 
