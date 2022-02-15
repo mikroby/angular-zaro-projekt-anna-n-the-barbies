@@ -50,7 +50,7 @@
             </ng-template>
             
             <ng-template #booleanFalse>
-              <ng-container *ngIf="key === 'price'; else noPipe">
+              <ng-container *ngIf="key === currencyPipeOn; else noPipe">
                 {{row[key] | customCurrency}}
               </ng-container>
               <ng-template #noPipe>{{row[key]}}</ng-template>

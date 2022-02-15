@@ -5,11 +5,11 @@ import { Bill } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
 
 @Component({
-  selector: 'app-add-bill',
-  templateUrl: './add-bill.component.html',
-  styleUrls: ['./add-bill.component.scss']
+  selector: 'app-edit-bill',
+  templateUrl: './edit-bill.component.html',
+  styleUrls: ['./edit-bill.component.scss']
 })
-export class AddBillComponent implements OnInit {
+export class EditBillComponent implements OnInit {
 
   newBill: Bill = new Bill();
   bill!: Bill;
