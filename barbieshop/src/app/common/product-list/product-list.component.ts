@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
  
   onRemove(id: number): void {
     this.productService.delete(id).subscribe(
-      product => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      response => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/', this.componentName])
       }
       )

@@ -26,7 +26,7 @@ export class OrderListComponent implements OnInit {
 
   onRemove(id: number): void {
     this.orderService.delete(id).subscribe(
-      order => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      response => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/', this.componentName])
       }
       )
