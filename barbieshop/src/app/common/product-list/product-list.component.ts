@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
   keys: string[] = Object.keys(new Product());  
   componentName = 'product';
   buttonHiddenOpts = { edit: false, delete: false };
+  currencyPipeOn = 'price';
 
   constructor(
     private productService: ProductService,

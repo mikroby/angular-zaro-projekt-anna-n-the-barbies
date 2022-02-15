@@ -6,7 +6,7 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { ProductComponent } from './page/product/product.component'
 import { EditProductComponent } from './common/edit-product/edit-product.component';
 import { BillComponent } from './page/bill/bill.component';
-import { AddBillComponent } from './common/add-bill/add-bill.component';
+import { EditBillComponent } from './common/edit-bill/edit-bill.component';
 import { EditOrderComponent } from './common/edit-order/edit-order.component';
 import { OrderComponent } from './page/order/order.component';
 
@@ -44,8 +44,8 @@ const routes: Routes = [
     component: EditOrderComponent,
   },
   {
-    path: 'add-bill/:id',
-    component:  AddBillComponent,
+    path: 'edit-bill/:id',
+    component:  EditBillComponent,
   },
     {
     path: '**',

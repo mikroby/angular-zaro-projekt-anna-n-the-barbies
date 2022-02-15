@@ -14,7 +14,7 @@ import { CustomerComponent } from './page/customer/customer.component';
 import { ProductComponent } from './page/product/product.component';
 import { EditCustomerComponent } from './common/edit-customer/edit-customer.component';
 import { CustomCurrencyPipe } from './pipe/custom-currency.pipe';
-import { AddBillComponent } from './common/add-bill/add-bill.component';
+import { EditBillComponent } from './common/edit-bill/edit-bill.component';
 import { BillListComponent } from './common/bill-list/bill-list.component';
 import { BillComponent } from './page/bill/bill.component';
 import { EditProductComponent } from './common/edit-product/edit-product.component';
@@ -41,7 +41,7 @@ import { BaseListComponent } from './common/base-list/base-list.component';
     EditProductComponent,
     BillListComponent,
     BillComponent,
-    AddBillComponent,
+    EditBillComponent,
     CustomCurrencyPipe,
     OrderComponent,
     OrderListComponent,

@@ -12,7 +12,8 @@ export class BaseListComponent implements OnInit {
   @Input() List$!: Observable<any[]>;
   @Input() keys!: string[];
   @Input() componentName!: string;
-  @Input() buttonHiddenOpts: {edit: boolean, delete: boolean} = { edit: false, delete: false };
+  @Input() buttonHiddenOpts: { edit: boolean, delete: boolean } = { edit: false, delete: false };
+  @Input() currencyPipeOn?: string = '';
 
   @Output() removeById: EventEmitter<number> = new EventEmitter();
 
