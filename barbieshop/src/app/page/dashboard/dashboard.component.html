@@ -1,22 +1,89 @@
 <div class="container">
+
+  <div class="row my-3">
+    <div class="col-8 offset-2">
+      <h2>Összesítő adatok</h2>
+    </div>
+    <div class="col-8 offset-2 d-flex flex-column flex-md-row">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header card-header-icon card-header-warning">
+            <div class="card-icon">
+              <i class="material-icons">shop_two</i>
+            </div>
+            <h4 class="card-title text-right h2">{{ activeProductNumber$ | async }} db</h4>
+          </div>
+          <div class="card-body">
+            <h5>Aktív termékek száma</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header card-header-icon card-header-success">
+            <div class="card-icon">
+              <i class="material-icons">group</i>
+            </div>
+            <h4 class="card-title text-right h2">{{ activeCustomerNumber$ | async }} db</h4>
+          </div>
+          <div class="card-body">
+            <h5>Aktív vásárlók száma</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8 offset-2 d-flex flex-column flex-md-row">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header card-header-icon card-header-rose">
+            <div class="card-icon">
+              <i class="material-icons">shopping_cart</i>
+            </div>
+            <h4 class="card-title text-right h2">{{ dontPaidOrderNumber$ | async }} db</h4>
+          </div>
+          <div class="card-body">
+            <h5>Még nem fizetett rendelések száma</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header card-header-icon card-header-primary">
+            <div class="card-icon">
+              <i class="material-icons">storage</i>
+            </div>
+            <h4 class="card-title text-right h2">{{ paidBillAmountSum$ | async }} Ft</h4>
+          </div>
+          <div class="card-body">
+            <h5>Még nem fizetett számlák összege</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row my-3">
     <div class="col-6 offset-3">
       <h2>Termékek</h2>
-      <table class="table table-bordered table-striped text-center">
-        <thead>
-          <tr>
-            <th>Aktív</th>
-            <th>Inaktív</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ activeProductNumber$ | async }}</td>
-            <td>{{ inactiveProductNumber$ | async }}</td>
-          </tr>
-        </tbody>
+      <div class="row">
+        <table class="table table-bordered table-striped text-center">
+          <thead>
+            <tr>
+              <th class="font-weight-bold">Összesen</th>
+              <th class="font-weight-bold">Aktív</th>
+              <th class="font-weight-bold">Inaktív</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ numberOfProduct$ | async }} db</td>
+              <td>{{ activeProductNumber$ | async }} db</td>
+              <td>{{ inactiveProductNumber$ | async }} db</td>
+            </tr>
+          </tbody>
 
-      </table>
+        </table>
+      </div>
     </div>
   </div>
   <div class="row my-3">
@@ -25,14 +92,16 @@
       <table class="table table-bordered table-striped text-center">
         <thead>
           <tr>
-            <th>Aktív</th>
-            <th>Inaktív</th>
+            <th class="font-weight-bold">Összesen</th>
+            <th class="font-weight-bold">Aktív</th>
+            <th class="font-weight-bold">Inaktív</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{{ activeCustomerNumber$ | async }}</td>
-            <td>{{ inactiveCustomerNumber$ | async }}</td>
+            <td>{{ numberOfCustomer$ | async }} db</td>
+            <td>{{ activeCustomerNumber$ | async }} db</td>
+            <td>{{ inactiveCustomerNumber$ | async }} db</td>
           </tr>
         </tbody>
       </table>
@@ -44,16 +113,27 @@
       <table class="table table-bordered table-striped text-center">
         <thead>
           <tr>
-            <th>Új</th>
-            <th>Feladott</th>
-            <th>Fizetett</th>
+            <th class="font-weight-bold">Összesen</th>
+            <th class="font-weight-bold">Új</th>
+            <th class="font-weight-bold">Feladott</th>
+            <th class="font-weight-bold">Fizetett</th>
+            <th class="font-weight-bold">Nem fizetett</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{{ newOrderNumber$ | async }}</td>
-            <td>{{ shippedOrderNumber$ | async }}</td>
-            <td>{{ paidOrderNumber$ | async }}</td>
+            <td>{{ numberOfOrder$ | async }} db</td>
+            <td>{{ newOrderNumber$ | async }} db</td>
+            <td>{{ shippedOrderNumber$ | async }} db</td>
+            <td>{{ paidOrderNumber$ | async }} db</td>
+            <td>{{ dontPaidOrderNumber$ | async }} db</td>
+          </tr>
+          <tr>
+            <td>{{ sumOfOrder$ | async }} </td>
+            <td>{{ newOrderAmountSum$ | async }} </td>
+            <td>{{ shippedOrderAmountSum$ | async }} </td>
+            <td>{{ paidOrderAmountSum$ | async }} </td>
+            <td>{{ dontPaidOrderAmountSum$ | async }} </td>
           </tr>
         </tbody>
       </table>
@@ -65,14 +145,21 @@
       <table class="table table-bordered table-striped text-center">
         <thead>
           <tr>
-            <th>Új</th>
-            <th>Fizetett</th>
+            <th class="font-weight-bold">Összesen</th>
+            <th class="font-weight-bold">Új</th>
+            <th class="font-weight-bold">Fizetett</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{{ newBillNumber$ | async }}</td>
-            <td>{{ paidBillNumber$ | async }}</td>
+            <td>{{ numberOfBill$ | async }} db</td>
+            <td>{{ newBillNumber$ | async }} db</td>
+            <td>{{ paidBillNumber$ | async }} db</td>
+          </tr>
+          <tr>
+            <td>{{ sumOfBill$ | async }} Ft </td>
+            <td>{{ newBillAmountSum$ | async }} Ft </td>
+            <td>{{ paidBillAmountSum$ | async }} Ft </td>
           </tr>
         </tbody>
       </table>
