@@ -48,15 +48,15 @@ export class EditOrderComponent implements OnInit {
 
     if (this.id === '0') {
       this.orderService.create(order).subscribe(
-        order => this.router.navigate(['/', 'order']))
+        response => this.router.navigate(['/', 'order']))
     } else {
       this.orderService.update(order).subscribe(
-        order => this.router.navigate(['/', 'order']))
+        response => this.router.navigate(['/', 'order']))
     }
   }
 
   onRemoveOrder(order: Order): void {
     this.orderService.delete(order.id).subscribe(
-      order => this.router.navigate(['/', 'order']))
+      response => this.router.navigate(['/', 'order']))
   }
 }

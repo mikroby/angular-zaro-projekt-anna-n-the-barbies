@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { Bill } from 'src/app/model/bill';
+import { Bill, statusKeys } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class EditBillComponent implements OnInit {
   bill!: Bill;
   id!: string;
 
+  selectionKeys: string[] = statusKeys;
 
   constructor(
     private ar: ActivatedRoute,
@@ -36,11 +37,15 @@ export class EditBillComponent implements OnInit {
         }
       );
   }
+  
   onAddBill(bill: Bill): void {
-    this.billService.create(bill).subscribe(
-      bill => this.router.navigate(['/bill']),
-      err => console.error(err)
-    );
+    if (this.id === '0') {
+      this.billService.create(bill).subscribe(
+        response => this.router.navigate(['/', 'bill']))
+    } else {
+      this.billService.update(bill).subscribe(
+        response => this.router.navigate(['/', 'bill']))
+    }
   }
 
 }
