@@ -37,7 +37,7 @@ export class BaseService<T extends { id: number, [key: string]: any  }> {
     return this.http.delete<T>(`${this.apiUrl}${this.entityName}/${id}`);
   }
 
-  getNumberOf(): Observable<number> {
+  /*getNumberOf(): Observable<number> {
     return  this.getAll().pipe(map(item => item.length))
   }
 
@@ -74,7 +74,7 @@ export class BaseService<T extends { id: number, [key: string]: any  }> {
     let y = this.http.get<T>(`${this.apiUrl}${entity}/${value}`).subscribe(
       item => item[arg2])
     return Number(x)*Number(y)
-  }
+  }*/
 
 
 }

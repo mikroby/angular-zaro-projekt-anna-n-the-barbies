@@ -9,7 +9,7 @@ import { BaseService } from './base.service';
 export class BillService extends BaseService<Bill> {
 
   constructor(
-    public override http: HttpClient,
+    public override http: HttpClient
   ) {
     super(http);
     this.entityName = 'bill';
