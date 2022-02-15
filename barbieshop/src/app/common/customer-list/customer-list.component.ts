@@ -12,20 +12,10 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  customerList$: Observable<Customer[]> = this.customerService.getAll()
-
+  List$: Observable<Customer[]> = this.customerService.getAll()
   keys: string[] = Object.keys(new Customer());
-
-  phrase: string = '';
-
-  filterKey: string = '';
-
-  sorterKey: string = '';
-
-  direction: number = -1;
-
-  dirSymbol: string[] = new Array('');
-  SymbolArray: string[] = ['▲', '▼'];
+  componentName = 'customer';
+  buttonHiddenOpts = { edit: false, delete: false };
 
   constructor(
     private customerService: CustomerService,
@@ -33,31 +23,15 @@ export class CustomerListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.direction = 1;
-    this.dirSymbol[0] = this.SymbolArray[0];
-    this.sorterKey = this.keys[0]
-    }
+  }
 
-  onRemoveCustomer(customer: Customer): void {
-    this.customerService.delete(customer.id).subscribe(
-      customer => this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate(['/', 'customer'])}
+  onRemove(id: number): void {
+    this.customerService.delete(id).subscribe(
+      response => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/', this.componentName])
+      }
       )
     )
   }
-
-  changeSortDirection(key: string, i: number): void {
-    if (key === this.sorterKey) {
-      this.direction *= -1;
-      const dirIndex = this.direction === 1 ? 0 : 1;
-      this.dirSymbol[i] = this.SymbolArray[dirIndex];
-    } else {
-      this.direction = 1;
-      this.sorterKey = key;
-      this.dirSymbol = new Array('');
-      this.dirSymbol[i] = this.SymbolArray[0];
-    }
-  }
-
 
 }
