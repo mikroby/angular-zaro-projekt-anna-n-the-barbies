@@ -11,6 +11,9 @@ import { Order } from 'src/app/model/order';
 })
 export class OrderListComponent implements OnInit {
 
+  tableTitle:string='Rendelések';
+  color: string='info';
+
   List$: Observable<Order[]> = this.orderService.getAll()
   keys: string[] = Object.keys(new Order());
   componentName = 'order';

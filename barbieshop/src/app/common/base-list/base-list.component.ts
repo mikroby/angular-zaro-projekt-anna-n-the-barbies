@@ -9,6 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class BaseListComponent implements OnInit {
 
+  @Input() tableTitle:string='Táblázat neve';
+  @Input() tableSubTitle:string='Here is a subtitle for this table';
+  @Input() color:string ='success';
+
   @Input() List$!: Observable<any[]>;
   @Input() keys!: string[];
   @Input() componentName!: string;
