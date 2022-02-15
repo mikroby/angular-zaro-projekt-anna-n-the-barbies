@@ -73,12 +73,13 @@
           </td>
 
           <td>
-            <button [hidden]="buttonHiddenOpts.edit"
+            <button mat-raised-button [hidden]="buttonHiddenOpts.edit"
               [routerLink]="['/', 'edit-'+[componentName], row.id]"
               class="btn btn-info btn-sm">
               <i class="fa fa-pencil"></i>
             </button>
-            <button [hidden]="buttonHiddenOpts.delete" (click)="onRemove(row.id)"
+            <button mat-raised-button [hidden]="buttonHiddenOpts.delete"
+              (click)="onRemove(row.id)"
               class="btn btn-danger btn-sm">
               <i class="fa fa-trash"></i>
             </button>
