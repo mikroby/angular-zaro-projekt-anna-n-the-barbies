@@ -15,6 +15,8 @@ export class BaseListComponent implements OnInit {
 
   @Input() componentName!: string;
 
+  @Input() buttonHiddenOpts: {edit: boolean, delete: boolean} = { edit: false, delete: false };
+
   @Output() removeById: EventEmitter<number> = new EventEmitter();
 
   phrase: string = '';

@@ -15,7 +15,9 @@ export class OrderListComponent implements OnInit {
 
   keys: string[] = Object.keys(new Order());
 
-  componentName: string = 'order';
+  componentName = 'order';
+
+  buttonHiddenOpts = { edit: false, delete: false };
 
   constructor(
     private orderService: OrderService,
@@ -23,7 +25,6 @@ export class OrderListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
   }
 
   onRemove(id: number): void {
