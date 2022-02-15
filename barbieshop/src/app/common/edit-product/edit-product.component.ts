@@ -47,7 +47,7 @@ export class EditProductComponent implements OnInit {
       this.productService.create(product).subscribe(
         () => {
         this.router.navigate(['/', 'product']);
-        this.toastr.success('A termék létrehozása sikeres volt!', 'Hozzáadás');
+        this.toastr.success('A termék hozzáadása sikeres volt!', 'Hozzáadás');
      });
     } else {
       this.productService.update(product).subscribe(
