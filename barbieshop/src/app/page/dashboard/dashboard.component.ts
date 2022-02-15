@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   numberOfProduct$:  Observable<Number> = this.productService.getNumberOf()
   activeProductNumber$:  Observable<Number> = this.productService.getNumberOfValue('active', true)
   inactiveProductNumber$:  Observable<Number> = this.productService.getNumberOfValue('active', false)
+  featuredProductNumber$:  Observable<Number> = this.productService.getNumberOfValue('featured', true)
 
   numberOfCustomer$:  Observable<Number> = this.customerService.getNumberOf()
   activeCustomerNumber$:  Observable<Number> = this.customerService.getNumberOfValue('active', true)

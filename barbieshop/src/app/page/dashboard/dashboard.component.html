@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="row my-3">
     <div class="col-8 offset-2">
       <h2>Összesítő adatok</h2>
@@ -35,7 +34,7 @@
     <div class="col-8 offset-2 d-flex flex-column flex-md-row">
       <div class="col-6">
         <div class="card">
-          <div class="card-header card-header-icon card-header-rose">
+          <div class="card-header card-header-icon card-header-info">
             <div class="card-icon">
               <i class="material-icons">shopping_cart</i>
             </div>
@@ -48,7 +47,7 @@
       </div>
       <div class="col-6">
         <div class="card">
-          <div class="card-header card-header-icon card-header-primary">
+          <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon">
               <i class="material-icons">storage</i>
             </div>
@@ -61,108 +60,175 @@
       </div>
     </div>
   </div>
+  <div class="row my-3">
+    <div class="col-12">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-chart card-header-warning">
+            <div>
+              <h2>Termékek</h2>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-row">
+              <h3 class="col-6 card-title mt-2">Összes termék</h3>
+              <h2 class="col-6 card-title text-right">{{ numberOfProduct$ | async }} db</h2>
+            </div>
+            <div class="d-flex flex-row">
+              <h4 class="col-6 card-title mt-2">Kiemelt termékek</h4>
+              <h3 class="col-6 card-title text-right">{{ featuredProductNumber$ | async }} db</h3>
+            </div>
+            <table class="table table-bordered table-striped text-center mt-4">
+              <thead>
+                <tr>
+                  <th class="font-weight-bold">Aktív</th>
+                  <th class="font-weight-bold">Inaktív</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ activeProductNumber$ | async }} db</td>
+                  <td>{{ inactiveProductNumber$ | async }} db</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="row my-3">
-    <div class="col-6 offset-3">
-      <h2>Termékek</h2>
-      <div class="row">
-        <table class="table table-bordered table-striped text-center">
-          <thead>
-            <tr>
-              <th class="font-weight-bold">Összesen</th>
-              <th class="font-weight-bold">Aktív</th>
-              <th class="font-weight-bold">Inaktív</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{ numberOfProduct$ | async }} db</td>
-              <td>{{ activeProductNumber$ | async }} db</td>
-              <td>{{ inactiveProductNumber$ | async }} db</td>
-            </tr>
-          </tbody>
-
-        </table>
+    <div class="col-12">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-chart card-header-success">
+            <div>
+              <h2>Vásárlók</h2>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-row">
+              <h3 class="col-6 card-title mt-2">Összes vásárló</h3>
+              <h2 class="col-6 card-title text-right">{{ numberOfCustomer$ | async }} db</h2>
+            </div>
+            <table class="table table-bordered table-striped text-center mt-4">
+              <thead>
+                <tr>
+                  <th class="font-weight-bold">Aktív</th>
+                  <th class="font-weight-bold">Inaktív</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ activeCustomerNumber$ | async }} db</td>
+                  <td>{{ inactiveCustomerNumber$ | async }} db</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="row my-3">
-    <div class="col-6 offset-3">
-      <h2>Vásárlók</h2>
-      <table class="table table-bordered table-striped text-center">
-        <thead>
-          <tr>
-            <th class="font-weight-bold">Összesen</th>
-            <th class="font-weight-bold">Aktív</th>
-            <th class="font-weight-bold">Inaktív</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ numberOfCustomer$ | async }} db</td>
-            <td>{{ activeCustomerNumber$ | async }} db</td>
-            <td>{{ inactiveCustomerNumber$ | async }} db</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-12">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-chart card-header-info">
+            <div>
+              <h2>Rendelések</h2>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-row">
+              <h3 class="col-6 card-title mt-2">Összes rendelés</h3>
+              <h2 class="col-6 card-title text-right">{{ numberOfOrder$ | async }} db</h2>
+            </div>
+            <div class="d-flex flex-row">
+              <h4 class="col-6 card-title mt-2">Nem fizetett rendelések</h4>
+              <h3 class="col-6 card-title text-right">{{ dontPaidOrderNumber$ | async }} db</h3>
+            </div>
+            <table class="table table-bordered table-striped text-center mt-4">
+              <thead>
+                <tr>
+                  <th class="font-weight-bold">Új</th>
+                  <th class="font-weight-bold">Feladott</th>
+                  <th class="font-weight-bold">Fizetett</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ newOrderNumber$ | async }} db</td>
+                  <td>{{ shippedOrderNumber$ | async }} db</td>
+                  <td>{{ paidOrderNumber$ | async }} db</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row my-3">
-    <div class="col-6 offset-3">
-      <h2>Rendelések</h2>
-      <table class="table table-bordered table-striped text-center">
-        <thead>
-          <tr>
-            <th class="font-weight-bold">Összesen</th>
-            <th class="font-weight-bold">Új</th>
-            <th class="font-weight-bold">Feladott</th>
-            <th class="font-weight-bold">Fizetett</th>
-            <th class="font-weight-bold">Nem fizetett</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ numberOfOrder$ | async }} db</td>
-            <td>{{ newOrderNumber$ | async }} db</td>
-            <td>{{ shippedOrderNumber$ | async }} db</td>
-            <td>{{ paidOrderNumber$ | async }} db</td>
-            <td>{{ dontPaidOrderNumber$ | async }} db</td>
-          </tr>
-          <tr>
-            <td>{{ sumOfOrder$ | async }} </td>
-            <td>{{ newOrderAmountSum$ | async }} </td>
-            <td>{{ shippedOrderAmountSum$ | async }} </td>
-            <td>{{ paidOrderAmountSum$ | async }} </td>
-            <td>{{ dontPaidOrderAmountSum$ | async }} </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row my-3">
-    <div class="col-6 offset-3">
-      <h2>Számlák</h2>
-      <table class="table table-bordered table-striped text-center">
-        <thead>
-          <tr>
-            <th class="font-weight-bold">Összesen</th>
-            <th class="font-weight-bold">Új</th>
-            <th class="font-weight-bold">Fizetett</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ numberOfBill$ | async }} db</td>
-            <td>{{ newBillNumber$ | async }} db</td>
-            <td>{{ paidBillNumber$ | async }} db</td>
-          </tr>
-          <tr>
-            <td>{{ sumOfBill$ | async }} Ft </td>
-            <td>{{ newBillAmountSum$ | async }} Ft </td>
-            <td>{{ paidBillAmountSum$ | async }} Ft </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-12">
+      <div class=" col-md-6">
+        <div class="card">
+          <div class="card-header card-chart card-header-rose">
+            <div>
+              <h2>Számlák</h2>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-row">
+              <h3 class="col-6 card-title mt-2">Összes számla </h3>
+              <h2 class="col-6 card-title text-right">{{ sumOfBill$ | async }} db</h2>
+            </div>
+            <div class="d-flex flex-row">
+              <h4 class="col-6 card-title mt-2">Nem fizetett számlák összege</h4>
+              <h3 class="col-6 card-title text-right">{{ newBillAmountSum$ | async }} Ft</h3>
+            </div>
+            <table class="table table-bordered table-striped text-center mt-4">
+              <thead>
+                <tr>
+                  <th class="font-weight-bold">Új</th>
+                  <th class="font-weight-bold">Fizetett</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ newBillNumber$ | async }} db</td>
+                  <td>{{ paidBillNumber$ | async }} db</td>
+                </tr>
+                <tr>
+                  <td>{{ newBillAmountSum$ | async }} Ft </td>
+                  <td>{{ paidBillAmountSum$ | async }} Ft </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

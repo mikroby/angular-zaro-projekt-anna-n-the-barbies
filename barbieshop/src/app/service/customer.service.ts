@@ -20,6 +20,16 @@ export class CustomerService extends BaseService<Customer>
 
   customerAddress: Address = new Address()
 
+  countries = ["Brazil", "Russia", "China", "Indonesia", "Peru", "Russia", "Chile", "Japan", "China", "Brazil",
+"Belarus", "China", "Croatia", "Greece", "Bangladesh", "Kazakhstan", "Indonesia", "Colombia", "Germany", "Russia", "Indonesia",
+"China", "Peru", "Philippines", "Poland", "Indonesia", "Sweden", "Greece", "Ukraine", "Vietnam", "Portugal", "Russia", "Nigeria",
+"China", "Portugal", "Russia", "China", "Philippines", "Russia", "Poland", "Japan", "Serbia", "Poland", "Indonesia", "Thailand", "Poland",
+"Indonesia", "Portugal", "Ukraine", "Dominican Republic", "Netherlands", "China", "Niger", "Bulgaria", "China", "South Africa", "Indonesia",
+"Ecuador", "Indonesia", "Cameroon", "Indonesia", "Germany", "Yemen", "China", "Sweden", "Russia", "France", "Cuba", "Poland", "Portugal", "Poland",
+"Portugal", "United States", "Afghanistan", "Indonesia", "Philippines", "Japan", "Indonesia", "Jordan", "United States", "China", "Russia",
+"Poland", "United States", "Egypt", "France", "Hungary", "France", "United States", "Indonesia", "Malaysia", "Thailand", "France", "China","Colombia",
+"Czech Republic", "China", "France", "Argentina", "Indonesia", "China", "Ukraine", "Mexico", "Pakistan", "Argentina", "Nigeria", "China"]
+
   createAddress(customer: Customer): Customer {
     if (typeof customer.address === 'string') {
       const addressParts = (customer.address as unknown as string).split(' ');
@@ -28,6 +38,8 @@ export class CustomerService extends BaseService<Customer>
       customer.address = new Address();
       customer.address.zip = zip as unknown as string;
       customer.address.street = street;
+      //customer.address.country = String(this.countries.sort((a, b) => 0.5 - Math.random()).shift())
+      //super.create(customer)
     }
     if (typeof customer.address === 'object') {
       this.customerAddress = new Address()
