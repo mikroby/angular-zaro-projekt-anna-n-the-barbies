@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, switchMap } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
@@ -18,6 +19,7 @@ export class EditCustomerComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -36,13 +38,18 @@ export class EditCustomerComponent implements OnInit {
     if (customer.id === 0) {
       this.customerService.create(customer).subscribe(
         customer => {
-          this.router.navigate(['/', 'customer'])},
+          this.router.navigate(['/', 'customer']);
+          this.toastr.success('A vásárló hozzáadása sikeres volt!', 'Hozzáadás');
+        },
         err => console.error(err)
       )
     }
     else {
     this.customerService.update(customer).subscribe(
-      product => this.router.navigate(['/', 'customer']),
+      customer => {
+        this.router.navigate(['/', 'customer']);
+      this.toastr.info('A módosítás megtörtént!', 'Módosítás');
+    },
       err => console.error(err)
     )
     }
@@ -51,7 +58,10 @@ export class EditCustomerComponent implements OnInit {
 
   onRemoveCustomer(customer: Customer): void {
     this.customerService.delete(customer.id).subscribe(
-      product => this.router.navigate(['/', 'customer']),
+      customer => {
+        this.router.navigate(['/', 'customer']);
+        this.toastr.error('A törlés megtörtént!', 'Törlés');
+      },
       err => console.error(err)
     )
 }

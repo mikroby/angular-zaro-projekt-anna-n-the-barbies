@@ -1,9 +1,11 @@
 import { ProductService } from 'src/app/service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Observable, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-edit-product',
@@ -12,9 +14,6 @@ import { NgForm } from '@angular/forms';
 })
 export class EditProductComponent implements OnInit {
 
-  // editproduct$: Observable<Product> = this.ar.params.pipe(
-  //   switchMap(params => this.productService.getOne(params['id']))
-  // );
   product!: Product;
   newProduct: Product = new Product();
   id!: string;
@@ -23,6 +22,7 @@ export class EditProductComponent implements OnInit {
     private ar: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -41,17 +41,29 @@ export class EditProductComponent implements OnInit {
   }
 
   onUpdate(product: Product): void {
+    // const product: Product = productForm.value;
+
     if (product.id === 0) {
       this.productService.create(product).subscribe(
-        () => this.router.navigate(['/', 'product']),
-        err => console.error(err),
-      )
+        () => {
+        this.router.navigate(['/', 'product']);
+        this.toastr.success('A termék hozzáadása sikeres volt!', 'Hozzáadás');
+     });
     } else {
       this.productService.update(product).subscribe(
-        product => this.router.navigate(['/', 'product']),
-        err => console.error(err),
-      )
-    }
+        product => {
+        this.router.navigate(['/', 'product']);
+        this.toastr.info('A módosítás megtörtént!', 'Módosítás');
+    });
+   }
+  }
+
+  onRemove(product: Product): void {
+    this.productService.delete(product.id).subscribe(
+      product => {
+        this.router.navigate(['/', 'product']);
+        this.toastr.error('A törlés megtörtént!', 'Törlés');
+      });
   }
   // onUpdate(productForm: NgForm): void {
   //   if(productForm.invalid) {

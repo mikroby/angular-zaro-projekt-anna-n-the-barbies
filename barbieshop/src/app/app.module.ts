@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'angular2-chartjs';
 import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { SpinnerComponent } from './common/spinner/spinner.component';
 import { BaseListComponent } from './common/base-list/base-list.component';
 import { BarComponent } from './common/chart/bar/bar.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -64,6 +66,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ChartModule,
     NoopAnimationsModule,
     MatButtonModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-bottom-right',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
