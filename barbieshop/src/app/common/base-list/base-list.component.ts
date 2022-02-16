@@ -25,13 +25,14 @@ export class BaseListComponent implements OnInit {
   filterKey: string = '';
   sorterKey: string = '';
   direction: number = 1;
-  dirSymbol: string[] = new Array('');
+  dirSymbol!: string[];
   SymbolArray: string[] = ['▲', '▼'];
 
   constructor(
   ) { }
 
   ngOnInit(): void {
+    this.dirSymbol = new Array(this.keys.length).fill(' ');
     this.direction = 1;
     this.dirSymbol[0] = this.SymbolArray[0];
     this.sorterKey = this.keys[0];
@@ -41,15 +42,15 @@ export class BaseListComponent implements OnInit {
     this.removeById.emit(id);
   }
 
-  changeSortDirection(key: string, i: number): void {
-    if (key === this.sorterKey) {
+  changeSortDirection(col: string, i: number): void {
+    if (col === this.sorterKey) {
       this.direction *= -1;
       const dirIndex = this.direction === 1 ? 0 : 1;
       this.dirSymbol[i] = this.SymbolArray[dirIndex];
     } else {
       this.direction = 1;
-      this.sorterKey = key;
-      this.dirSymbol = new Array('');
+      this.sorterKey = col;
+      this.dirSymbol.fill(' ');
       this.dirSymbol[i] = this.SymbolArray[0];
     }
   }
