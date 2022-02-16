@@ -169,5 +169,10 @@ darab vagy mekkora összeg a szumma egy adott oszlopban.
 oszlopai.  
 Segédlet: https://nettuts.hu/blog/angular-material-tablazat-dinamikus-oszlopokkal
 
-## Sok sikert!
+## Még több extra
+- A táblázatok oszlopai legyenek opcionálisak: a felhasználó kiválaszthatja, hogy mely jellemzőket/adatokat szeretné látni.
+- A vásárló (vagy felhasználó) vagy egy tetszőlege entitás rendelkezzen származási ország tulajdonsággal - az ebből készített statisztikát térképes formában is jelenítsétek meg!
+- Az adatok grafikonos megjelenítésénél több diagramtípust is használjatok (kördiagram, tortadiagram, oszlopdiagram, buborékdiagram stb.)!
+- A dashboardon jelezzétek, hogy melyik adat mikor frissült utoljára.
 
+## Sok sikert!
