@@ -65,7 +65,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ChartModule,
     NoopAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 4000,
