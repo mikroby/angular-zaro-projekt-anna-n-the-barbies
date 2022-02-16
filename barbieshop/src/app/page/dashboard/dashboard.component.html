@@ -51,7 +51,7 @@
             <div class="card-icon">
               <i class="material-icons">storage</i>
             </div>
-            <h4 class="card-title text-right h2">{{ paidBillAmountSum$ | async }} Ft</h4>
+            <h4 class="card-title text-right h2">{{ newBillAmountSum$ | async }} Ft</h4>
           </div>
           <div class="card-body">
             <h5>Még nem fizetett számlák összege</h5>
@@ -142,7 +142,7 @@
     </div>
   </div>
   <div class="row my-3">
-    <div class="col-12">
+    <div class="col-12 d-flex flex-row">
       <div class="col-md-6">
         <div class="card">
           <div class="card-header card-chart card-header-info">
@@ -183,8 +183,15 @@
           </div>
         </div>
       </div>
+      <div class="card">
+        <div class="col-12">
+          <app-bar></app-bar>
+        </div>
+      </div>
     </div>
   </div>
+
+
   <div class="row my-3">
     <div class="col-12">
       <div class=" col-md-6">
