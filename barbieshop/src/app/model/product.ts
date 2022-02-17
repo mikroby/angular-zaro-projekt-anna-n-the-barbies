@@ -10,7 +10,7 @@ export class Product {
   active: boolean = true;
 }
 
-export const hunFeaturedKeys = ['kiemelt', 'nem kiemelt'];
+export const hunFeaturedKeys = ['Kiemelt', 'Nem kiemelt'];
 
 // "id": 1,
 //             "name": "Yukon Bellflower",
