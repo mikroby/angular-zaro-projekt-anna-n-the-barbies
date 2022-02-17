@@ -32,7 +32,7 @@ export class BaseListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dirSymbol = new Array(this.keys.length).fill(' ');
+    this.dirSymbol = new Array(this.keys.length).fill('');
     this.direction = 1;
     this.dirSymbol[0] = this.SymbolArray[0];
     this.sorterKey = this.keys[0];
@@ -50,7 +50,7 @@ export class BaseListComponent implements OnInit {
     } else {
       this.direction = 1;
       this.sorterKey = col;
-      this.dirSymbol.fill(' ');
+      this.dirSymbol.fill('');
       this.dirSymbol[i] = this.SymbolArray[0];
     }
   }
