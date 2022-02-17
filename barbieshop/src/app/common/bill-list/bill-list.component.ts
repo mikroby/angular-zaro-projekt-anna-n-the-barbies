@@ -14,6 +14,7 @@ export class BillListComponent implements OnInit {
 
   tableTitle:string='Számlák';
   color: string='rose';
+  buttonText:string ='Új számla létrehozása';
 
   List$: Observable<Bill[]> = this.billService.getAll();
   keys: string[] = Object.keys(new Bill());
