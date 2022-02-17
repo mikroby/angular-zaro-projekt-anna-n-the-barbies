@@ -10,6 +10,8 @@ export class Product {
   active: boolean = true;
 }
 
+export const hunFeaturedKeys = ['kiemelt', 'nem kiemelt'];
+
 // "id": 1,
 //             "name": "Yukon Bellflower",
 //             "type": "Campanulaceae",

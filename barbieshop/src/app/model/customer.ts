@@ -11,6 +11,8 @@ export class Customer {
 
 }
 
+export const hunActiveKeys = ['Aktív', '', 'Inaktív'];
+
 // id, firstName, lastName, email, address: Address, active
 
 // "id": 6,
