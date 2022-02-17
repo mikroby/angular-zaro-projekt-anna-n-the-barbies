@@ -23,11 +23,12 @@ export class CustomerService extends SummaryService<Customer>
 
   createAddress(customer: Customer): Customer {
     if (typeof customer.address === 'string') {
-      const addressParts = (customer.address as unknown as string).split(' ');
-      const zip = addressParts.shift();
-      const street = addressParts.join(' ');
+      const street = (customer.address as unknown as string);
+      // const addressParts = (customer.address as unknown as string).split(' ');
+      // const zip = addressParts.shift();
+      // const street = addressParts.join(' ');
       customer.address = new Address();
-      customer.address.zip = zip as unknown as string;
+      // customer.address.zip = zip as unknown as string;
       customer.address.street = street;
     }
     if (typeof customer.address === 'object') {
