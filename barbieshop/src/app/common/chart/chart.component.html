@@ -1,0 +1,37 @@
+<chart *ngIf="number === 1" class="dashchart" [type]="type" [data]="{ labels: values,
+  datasets:
+  [{fill: 'true',
+  backgroundColor: colors,
+  data: [Value1$ | async, Value2$ | async]}
+  ]}" [options]="options">
+</chart>
+
+<chart *ngIf="number === 2" class="dashchart" [type]="type" [data]="{ labels: values,
+  datasets:
+  [{label: keys[0],
+  fill: 'true',
+  backgroundColor: colors[0],
+  data: [Value1$ | async, Value2$ | async]},
+  {label: keys[1],
+  fill: 'true',
+  backgroundColor: colors[1],
+  data: [Value3$ | async, Value4$ | async]}
+  ]}" [options]="options">
+</chart>
+
+<chart *ngIf="number === 3" class="dashchart" [type]="type" [data]="{ labels: values,
+  datasets:
+  [{label: keys[0],
+  fill: 'true',
+  backgroundColor: colors[0],
+  data: [Value1$ | async, 0]},
+  {label: keys[1],
+  fill: 'true',
+  backgroundColor: colors[1],
+  data: [Value2$ | async, 0]},
+  {label: keys[2],
+  fill: 'true',
+  backgroundColor: colors[2],
+  data: [0, Value3$ | async]}
+  ]}" [options]="options">
+</chart>

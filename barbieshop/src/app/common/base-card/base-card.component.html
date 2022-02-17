@@ -1,0 +1,71 @@
+<div class="row my-3">
+  <div class="col-12">
+    <div class="card d-flex flex-md-row">
+      <div class="col-md-6">
+        <div class="card-header {{ colorClass }}">
+          <div>
+            <h2>{{ title }}</h2>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-row">
+            <h3 class="col-6 card-title mt-2">{{ cardTitle1 }}</h3>
+            <h2 class="col-6 card-title text-right">{{ cardTitleValue1$ | async }} {{ valueType }}</h2>
+          </div>
+          <div class="d-flex flex-row" *ngIf="row === 2">
+            <h4 class="col-6 card-title mt-2">{{ cardTitle2 }}</h4>
+            <h3 *ngIf="title != 'Számlák'" class="col-6 card-title text-right">{{ cardTitleValue2$ | async }} {{
+              valueType }}</h3>
+            <h3 *ngIf="title === 'Számlák'" class="col-6 card-title text-right">{{ cardTitleValue2$ | async }} {{
+              valueType2 }}</h3>
+          </div>
+          <table class="table table-bordered table-striped text-center mt-4">
+            <thead>
+              <tr>
+                <th class="font-weight-bold">{{ theadTitle[0] }}</th>
+                <th class="font-weight-bold">{{ theadTitle[1] }}</th>
+                <th class="font-weight-bold" *ngIf="title === 'Rendelések'">{{ theadTitle[2] }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ cardTableValue1$ | async }} {{ valueType }}</td>
+                <td>{{ cardTableValue2$ | async }} {{ valueType }}</td>
+                <td *ngIf="title === 'Rendelések'">{{ cardTableValue3$ | async }} {{ valueType }}</td>
+              </tr>
+              <tr *ngIf="title === 'Számlák'">
+                <td>{{ cardTableValue3$ | async }} {{ valueType2 }} </td>
+                <td>{{ cardTableValue4$ | async }} {{ valueType2 }} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer mt-md-5">
+          <div class="stats stats1">
+            <i class="material-icons">access_time</i> updated 4 minutes ago
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-3 mt-md-0">
+        <div class="col-12">
+          <div class="card-header {{ colorClass }}">
+            <div>
+              <h4>{{ diagrammTitle }}</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <app-chart [number]="number" [type]="type" [Value1$]="chartValue1$" [Value2$]="chartValue2$"
+              [Value3$]="chartValue3$" [Value4$]="chartValue4$" [colors]="colors" [options]="options" [keys]="keys"
+              [values]="values">
+            </app-chart>
+          </div>
+        </div>
+        <div class="card-footer mt-md-5">
+          <div class="stats stats2">
+            <i class="material-icons">access_time</i> updated 4 minutes ago
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

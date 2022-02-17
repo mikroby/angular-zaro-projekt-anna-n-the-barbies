@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Address } from '../model/address';
 import { Customer } from '../model/customer';
-import { BaseService } from './base.service';
 import { SummaryService } from './summary.service';
 
 @Injectable({

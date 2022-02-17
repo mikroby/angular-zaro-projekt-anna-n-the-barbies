@@ -29,11 +29,18 @@ import { SorterPipe } from './pipe/sorter.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { BaseListComponent } from './common/base-list/base-list.component';
-import { StackedBarComponent } from './common/chart/bar/stacked-bar/stacked-bar.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BarComponent } from './common/chart/bar/bar/bar.component';
-import { PieChartComponent } from './common/chart/pie/pie-chart/pie-chart.component';
-import { GroupedBarComponent } from './common/chart/bar/grouped-bar/grouped-bar.component';
+import { ChartComponent } from './common/chart/chart.component';
+import { BaseCardComponent } from './common/base-card/base-card.component';
+import { BaseLitleCardComponent } from './common/base-little-card/base-little-card.component';
+import { ProductLittleCardComponent } from './common/product-little-card/product-little-card.component';
+import { CustomerLittleCardComponent } from './common/customer-little-card/customer-little-card.component';
+import { OrderLittleCardComponent } from './common/order-little-card/order-little-card.component';
+import { BillLittleCardComponent } from './common/bill-little-card/bill-little-card.component';
+import { ProductCardComponent } from './common/product-card/product-card.component';
+import { CustomerCardComponent } from './common/customer-card/customer-card.component';
+import { OrderCardComponent } from './common/order-card/order-card.component';
+import { BillCardComponent } from './common/bill-card/bill-card.component';
 
 @NgModule({
   declarations: [
@@ -58,10 +65,17 @@ import { GroupedBarComponent } from './common/chart/bar/grouped-bar/grouped-bar.
     FilterPipe,
     SpinnerComponent,
     BaseListComponent,
-    StackedBarComponent,
-    BarComponent,
-    PieChartComponent,
-    GroupedBarComponent,
+    ChartComponent,
+    BaseCardComponent,
+    BaseLitleCardComponent,
+    ProductLittleCardComponent,
+    CustomerLittleCardComponent,
+    OrderLittleCardComponent,
+    BillLittleCardComponent,
+    ProductCardComponent,
+    CustomerCardComponent,
+    OrderCardComponent,
+    BillCardComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ export class Bill {
 
 export const statusKeys = ['new', 'paid'];
 
+export const hunBillStatusKeys = ['Új', 'Fizetett'];
+
 // id, orderID, amount, status: new|paid
 // "id": 1,
 //             "orderID": 20,

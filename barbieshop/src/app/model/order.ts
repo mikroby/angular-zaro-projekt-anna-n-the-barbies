@@ -9,9 +9,9 @@ export class Order {
 
 export const statusKeys = ['new', 'shipped', 'paid'];
 
-export const hunStatusKeys = ['új', 'feladott', 'fizetett'];
+export const hunStatusKeys = ['Új', 'Feladott', 'Fizetett'];
 
-export const paidStatusKeys = ['Nem fizetett', '', 'Fizetett'];
+export const paidStatusKeys = ['Nem fizetett', 'Fizetett'];
 
 // id, customerID, productID, amount, status: new|shipped|paid
 
