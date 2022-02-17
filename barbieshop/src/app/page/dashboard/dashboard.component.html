@@ -61,10 +61,10 @@
     </div>
   </div>
   <div class="row my-3">
-    <div class="col-12">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header card-chart card-header-warning">
+    <div class="col-12 d-flex flex-row">
+      <div class="card d-flex flex-row">
+        <div class="col-md-6">
+          <div class="card-header card-header-warning">
             <div>
               <h2>Termékek</h2>
             </div>
@@ -93,9 +93,24 @@
               </tbody>
             </table>
           </div>
-          <div class="card-footer">
+          <div class="card-footer mt-5">
             <div class="stats">
               <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-12">
+            <div class="card-header card-header-warning">
+              <div>
+                <h4>Termékek részletes eloszlása</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <app-grouped-bar [Value1$]="activeAndFeatureProductNumber$" [Value2$]="activeAndDontFeatureProductNumber$"
+                [Value3$]="inactiveAndFeatureProductNumber$" [Value4$]="inactiveAndDontFeatureProductNumber$"
+                [keys]="featuredKeys" [values]="activeKeys">
+              </app-grouped-bar>
             </div>
           </div>
         </div>
@@ -104,10 +119,10 @@
   </div>
 
   <div class="row my-3">
-    <div class="col-12">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header card-chart card-header-success">
+    <div class="col-12 d-flex flex-row">
+      <div class="card d-flex flex-row">
+        <div class="col-md-6">
+          <div class="card-header card-header-success">
             <div>
               <h2>Vásárlók</h2>
             </div>
@@ -132,9 +147,23 @@
               </tbody>
             </table>
           </div>
-          <div class="card-footer">
+          <div class="card-footer mt-5">
             <div class="stats">
               <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-12">
+            <div class="card-header card-header-success">
+              <div>
+                <h4>Vásárlók számának eloszlása</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <app-pie-chart [Value1$]="activeCustomerNumber$" [Value2$]="inactiveCustomerNumber$"
+                [values]="activeKeys">
+              </app-pie-chart>
             </div>
           </div>
         </div>
@@ -143,9 +172,9 @@
   </div>
   <div class="row my-3">
     <div class="col-12 d-flex flex-row">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header card-chart card-header-info">
+      <div class="card d-flex flex-row">
+        <div class="col-md-6">
+          <div class="card-header card-header-info">
             <div>
               <h2>Rendelések</h2>
             </div>
@@ -176,16 +205,25 @@
               </tbody>
             </table>
           </div>
-          <div class="card-footer">
+          <div class="card-footer mt-5">
             <div class="stats">
               <i class="material-icons">access_time</i> updated 4 minutes ago
             </div>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="col-12">
-          <app-bar></app-bar>
+        <div class="col-md-6">
+          <div class="col-12">
+            <div class="card-header card-header-info">
+              <div>
+                <h4>Rendelések eloszlása</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <app-stacked-bar [Value1$]="newOrderNumber$" [Value2$]="shippedOrderNumber$" [Value3$]="paidOrderNumber$"
+                [keys]="selectionKeys" [values]="valueKeys">
+              </app-stacked-bar>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -193,10 +231,10 @@
 
 
   <div class="row my-3">
-    <div class="col-12">
-      <div class=" col-md-6">
-        <div class="card">
-          <div class="card-header card-chart card-header-rose">
+    <div class="col-12 d-flex flex-row">
+      <div class="card d-flex flex-row">
+        <div class="col-md-6">
+          <div class="card-header card-header-rose">
             <div>
               <h2>Számlák</h2>
             </div>
@@ -229,9 +267,22 @@
               </tbody>
             </table>
           </div>
-          <div class="card-footer">
+          <div class="card-footer mt-5">
             <div class="stats">
               <i class="material-icons">access_time</i> updated 4 minutes ago
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="col-12">
+            <div class="card-header card-header-rose">
+              <div>
+                <h4>Számlák összegének eloszlása</h4>
+              </div>
+            </div>
+            <div class="card-body">
+              <app-pie-chart [Value1$]="newBillAmountSum$" [Value2$]="paidBillAmountSum$" [values]="selectionKeys">
+              </app-pie-chart>
             </div>
           </div>
         </div>

@@ -22,6 +22,10 @@ export class SummaryService<T extends { id: number, [key: string]: any  }> exten
     return  super.getAll().pipe(map(item => item.filter(i => i[prop] == value).length))
   }
 
+  getNumberOfValue2(prop: string, prop2: string, value: string | boolean, value2: string | boolean): Observable<number> {
+    return  super.getAll().pipe(map(item => item.filter(i => i[prop] == value).filter(i => i[prop2] == value2).length))
+  }
+
   getNumberOfValueReserve(prop: string, value: string | boolean): Observable<number> {
     return  super.getAll().pipe(map(item => item.filter(i => i[prop] != value).length))
   }

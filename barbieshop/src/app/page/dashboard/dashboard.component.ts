@@ -1,11 +1,12 @@
-import { map, mapTo, Observable } from 'rxjs';
+import { hunFeaturedKeys } from './../../model/product';
+import { hunActiveKeys } from './../../model/customer';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/service/customer.service';
 import { ProductService } from 'src/app/service/product.service';
 import { OrderService } from 'src/app/service/order.service';
 import { BillService } from 'src/app/service/bill.service';
-import { Order } from 'src/app/model/order';
-import { Product } from 'src/app/model/product';
+import { hunStatusKeys, paidStatusKeys } from 'src/app/model/order';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,10 +15,16 @@ import { Product } from 'src/app/model/product';
 })
 export class DashboardComponent implements OnInit {
 
+  public time1 = performance.now()
   numberOfProduct$:  Observable<Number> = this.productService.getNumberOf()
   activeProductNumber$:  Observable<Number> = this.productService.getNumberOfValue('active', true)
   inactiveProductNumber$:  Observable<Number> = this.productService.getNumberOfValue('active', false)
   featuredProductNumber$:  Observable<Number> = this.productService.getNumberOfValue('featured', true)
+
+  activeAndFeatureProductNumber$: Observable<Number> = this.productService.getNumberOfValue2('active', 'featured', true, true)
+  activeAndDontFeatureProductNumber$: Observable<Number> = this.productService.getNumberOfValue2('active', 'featured', true, false)
+  inactiveAndFeatureProductNumber$: Observable<Number> = this.productService.getNumberOfValue2('active', 'featured', false, true)
+  inactiveAndDontFeatureProductNumber$: Observable<Number> = this.productService.getNumberOfValue2('active', 'featured', false, false)
 
   numberOfCustomer$:  Observable<Number> = this.customerService.getNumberOf()
   activeCustomerNumber$:  Observable<Number> = this.customerService.getNumberOfValue('active', true)
@@ -43,6 +50,14 @@ export class DashboardComponent implements OnInit {
   newBillAmountSum$:  Observable<Number> = this.billService.getSumValue('status', 'new', 'amount')
   paidBillAmountSum$:  Observable<Number> = this.billService.getSumValue('status', 'paid', 'amount')
 
+  selectionKeys: string[] = hunStatusKeys;
+  valueKeys: string[] = paidStatusKeys;
+  activeKeys: string[] = hunActiveKeys
+  featuredKeys: string[] = hunFeaturedKeys
+  public time2 = performance.now()
+
+  public time3 = this.time2-this.time1
+
 
   constructor(
     private productService: ProductService,
@@ -53,7 +68,9 @@ export class DashboardComponent implements OnInit {
     ) { }
 
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+      console.log(this.time3)
+     }
 
 
 

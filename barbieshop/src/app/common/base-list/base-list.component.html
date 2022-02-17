@@ -1,7 +1,11 @@
 <div class="card">
   <div class="card-header card-header-{{color}}">
     <h4 class="card-title">{{tableTitle}}</h4>
-    <p class="card-category">{{tableSubTitle}}</p>
+    <!-- <p class="card-category">{{tableSubTitle}}</p> -->
+    <button [routerLink]="['/', 'edit-'+[componentName],'0']"
+      class="btn text-white bg-transparent btn-block h5 m-0 p-0">
+      {{buttonText}} <i class="fa fa-plus-square" aria-hidden="true"></i>
+    </button>
   </div>
   
 

@@ -14,6 +14,7 @@ export class OrderListComponent implements OnInit {
 
   tableTitle:string='Rendelések';
   color: string='info';
+  buttonText:string ='Új rendelés létrehozása';
 
   List$: Observable<Order[]> = this.orderService.getAll()
   keys: string[] = Object.keys(new Order());

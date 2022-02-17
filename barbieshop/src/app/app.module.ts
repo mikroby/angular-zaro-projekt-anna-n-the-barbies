@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ChartModule } from 'angular2-chartjs';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ChartModule } from 'angular2-chartjs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,10 +29,11 @@ import { SorterPipe } from './pipe/sorter.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { BaseListComponent } from './common/base-list/base-list.component';
-import { BarComponent } from './common/chart/bar/bar.component';
+import { StackedBarComponent } from './common/chart/bar/stacked-bar/stacked-bar.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-
+import { BarComponent } from './common/chart/bar/bar/bar.component';
+import { PieChartComponent } from './common/chart/pie/pie-chart/pie-chart.component';
+import { GroupedBarComponent } from './common/chart/bar/grouped-bar/grouped-bar.component';
 
 @NgModule({
   declarations: [
@@ -56,14 +58,16 @@ import { ToastrModule } from 'ngx-toastr';
     FilterPipe,
     SpinnerComponent,
     BaseListComponent,
+    StackedBarComponent,
     BarComponent,
+    PieChartComponent,
+    GroupedBarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ChartModule,
     NoopAnimationsModule,
     MatButtonModule,
     BrowserAnimationsModule,
@@ -71,6 +75,7 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 4000,
       positionClass: 'toast-bottom-right',
     }),
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

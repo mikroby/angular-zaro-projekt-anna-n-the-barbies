@@ -15,6 +15,7 @@ export class CustomerListComponent implements OnInit {
 
   tableTitle:string='Vásárlók';
   color: string='success';
+  buttonText:string ='Új vásárló létrehozása';
 
   List$: Observable<Customer[]> = this.customerService.getAll()
   keys: string[] = Object.keys(new Customer());
