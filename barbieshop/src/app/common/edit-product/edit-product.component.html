@@ -7,7 +7,7 @@
     <div class="card-body">
       <div class="row mb-3 ml-3">
         <div *ngIf="product" class="col-12">
-          <form #productForm="ngForm" (ngSubmit)="onUpdate(productForm)" class="mt-3">
+          <form #productForm="ngForm" (ngSubmit)="onUpdate(product)" class="mt-3">
             <input [(ngModel)]="product.id" name="id" type="hidden">
             <div class="row mb-3">
               <h3>
