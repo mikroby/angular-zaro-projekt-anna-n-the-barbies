@@ -43,8 +43,6 @@ export class EditProductComponent implements OnInit {
   }
 
   onUpdate(product: Product): void {
-    // const product: Product = productForm.value;
-
     if (product.id === 0) {
       this.productService.create(product).subscribe(
         () => {
@@ -70,17 +68,5 @@ export class EditProductComponent implements OnInit {
         this.dateService.setToLocalStorage('product')
       });
   }
-  // onUpdate(productForm: NgForm): void {
-  //   if(productForm.invalid) {
-  //     alert('Kérjük, töltsön ki minden mezőt!');
-  //   }
-
-  //   const product: Product = productForm.value;
-
-  //   this.productService.update(product).subscribe(
-  //     product => this.router.navigate(['/', 'product']),
-  //     err => console.error(err),
-  //   )
-  // }
 }
 
