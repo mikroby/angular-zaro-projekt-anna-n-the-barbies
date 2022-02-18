@@ -7,95 +7,95 @@
       {{buttonText}} <i class="fa fa-plus-square" aria-hidden="true"></i>
     </button>
   </div>
-  
 
-<div class="row mt-3 mx-0 sticky-top">
-  <div class="col-12 bg-light p-2 rounded">
-    <div class="col-8 mx-auto">
-      <div class="input-group input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </span>
+  <div class="card-content table-full-width table-responsive">
+
+    <div class="row mt-3 mx-0">
+      <div class="col-12 bg-light p-2 rounded">
+        <div class="col-8 mx-auto">
+          <div class="input-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+            <input [(ngModel)]="phrase" type="text" class="form-control mt-1 mr-3"
+              placeholder="keresés ...">
+
+            <select [(ngModel)]="filterKey" class="custom-select col-4">
+              <option value="">bármilyen egyezés</option>
+              <option *ngFor="let key of keys" [value]="key">{{ key | titlecase }}
+              </option>
+            </select>
+          </div>
         </div>
-        <input [(ngModel)]="phrase" type="text" class="form-control mt-1 mr-3"
-          placeholder="keresés ...">
-
-        <select [(ngModel)]="filterKey" class="custom-select col-4">
-          <option value="">bármilyen egyezés</option>
-          <option *ngFor="let key of keys" [value]="key">{{ key | titlecase }}
-          </option>
-        </select>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="card-content table-responsive table-full-width">
 
-<div class="row mt-3">
-  <div class="col-12">
-    <table class="table table-sm table-striped">
-      <thead>
-        <tr class="sticky-top bg-white">
-          <th *ngFor="let key of keys; index as i" class="font-weight-bold"
-            (click)="changeSortDirection(key,i)">
-              {{ key | titlecase }}
-              <span class="text-muted badge badge-light">{{dirSymbol[i]}}</span>
-          </th>
-          <th class="font-weight-bold">Options</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of List$
+    <div class="row mt-3">
+      <div class="col-12">
+        <table class="table table-sm table-striped">
+          <thead>
+            <tr class="sticky-top bg-white">
+              <th *ngFor="let key of keys; index as i" class="font-weight-bold"
+                (click)="changeSortDirection(key,i)">
+                {{ key | titlecase }}
+                <span class="text-muted badge badge-light">{{dirSymbol[i]}}</span>
+              </th>
+              <th class="font-weight-bold">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of List$
           | async | filter:phrase:filterKey | sorter:sorterKey:direction">
 
-          <td *ngFor="let key of keys">
-            <ng-container *ngIf="isBoolean(row[key]);
+              <td *ngFor="let key of keys">
+                <ng-container *ngIf="isBoolean(row[key]);
               then booleanTrue else booleanFalse"></ng-container>
-            
-            <ng-template #booleanTrue>
-              <div class="text-center">
-                <i *ngIf="row[key] === true" class="fa fa-check"></i>
-                <i *ngIf="row[key] === false" class="fa fa-times"></i>
-              </div>           
-            </ng-template>
-            
-            <ng-template #booleanFalse>
-              <ng-container *ngIf="key === currencyPipeOn; else noPipe">
-                {{row[key] | customCurrency}}
-              </ng-container>
-              <ng-template #noPipe>
-                <ng-container *ngIf="key === 'address'; else noGetter">
-                  {{row[key].full}}
-                </ng-container>
-                <ng-template #noGetter>
-                  {{row[key]}}
+
+                <ng-template #booleanTrue>
+                  <div class="text-center">
+                    <i *ngIf="row[key] === true" class="fa fa-check"></i>
+                    <i *ngIf="row[key] === false" class="fa fa-times"></i>
+                  </div>
                 </ng-template>
-              </ng-template>
-            </ng-template>
-          </td>
 
-          <td>
-            <button mat-raised-button [hidden]="buttonHiddenOpts.edit"
-              [routerLink]="['/', 'edit-'+[componentName], row.id]"
-              class="btn btn-info btn-sm">
-              <i class="fa fa-pencil"></i>
-            </button>
-            <button mat-raised-button [hidden]="buttonHiddenOpts.delete"
-              (click)="onRemove(row.id)"
-              class="btn btn-danger btn-sm">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
+                <ng-template #booleanFalse>
+                  <ng-container *ngIf="key === currencyPipeOn; else noPipe">
+                    {{row[key] | customCurrency}}
+                  </ng-container>
+                  <ng-template #noPipe>
+                    <ng-container *ngIf="key === 'address'; else noGetter">
+                      {{row[key].full}}
+                    </ng-container>
+                    <ng-template #noGetter>
+                      {{row[key]}}
+                    </ng-template>
+                  </ng-template>
+                </ng-template>
+              </td>
 
-        </tr>
-      </tbody>
-    </table>
+              <td>
+                <button mat-raised-button [hidden]="buttonHiddenOpts.edit"
+                  [routerLink]="['/', 'edit-'+[componentName], row.id]"
+                  class="btn btn-info btn-sm">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button mat-raised-button [hidden]="buttonHiddenOpts.delete"
+                  (click)="onRemove(row.id)"
+                  class="btn btn-danger btn-sm">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
-</div>
-
-</div>
 
 </div>
 
