@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { DateService } from 'src/app/service/date.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class EditProductComponent implements OnInit {
   constructor(
     private ar: ActivatedRoute,
     private productService: ProductService,
+    private dateService: DateService,
     private router: Router,
     private toastr: ToastrService,
   ) { }
@@ -46,12 +48,14 @@ export class EditProductComponent implements OnInit {
         () => {
         this.router.navigate(['/', 'product']);
         this.toastr.success('A termék hozzáadása sikeres volt!', 'Hozzáadás');
+        this.dateService.setToLocalStorage('product')
      });
     } else {
       this.productService.update(product).subscribe(
         product => {
         this.router.navigate(['/', 'product']);
         this.toastr.info('A módosítás megtörtént!', 'Módosítás');
+        this.dateService.setToLocalStorage('product')
     });
    }
   }
@@ -61,6 +65,7 @@ export class EditProductComponent implements OnInit {
       product => {
         this.router.navigate(['/', 'product']);
         this.toastr.error('A törlés megtörtént!', 'Törlés');
+        this.dateService.setToLocalStorage('product')
       });
   }
 }

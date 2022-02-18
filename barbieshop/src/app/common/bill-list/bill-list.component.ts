@@ -1,3 +1,4 @@
+import { DateService } from './../../service/date.service';
 import { BillService } from './../../service/bill.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -24,6 +25,7 @@ export class BillListComponent implements OnInit {
 
   constructor(
     private billService: BillService,
+    private dateService: DateService,
     private router: Router,
     private toastr: ToastrService,
   ) { }
@@ -36,6 +38,7 @@ export class BillListComponent implements OnInit {
       response => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/', this.componentName]);
         this.toastr.error('A törlés megtörtént!', 'Törlés');
+        this.dateService.setToLocalStorage('bill')
       }
       )
     )

@@ -37,12 +37,17 @@
                 <td>{{ cardTableValue3$ | async }} {{ valueType2 }} </td>
                 <td>{{ cardTableValue4$ | async }} {{ valueType2 }} </td>
               </tr>
+              <tr *ngIf="title === 'Vásárlók'" class="my-5">
+              </tr>
             </tbody>
           </table>
+          <div *ngIf="title === 'Vásárlók'" class="my-5"></div>
         </div>
         <div class="card-footer mt-md-5">
           <div class="stats stats1">
-            <i class="material-icons">access_time</i> updated 4 minutes ago
+            <i class="material-icons">access_time</i> updated<span *ngIf="timeNumber">&nbsp;{{ timeNumber }}</span>
+            <span>&nbsp;{{ timeFormat }}&nbsp;</span>
+            ago
           </div>
         </div>
       </div>
@@ -60,9 +65,12 @@
             </app-chart>
           </div>
         </div>
-        <div class="card-footer mt-md-5">
+        <div class="card-footer mt-2 mt-md-0">
           <div class="stats stats2">
-            <i class="material-icons">access_time</i> updated 4 minutes ago
+            <i class="material-icons">access_time</i> updated &nbsp;<span *ngIf="timeNumber">{{ timeNumber
+              }}</span>&nbsp;
+            <span>{{ timeFormat }}&nbsp;</span>
+            ago
           </div>
         </div>
       </div>

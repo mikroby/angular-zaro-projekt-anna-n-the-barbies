@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, switchMap } from 'rxjs';
 import { Order, statusKeys } from 'src/app/model/order';
+import { DateService } from 'src/app/service/date.service';
 import { OrderService } from 'src/app/service/order.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class EditOrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
+    private dateService: DateService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
@@ -52,10 +54,12 @@ export class EditOrderComponent implements OnInit {
       this.orderService.create(order).subscribe(
         response => this.router.navigate(['/', 'order']));
         this.toastr.success('A rendelés hozzáadása sikeres volt!', 'Hozzáadás');
+        this.dateService.setToLocalStorage('order')
     } else {
       this.orderService.update(order).subscribe(
         response => this.router.navigate(['/', 'order']));
         this.toastr.info('A módosítás megtörtént!', 'Módosítás');
+        this.dateService.setToLocalStorage('order')
     }
   }
 
@@ -63,5 +67,6 @@ export class EditOrderComponent implements OnInit {
     this.orderService.delete(order.id).subscribe(
       response => this.router.navigate(['/', 'order']));
       this.toastr.error('A törlés megtörtént!', 'Törlés');
+      this.dateService.setToLocalStorage('order')
   }
 }

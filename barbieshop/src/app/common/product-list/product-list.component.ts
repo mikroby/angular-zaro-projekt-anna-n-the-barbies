@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/model/product';
+import { DateService } from 'src/app/service/date.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -24,6 +25,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private dateService: DateService,
     private router: Router,
     private toastr: ToastrService,
   ) { }
@@ -36,6 +38,7 @@ export class ProductListComponent implements OnInit {
       response => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/', this.componentName]);
         this.toastr.error('A törlés megtörtént!', 'Törlés');
+        this.dateService.setToLocalStorage('product')
         }
       )
     )

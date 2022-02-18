@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import { Address } from 'src/app/model/address';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
+import { DateService } from 'src/app/service/date.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -24,6 +25,7 @@ export class CustomerListComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
+    private dateService: DateService,
     private router: Router,
     private toastr: ToastrService,
   ) { }
@@ -36,6 +38,7 @@ export class CustomerListComponent implements OnInit {
       response => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/', this.componentName]);
         this.toastr.error('A törlés megtörtént!', 'Törlés');
+        this.dateService.setToLocalStorage('customer')
       }
       )
     )
