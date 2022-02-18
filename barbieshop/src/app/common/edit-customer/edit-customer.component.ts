@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, switchMap } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
+import { DateService } from 'src/app/service/date.service';
 
 @Component({
   selector: 'app-edit-customer',
@@ -18,6 +19,7 @@ export class EditCustomerComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService,
+    private dateService: DateService,
     private router: Router,
     private toastr: ToastrService,
   ) { }
@@ -40,15 +42,17 @@ export class EditCustomerComponent implements OnInit {
         customer => {
           this.router.navigate(['/', 'customer']);
           this.toastr.success('A vásárló hozzáadása sikeres volt!', 'Hozzáadás');
+          this.dateService.setToLocalStorage('customer')
         },
         err => console.error(err)
-      )
-    }
-    else {
-    this.customerService.update(customer).subscribe(
-      customer => {
-        this.router.navigate(['/', 'customer']);
-      this.toastr.info('A módosítás megtörtént!', 'Módosítás');
+        )
+      }
+      else {
+        this.customerService.update(customer).subscribe(
+          customer => {
+            this.router.navigate(['/', 'customer']);
+            this.toastr.info('A módosítás megtörtént!', 'Módosítás');
+            this.dateService.setToLocalStorage('customer')
     },
       err => console.error(err)
     )
@@ -61,6 +65,7 @@ export class EditCustomerComponent implements OnInit {
       customer => {
         this.router.navigate(['/', 'customer']);
         this.toastr.error('A törlés megtörtént!', 'Törlés');
+        this.dateService.setToLocalStorage('customer')
       },
       err => console.error(err)
     )

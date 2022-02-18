@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DateService } from 'src/app/service/date.service';
 
 @Component({
   selector: 'app-base-card',
@@ -38,9 +39,20 @@ export class BaseCardComponent implements OnInit {
   @Input() keys!: string[];
   @Input() values!: string[]
 
-  constructor() { }
+  timeNumber!: number
+  timeFormat!: string
+
+  constructor(
+    private dateService: DateService
+    ) { }
 
   ngOnInit(): void {
+    this.dateService.setUpdateTime('basic')
+    //this.dateService.editUpdateTime('basic', this.timeNumber, this.timeFormat)
+    if (Number(localStorage.getItem(`basicTimeNumber`)) != 0) {
+      this.timeNumber = Number(localStorage.getItem(`basicTimeNumber`))
+    }
+    this.timeFormat = String(localStorage.getItem((`basicTimeFormat`)))
   }
 
 

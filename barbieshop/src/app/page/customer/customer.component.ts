@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
+import { DateService } from 'src/app/service/date.service';
 
 @Component({
   selector: 'app-customer',
@@ -11,7 +12,9 @@ export class CustomerComponent implements OnInit {
   new: boolean = true
   customerService: any;
 
-  constructor() { }
+  constructor(
+    private dateService: DateService
+  ) { }
 
   ngOnInit(): void { }
 

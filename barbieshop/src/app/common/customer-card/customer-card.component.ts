@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { hunActiveKeys } from 'src/app/model/customer';
 import { hunFeaturedKeys } from 'src/app/model/product';
 import { CustomerService } from 'src/app/service/customer.service';
+import { DateService } from 'src/app/service/date.service';
 
 @Component({
   selector: 'app-customer-card',
@@ -30,8 +31,13 @@ export class CustomerCardComponent implements OnInit {
   options!: Object;
   values: string[] = hunActiveKeys
 
+  timeNumber!: number
+  timeFormat!: string
+
   constructor(
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private dateService: DateService
+
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +48,9 @@ export class CustomerCardComponent implements OnInit {
       responsive: true,
       maintainAspectRatio: false,
 
-    }
+  }
+    //this.dateService.setUpdateTime('customer')
+    //this.dateService.editUpdateTime('customer', this.timeNumber, this.timeFormat)
   }
 
 }
