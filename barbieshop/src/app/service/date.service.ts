@@ -8,23 +8,11 @@ export class DateService {
   constructor() { }
 
   setToLocalStorage(key: string) {
-    let date = Date()
-    let dateNum = Date.now().toString()
     localStorage.setItem(`${key}date`, Date())
     localStorage.setItem(key, Date.now().toString())
   }
 
-  getToLocalStorage(date: string) {
-    localStorage.getItem(date)
-  }
-
-  calcUpdateTime(key: string) {
-    let start = Number(localStorage.getItem('start'))
-    let update = Number(localStorage.getItem(key))
-    return update-start
-  }
-
-  setUpdateTime(component: string) {
+  calcUpdateTime(component: string) {
     let now = Number(Date.now()) / 1000 / 60
     let start
     if (!localStorage.getItem(component)) {
@@ -61,10 +49,15 @@ export class DateService {
   }
 
   editUpdateTime(component:string, timeNumber: number, timeFormat: string ) {
+    //console.log(Number(localStorage.getItem(`${component}TimeNumber`)))
     if (Number(localStorage.getItem(`${component}TimeNumber`)) != 0) {
       timeNumber = Number(localStorage.getItem(`${component}TimeNumber`))
     }
     timeFormat = String(localStorage.getItem((`${component}TimeFormat`)))
   }
+      /*if (Number(localStorage.getItem(`basicTimeNumber`)) != 0) {
+      this.timeNumber = Number(localStorage.getItem(`basicTimeNumber`))
+    }
+    this.timeFormat = String(localStorage.getItem((`basicTimeFormat`)))*/
 
 }

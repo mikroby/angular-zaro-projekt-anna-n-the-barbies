@@ -47,7 +47,7 @@ export class BaseCardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.dateService.setUpdateTime('basic')
+    this.dateService.calcUpdateTime('basic')
     //this.dateService.editUpdateTime('basic', this.timeNumber, this.timeFormat)
     if (Number(localStorage.getItem(`basicTimeNumber`)) != 0) {
       this.timeNumber = Number(localStorage.getItem(`basicTimeNumber`))
