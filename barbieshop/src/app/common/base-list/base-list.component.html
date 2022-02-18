@@ -35,7 +35,7 @@
 
     <div class="row mt-3">
       <div class="col-12">
-        <table class="table table-sm table-striped">
+        <table class="table table-sm table-striped" *ngIf="List$ | async as List; else spinner">
           <thead>
             <tr class="sticky-top bg-white">
               <th *ngFor="let key of keys; index as i" class="font-weight-bold"
@@ -47,8 +47,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let row of List$
-          | async | filter:phrase:filterKey | sorter:sorterKey:direction">
+            <tr *ngFor="let row of List | filter:phrase:filterKey
+              | sorter:sorterKey:direction">
 
               <td *ngFor="let key of keys">
                 <ng-container *ngIf="isBoolean(row[key]);
@@ -101,6 +101,6 @@
 
 
 <!-- spinner -->
-<ng-container *ngIf="!(List$ | async)">
+<ng-template #spinner>
   <app-spinner></app-spinner>
-</ng-container>
+</ng-template>
