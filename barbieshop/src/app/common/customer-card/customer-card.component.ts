@@ -49,8 +49,8 @@ export class CustomerCardComponent implements OnInit {
       maintainAspectRatio: false,
 
   }
-    //this.dateService.calcUpdateTime('customer')
-    //this.dateService.editUpdateTime('customer', this.timeNumber, this.timeFormat)
+  this.timeNumber = this.dateService.editUpdateTimeNumber('customer')
+  this.timeFormat = this.dateService.editUpdateTimeFormat('customer')
   }
 
 }

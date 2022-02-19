@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { hunStatusKeys, paidStatusKeys } from 'src/app/model/order';
+import { DateService } from 'src/app/service/date.service';
 import { OrderService } from 'src/app/service/order.service';
 
 @Component({
@@ -34,8 +35,12 @@ export class OrderCardComponent implements OnInit {
   keys: string[] = hunStatusKeys;
   values: string[] = paidStatusKeys
 
+  timeNumber!: number
+  timeFormat!: string
+
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    private dateService: DateService
   ) { }
 
   ngOnInit(): void {
@@ -61,5 +66,7 @@ export class OrderCardComponent implements OnInit {
                 }]
     }
     }
+    this.timeNumber = this.dateService.editUpdateTimeNumber('order')
+    this.timeFormat = this.dateService.editUpdateTimeFormat('order')
   }
 }

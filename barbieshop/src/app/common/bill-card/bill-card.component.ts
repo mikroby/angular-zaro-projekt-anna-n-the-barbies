@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { hunBillStatusKeys } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
+import { DateService } from 'src/app/service/date.service';
 
 @Component({
   selector: 'app-bill-card',
@@ -34,8 +35,12 @@ export class BillCardComponent implements OnInit {
   options!: Object;
   values: string[] = hunBillStatusKeys
 
+  timeNumber!: number
+  timeFormat!: string
+
   constructor(
-    private billService: BillService
+    private billService: BillService,
+    private dateService: DateService
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +52,8 @@ export class BillCardComponent implements OnInit {
       maintainAspectRatio: false,
 
     }
+    this.timeNumber = this.dateService.editUpdateTimeNumber('bill')
+    this.timeFormat = this.dateService.editUpdateTimeFormat('bill')
   }
 
 }

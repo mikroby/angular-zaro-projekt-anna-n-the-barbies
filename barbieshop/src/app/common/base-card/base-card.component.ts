@@ -38,22 +38,14 @@ export class BaseCardComponent implements OnInit {
   @Input() options!: Object;
   @Input() keys!: string[];
   @Input() values!: string[]
-
-  timeNumber!: number
-  timeFormat!: string
+  @Input() timeNumber!: number
+  @Input() timeFormat!: string
 
   constructor(
     private dateService: DateService
     ) { }
 
-  ngOnInit(): void {
-    this.dateService.calcUpdateTime('basic')
-    //this.dateService.editUpdateTime('basic', this.timeNumber, this.timeFormat)
-    if (Number(localStorage.getItem(`basicTimeNumber`)) != 0) {
-      this.timeNumber = Number(localStorage.getItem(`basicTimeNumber`))
-    }
-    this.timeFormat = String(localStorage.getItem((`basicTimeFormat`)))
-  }
+  ngOnInit(): void { }
 
 
 }
