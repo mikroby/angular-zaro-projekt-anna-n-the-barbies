@@ -52,8 +52,15 @@ export class BillCardComponent implements OnInit {
       maintainAspectRatio: false,
 
     }
+  this.timeNumber = this.dateService.editUpdateTimeNumber('bill')
+  this.timeFormat = this.dateService.editUpdateTimeFormat('bill')
+    setInterval(() => this.updateTime(), 1000*60)
+  }
+
+  updateTime() {
     this.timeNumber = this.dateService.editUpdateTimeNumber('bill')
     this.timeFormat = this.dateService.editUpdateTimeFormat('bill')
   }
+
 
 }

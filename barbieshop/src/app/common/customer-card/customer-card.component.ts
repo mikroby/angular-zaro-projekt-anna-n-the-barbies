@@ -51,6 +51,12 @@ export class CustomerCardComponent implements OnInit {
   }
   this.timeNumber = this.dateService.editUpdateTimeNumber('customer')
   this.timeFormat = this.dateService.editUpdateTimeFormat('customer')
-  }
+  setInterval(() => this.updateTime(), 1000*60)
+}
+
+updateTime() {
+  this.timeNumber = this.dateService.editUpdateTimeNumber('customer')
+  this.timeFormat = this.dateService.editUpdateTimeFormat('customer')
+}
 
 }
