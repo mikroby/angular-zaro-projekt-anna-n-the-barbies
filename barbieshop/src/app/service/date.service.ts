@@ -48,16 +48,24 @@ export class DateService {
     }
   }
 
-  editUpdateTime(component:string, timeNumber: number, timeFormat: string ) {
-    //console.log(Number(localStorage.getItem(`${component}TimeNumber`)))
-    if (Number(localStorage.getItem(`${component}TimeNumber`)) != 0) {
-      timeNumber = Number(localStorage.getItem(`${component}TimeNumber`))
+  editUpdateTimeNumber(component:string): number {
+    if (Number(localStorage.getItem(component)) > 0) {
+      this.calcUpdateTime(component)
+      return Number(localStorage.getItem(`${component}TimeNumber`))
+    } else {
+      this.calcUpdateTime('basic')
+      return Number(localStorage.getItem(`basicTimeNumber`))
     }
-    timeFormat = String(localStorage.getItem((`${component}TimeFormat`)))
   }
-      /*if (Number(localStorage.getItem(`basicTimeNumber`)) != 0) {
-      this.timeNumber = Number(localStorage.getItem(`basicTimeNumber`))
+
+  editUpdateTimeFormat(component:string): string {
+    if (Number(localStorage.getItem(component)) > 0) {
+      this.calcUpdateTime(component)
+      return String(localStorage.getItem((`${component}TimeFormat`)))
+    } else {
+      this.calcUpdateTime('basic')
+      return String(localStorage.getItem((`basicTimeFormat`)))
     }
-    this.timeFormat = String(localStorage.getItem((`basicTimeFormat`)))*/
+  }
 
 }

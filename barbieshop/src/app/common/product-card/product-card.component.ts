@@ -1,3 +1,4 @@
+import { DateService } from 'src/app/service/date.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { hunActiveKeys } from 'src/app/model/customer';
@@ -35,8 +36,12 @@ export class ProductCardComponent implements OnInit {
   keys: string[] = hunFeaturedKeys;
   values: string[] = hunActiveKeys
 
+  timeNumber!: number
+  timeFormat!: string
+
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private dateService: DateService
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +67,8 @@ export class ProductCardComponent implements OnInit {
                 }]
     }
     }
+    this.timeNumber = this.dateService.editUpdateTimeNumber('product')
+    this.timeFormat = this.dateService.editUpdateTimeFormat('product')
   }
 
 
