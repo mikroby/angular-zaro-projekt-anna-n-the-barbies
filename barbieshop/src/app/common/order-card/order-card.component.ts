@@ -65,7 +65,13 @@ export class OrderCardComponent implements OnInit {
                     }
                 }]
     }
-    }
+  }
+  this.timeNumber = this.dateService.editUpdateTimeNumber('order')
+  this.timeFormat = this.dateService.editUpdateTimeFormat('order')
+    setInterval(() => this.updateTime(), 1000*60)
+  }
+
+  updateTime() {
     this.timeNumber = this.dateService.editUpdateTimeNumber('order')
     this.timeFormat = this.dateService.editUpdateTimeFormat('order')
   }

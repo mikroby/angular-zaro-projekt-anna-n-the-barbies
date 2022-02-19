@@ -66,10 +66,17 @@ export class ProductCardComponent implements OnInit {
                     }
                 }]
     }
-    }
+  }
+  this.timeNumber = this.dateService.editUpdateTimeNumber('product')
+  this.timeFormat = this.dateService.editUpdateTimeFormat('product')
+  setInterval(() => this.updateTime(), 1000*60)
+  }
+
+  updateTime() {
     this.timeNumber = this.dateService.editUpdateTimeNumber('product')
     this.timeFormat = this.dateService.editUpdateTimeFormat('product')
   }
-
-
 }
+
+
+
