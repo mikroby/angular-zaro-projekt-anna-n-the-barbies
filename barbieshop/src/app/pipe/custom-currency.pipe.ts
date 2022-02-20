@@ -12,6 +12,7 @@ export class CustomCurrencyPipe implements PipeTransform {
   transform(
     value: number,
     currencyCode: string = 'HUF',
+    digitsInfo: string = '1.0-2',
     locale: string = 'hu',
     ): string | null {
       return formatCurrency(
@@ -19,6 +20,7 @@ export class CustomCurrencyPipe implements PipeTransform {
         locale,
         getCurrencySymbol(currencyCode, 'narrow'),
         currencyCode,
+        digitsInfo,
         );
       }
   }
