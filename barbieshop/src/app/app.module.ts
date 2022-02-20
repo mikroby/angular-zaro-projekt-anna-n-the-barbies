@@ -6,6 +6,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ChartModule } from 'angular2-chartjs';
+import { Ng2GoogleChartsModule, GoogleChartsSettings } from 'ng2-google-charts';
+
+const MyGoogleChartsSettings: GoogleChartsSettings = {
+   mapsApiKey: 'AIzaSyCPJLJGPXHCk7ywVXIzX3gmMozvXHCrBNs',
+   googleChartsVersion: '46.2',
+   language: 'en',
+ };
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +48,7 @@ import { ProductCardComponent } from './common/product-card/product-card.compone
 import { CustomerCardComponent } from './common/customer-card/customer-card.component';
 import { OrderCardComponent } from './common/order-card/order-card.component';
 import { BillCardComponent } from './common/bill-card/bill-card.component';
+import { CustomerGeochartComponent } from './common/customer-geochart/customer-geochart.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +84,7 @@ import { BillCardComponent } from './common/bill-card/bill-card.component';
     CustomerCardComponent,
     OrderCardComponent,
     BillCardComponent,
+    CustomerGeochartComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,9 +98,15 @@ import { BillCardComponent } from './common/bill-card/bill-card.component';
       timeOut: 4000,
       positionClass: 'toast-bottom-right',
     }),
-    ChartModule
+    ChartModule,
+    Ng2GoogleChartsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'googleChartsSettings',
+      useValue: MyGoogleChartsSettings,
+      },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

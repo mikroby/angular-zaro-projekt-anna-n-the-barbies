@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header card-header-success">
+    <div>
+      <h2>Vásárlók területi eloszlása</h2>
+    </div>
+  </div>
+  <div class="card-body">
+    <google-chart #mychart [data]="geoChart"></google-chart>
+  </div>
+  <div class="card-footer mt-2">
+    <div class="stats">
+      <i class="material-icons">access_time</i> updated
+      <span *ngIf="timeNumber">&nbsp;{{ timeNumber }}</span>
+      <span>&nbsp;{{ timeFormat }}&nbsp;</span>
+      ago
+    </div>
+  </div>
