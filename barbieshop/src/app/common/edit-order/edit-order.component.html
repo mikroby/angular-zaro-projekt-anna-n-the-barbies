@@ -37,7 +37,7 @@
               <div class="form-group col-lg-3 col-md-6">
                 <label for="amount" class="font-weight-bold">Amount *</label>
                 <input class="form-control" [(ngModel)]="order.amount" type="number" name="amount" id="amount" required
-                  min="0" pattern="^\d+$">
+                  min="1" pattern="^\d+$">
               </div>
             </div>
 
@@ -64,7 +64,7 @@
                   Product ID: 0-tól nagyobb egész számnak kell lennie!
                 </div>
                 <div [hidden]="orderForm.controls['amount']?.valid">
-                  Amount: 0, vagy pozitív egész számnak kell lennie!
+                  Amount: 0-tól nagyobb egész számnak kell lennie!
                 </div>
               </div>
             </div>

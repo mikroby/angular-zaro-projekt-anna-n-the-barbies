@@ -54,7 +54,7 @@
               <div class="col-3">
                 <div class="form-group">
                   <label for="catID">Kategória azonosítója *</label>
-                  <input [(ngModel)]="product.catID" name="catID" type="number" class="form-control"  min="0" id="catID"
+                  <input [(ngModel)]="product.catID" name="catID" type="number" class="form-control"  min="1" id="catID"
                   required>
                   <div [hidden]="productForm.controls['catID']?.valid" class="error-message">
                     Adja meg a kategória azonosítóját. Az azonosító egy szám.
@@ -65,7 +65,7 @@
               <div class="col-3">
                 <div class="form-group">
                   <label for="price">Ár *</label>
-                  <input [(ngModel)]="product.price" name="price" type="number" class="form-control"  min="0" id="price"
+                  <input [(ngModel)]="product.price" name="price" type="number" class="form-control"  min="1" id="price"
                   required>
                   <div [hidden]="productForm.controls['price']?.valid" class="error-message">
                     Adja meg a termék árát.
