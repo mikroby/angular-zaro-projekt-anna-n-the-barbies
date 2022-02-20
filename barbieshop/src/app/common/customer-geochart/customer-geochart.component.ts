@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
@@ -24,8 +23,7 @@ export class CustomerGeochartComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    private dateService: DateService,
-    private router: Router
+    private dateService: DateService
   ) { }
 
   ngOnInit(): void {
@@ -53,11 +51,6 @@ export class CustomerGeochartComponent implements OnInit {
               this.countries_data.push(temp as string[]);
             }
       })
-     /*if (Number(localStorage.getItem('customerTimeNumber')) == 0) {
-      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate(['/'])
-        })
-      }*/
     }
 
     public geoChart: GoogleChartInterface = {
