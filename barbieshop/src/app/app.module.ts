@@ -87,7 +87,7 @@ import { BillCardComponent } from './common/bill-card/bill-card.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 4000,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-bottom-center',
     }),
     ChartModule
   ],
