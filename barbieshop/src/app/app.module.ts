@@ -49,6 +49,14 @@ import { CustomerCardComponent } from './common/customer-card/customer-card.comp
 import { OrderCardComponent } from './common/order-card/order-card.component';
 import { BillCardComponent } from './common/bill-card/bill-card.component';
 import { CustomerGeochartComponent } from './common/customer-geochart/customer-geochart.component';
+// táblázat moduljai
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -99,7 +107,15 @@ import { CustomerGeochartComponent } from './common/customer-geochart/customer-g
       positionClass: 'toast-bottom-center',
     }),
     ChartModule,
-    Ng2GoogleChartsModule
+    Ng2GoogleChartsModule,
+
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    DragDropModule,
+    MatSelectModule,
   ],
   providers: [
     {
