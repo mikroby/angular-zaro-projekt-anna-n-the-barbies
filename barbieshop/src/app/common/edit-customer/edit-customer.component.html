@@ -37,7 +37,7 @@
               <div class="form-group col-lg-3 col-md-12">
                 <label for="customerEmail">Email cím *</label>
                 <input class="form-control" [(ngModel)]="customer['email']" type="email" name="email" id="customerEmail"
-                  required patter="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}(\.[a-z]{2,})*$">
+                  required pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}(\.[a-z]{2,})*$">
                 <div [hidden]="customerForm.controls['email']?.valid || customerForm.controls['email']?.pristine"
                   class="error-message">
                   Nem érvényes email cím formátum
@@ -101,7 +101,7 @@
                     id="customerAddressNotes" required pattern="^[a-űA-Ű0-9_\s-]{5,}$">
                   <div [hidden]="customerForm.controls['notes']?.valid || customerForm.controls['notes']?.pristine"
                     class="error-message">
-                    A város nevének hossza legalább 5 karakter
+                    A megjegyzés hossza legalább 5 karakter
                   </div>
                 </div>
               </div>
