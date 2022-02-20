@@ -13,6 +13,8 @@ export class BaseLitleCardComponent implements OnInit {
   @Input() cardValue$!: Observable<Number>;
   @Input() cardBodyTitle!: string;
   @Input() valueType!: string;
+  @Input() timeNumber!: number
+  @Input() timeFormat!: string
 
   constructor() { }
 

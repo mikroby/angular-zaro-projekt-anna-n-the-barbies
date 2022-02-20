@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DateService } from 'src/app/service/date.service';
 import { OrderService } from 'src/app/service/order.service';
 
 @Component({
@@ -15,11 +16,23 @@ export class OrderLittleCardComponent implements OnInit {
   cardBodyTitle: string = "Még nem fizetett rendelések száma"
   valueType: string = "db"
 
+  timeNumber!: number
+  timeFormat!: string
+
   constructor(
     private orderService: OrderService,
+    private dateService: DateService
   ) { }
 
   ngOnInit(): void {
-  }
+    this.timeNumber = this.dateService.editUpdateTimeNumber('order')
+    this.timeFormat = this.dateService.editUpdateTimeFormat('order')
+      setInterval(() => this.updateTime(), 1000*60)
+    }
+
+    updateTime() {
+      this.timeNumber = this.dateService.editUpdateTimeNumber('order')
+      this.timeFormat = this.dateService.editUpdateTimeFormat('order')
+    }
 
 }
