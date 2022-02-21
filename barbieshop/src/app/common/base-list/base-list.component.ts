@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { flatMap, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-base-list',
@@ -74,13 +74,14 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     let array=[];
 
     if (filterKey) {
-      array[0] = data[filterKey];
+      array[0] = typeof data[filterKey] ==='object'?
+        Object.values(data[filterKey]) : data[filterKey];
     } else {
-      array = Object.values(data)
-        .map(sub => typeof sub === 'object' ?
-          Object.values(data.address) : sub).flat();
-    }    
-    return array.join(' ').toLowerCase().includes(phrase);
+      array = Object.keys(data)
+        .map(key => typeof data[key] === 'object' ?
+          Object.values(data[key]) : data[key]);
+    }
+    return array.flat().join(' ').trim().toLowerCase().includes(phrase);
   };
 
   drop(event: CdkDragDrop<string[]>) {
