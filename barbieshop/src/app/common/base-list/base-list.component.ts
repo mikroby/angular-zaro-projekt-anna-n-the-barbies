@@ -32,6 +32,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   displayedColumns!: string[];
   tableEnabled: boolean = false;
   filterKey: string = '';
+  phrase:string='';
 
   constructor() {
   }
@@ -43,6 +44,8 @@ export class BaseListComponent implements OnInit, AfterViewInit {
         this.List.paginator = this.paginator;
         this.List.sort = this.sort;
         this.tableEnabled = true;
+
+        this.List.filterPredicate = this.filterFunction;
       }
     );
   }
@@ -53,19 +56,33 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     this.ngOnInit();
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.List.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    const jsonString = JSON.stringify({ phrase: this.phrase, filterKey: this.filterKey })
+    this.List.filter = jsonString;
 
     if (this.List.paginator) {
       this.List.paginator.firstPage();
     }
   }
 
+  filterFunction(data: any, jsonString: string) {
+    const filterObject = JSON.parse(jsonString);
+    const phrase = filterObject.phrase.toLowerCase();
+    const filterKey = filterObject.filterKey;
+    
+    if (!phrase) { return true };   
+
+    if (filterKey) {
+      return String(data[filterKey]).toLowerCase().includes(phrase);
+    } else {
+      return Object.values(data).join(' ').toLowerCase().includes(phrase);
+    }
+  };
+
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
   }
-  
+
   onRemove(id: number): void {
     this.removeById.emit(id);
   }
