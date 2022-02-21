@@ -103,15 +103,16 @@
         </tr>
 
       </table>
-
-      <mat-paginator
-        [pageSize]="10"
-        [pageSizeOptions]="[10, 25, 50, 100, 250, 500, 1000]"
-        [length]="List.data.length"
-        aria-label="Select page of users">
-      </mat-paginator>
-
+      
     </div>
+
+    <mat-paginator
+      [hidden]="!tableEnabled"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 25, 50, 100, 250, 500, 1000]"
+      [length]="List?.data?.length"
+      aria-label="Select page of users">
+    </mat-paginator>
 
   </div>
 

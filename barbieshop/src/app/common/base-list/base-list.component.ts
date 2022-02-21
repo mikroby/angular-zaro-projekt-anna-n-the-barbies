@@ -32,7 +32,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   displayedColumns!: string[];
   tableEnabled: boolean = false;
   filterKey: string = '';
-  phrase:string='';
+  phrase: string = '';
 
   constructor() {
   }
@@ -69,14 +69,19 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     const filterObject = JSON.parse(jsonString);
     const phrase = filterObject.phrase.toLowerCase();
     const filterKey = filterObject.filterKey;
-    
-    if (!phrase) { return true };   
+
+    if (!phrase) { return true };
+
+    let array;
 
     if (filterKey) {
-      return String(data[filterKey]).toLowerCase().includes(phrase);
+      array= Object.values(data[filterKey]);
     } else {
-      return Object.values(data).join(' ').toLowerCase().includes(phrase);
+      array = Object.values(data)
+        .map(sub => typeof sub === 'object' ?
+          Object.values(data.address) : sub).flat();
     }
+    return array.join(' ').toLowerCase().includes(phrase);
   };
 
   drop(event: CdkDragDrop<string[]>) {
