@@ -12,13 +12,13 @@
 
     <div *ngIf="tableEnabled; else spinner">
 
-      <mat-form-field appearance="standard" class="float-left mr-5 ml-4">
+      <mat-form-field appearance="standard" class="float-left ml-4">
         <mat-label>Keresés</mat-label>
         <input matInput (keyup)="applyFilter()" [(ngModel)]="phrase"
         placeholder="kifejezés..." #input>
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
+      <mat-form-field appearance="standard" class="ml-4">
         <mat-label>oszlopok szerint</mat-label>
         <mat-select [(value)]="filterKey" (valueChange)="applyFilter()">
           <mat-option value="">bármilyen egyezés</mat-option>
@@ -78,12 +78,20 @@
             <div class="btn-group">
               <button mat-icon-button [hidden]="buttonHiddenOpts.edit"
                 [routerLink]="['/', 'edit-'+[componentName], item.id]"
-                color="primary">
+                color="primary"
+                matTooltip="Szerkesztés"
+                matTooltipPosition="above"
+                TooltipTouchGestures ="auto"
+                matTooltipClass="tooltip-blue">
                   <span class="material-icons">edit</span>
               </button>
-              <button mat-icon-button [hidden]="buttonHiddenOpts.delete"
+              <button mat-icon-button [disabled]="buttonHiddenOpts.delete"
                 (click)="onRemove(item.id)"
-                color="warn">                
+                color="warn"
+                matTooltip="Törlés"
+                matTooltipPosition="above"
+                TooltipTouchGestures ="auto"
+                matTooltipClass="tooltip-red">                
                   <span class="material-icons">delete</span>              
               </button>
             </div>
