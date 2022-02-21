@@ -29,7 +29,8 @@
       </mat-form-field>
 
 
-      <table mat-table [dataSource]="List" fixedLayout
+      <table mat-table [dataSource]="List"
+        fixedLayout
         matSort
         cdkDropList
         cdkDropListOrientation="horizontal"
@@ -73,20 +74,20 @@
           <th mat-header-cell cdkDrag *matHeaderCellDef>
             <span class="lead">Options</span>
           </th>
-          <div class="btn-group">
-            <td mat-cell *matCellDef="let item">
-              <button mat-raised-button [hidden]="buttonHiddenOpts.edit"
+          <td mat-cell *matCellDef="let item">
+            <div class="btn-group">
+              <button mat-icon-button [hidden]="buttonHiddenOpts.edit"
                 [routerLink]="['/', 'edit-'+[componentName], item.id]"
-                class="btn btn-info btn-sm">
-                <i class="fa fa-pencil"></i>
+                color="primary">
+                  <span class="material-icons">edit</span>
               </button>
-              <button mat-raised-button [hidden]="buttonHiddenOpts.delete"
+              <button mat-icon-button [hidden]="buttonHiddenOpts.delete"
                 (click)="onRemove(item.id)"
-                class="btn btn-danger btn-sm">
-                <i class="fa fa-trash"></i>
+                color="warn">                
+                  <span class="material-icons">delete</span>              
               </button>
-            </td>
-          </div>
+            </div>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
@@ -105,15 +106,14 @@
       </table>
       
     </div>
-
+    
     <mat-paginator
       [hidden]="!tableEnabled"
       [pageSize]="10"
       [pageSizeOptions]="[10, 25, 50, 100, 250, 500, 1000]"
-      [length]="List?.data?.length"
-      aria-label="Select page of users">
+      [length]="List?.data?.length">
     </mat-paginator>
-
+   
   </div>
 
 </div>
