@@ -71,15 +71,15 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
     if (!phrase) { return true };
 
-    let array;
+    let array=[];
 
     if (filterKey) {
-      array= Object.values(data[filterKey]);
+      array[0] = data[filterKey];
     } else {
       array = Object.values(data)
         .map(sub => typeof sub === 'object' ?
           Object.values(data.address) : sub).flat();
-    }
+    }    
     return array.join(' ').toLowerCase().includes(phrase);
   };
 
