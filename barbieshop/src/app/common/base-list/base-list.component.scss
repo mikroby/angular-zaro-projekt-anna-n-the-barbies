@@ -1,3 +1,15 @@
+// @use "@material/tooltip";
+
 thead tr th:not(:last-child) {
   cursor: pointer;
 }
+
+// .tooltip-red {
+//   @include fill-color($color:red);
+//   @include label-ink-color($color:white);
+// }
+
+// .tooltip-blue {
+//   @include fill-color($color:blue);
+//   @include label-ink-color($color:white);
+// }

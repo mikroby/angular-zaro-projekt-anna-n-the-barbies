@@ -9,10 +9,10 @@ import { ChartModule } from 'angular2-chartjs';
 import { Ng2GoogleChartsModule, GoogleChartsSettings } from 'ng2-google-charts';
 
 const MyGoogleChartsSettings: GoogleChartsSettings = {
-   mapsApiKey: 'AIzaSyCPJLJGPXHCk7ywVXIzX3gmMozvXHCrBNs',
-   googleChartsVersion: '46.2',
-   language: 'en',
- };
+  mapsApiKey: 'AIzaSyCPJLJGPXHCk7ywVXIzX3gmMozvXHCrBNs',
+  googleChartsVersion: '46.2',
+  language: 'en',
+};
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +57,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -116,12 +117,13 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     DragDropModule,
     MatSelectModule,
+    MatTooltipModule,
   ],
   providers: [
     {
       provide: 'googleChartsSettings',
       useValue: MyGoogleChartsSettings,
-      },
+    },
   ],
   bootstrap: [AppComponent]
 })
