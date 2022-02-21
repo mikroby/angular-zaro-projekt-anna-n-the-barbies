@@ -44,7 +44,6 @@ export class BaseListComponent implements OnInit, AfterViewInit {
         this.List.paginator = this.paginator;
         this.List.sort = this.sort;
         this.tableEnabled = true;
-
         this.List.filterPredicate = this.filterFunction;
       }
     );
