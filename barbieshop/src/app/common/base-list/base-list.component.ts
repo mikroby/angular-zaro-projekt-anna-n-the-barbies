@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ViewChild } from '@angular/core';
-import { flatMap, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-base-list',
@@ -95,5 +95,8 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   isBoolean(value: any): boolean {
     return (typeof value === 'boolean');
   }
-
+  
+  isNestedObject(value: any): boolean {
+    return (typeof value === 'object');
+  }
 }

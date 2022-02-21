@@ -58,7 +58,7 @@
                 {{item[col] | customCurrency}}
               </ng-container>
               <ng-template #noPipe>
-                <ng-container *ngIf="col === 'address'; else noGetter">
+                <ng-container *ngIf="isNestedObject(item[col]); else noGetter">
                   {{item[col].full}}
                 </ng-container>
                 <ng-template #noGetter>
