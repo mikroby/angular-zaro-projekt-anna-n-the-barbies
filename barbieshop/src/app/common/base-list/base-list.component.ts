@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ViewChild } from '@angular/core';
-import { flatMap, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-base-list',
@@ -30,6 +30,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   displayedColumns!: string[];
+  selectedColumns!: string[];
   tableEnabled: boolean = false;
   filterKey: string = '';
   phrase: string = '';
@@ -50,8 +51,8 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.displayedColumns = [...this.keys];
-    this.displayedColumns.push('Options');
+    this.selectedColumns = [...this.keys];
+    this.displayedColumns = [...this.selectedColumns, 'Options'];
     this.ngOnInit();
   }
 
@@ -71,10 +72,10 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
     if (!phrase) { return true };
 
-    let array=[];
+    let array = [];
 
     if (filterKey) {
-      array[0] = typeof data[filterKey] ==='object'?
+      array[0] = typeof data[filterKey] === 'object' ?
         Object.values(data[filterKey]) : data[filterKey];
     } else {
       array = Object.keys(data)
@@ -96,4 +97,17 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     return (typeof value === 'boolean');
   }
 
+  isNestedObject(value: any): boolean {
+    return (typeof value === 'object');
+  }
+
+  colSelectionChanged(): void {
+    const contains = this.displayedColumns.filter(item =>
+      item === 'Options' ? true : this.selectedColumns.includes(item));
+
+    const difference = this.selectedColumns
+      .filter(item => !(this.displayedColumns.includes(item)))
+
+    this.displayedColumns = [...contains, ...difference];
+  }
 }
