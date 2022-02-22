@@ -103,22 +103,16 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   colSelectionChanged(): void {
 
-    // console.log('indulás: ',this.selectedColumns)
-    
     if (!this.selectedColumns.length) {
       this.selectedColumns.push('id');
     };
 
-    // console.log('felt. után: ',this.selectedColumns)
-    
     const contains = this.displayedColumns.filter(item =>
       item === 'options' ? true : this.selectedColumns.includes(item));
 
     const differs = this.selectedColumns
-    .filter(item => !(this.displayedColumns.includes(item)))
-    
-    this.displayedColumns = [...contains, ...differs];    
+      .filter(item => !(this.displayedColumns.includes(item)))
 
-    // console.log('displayed:', this.displayedColumns)
+    this.displayedColumns = [...contains, ...differs];
   }
 }
