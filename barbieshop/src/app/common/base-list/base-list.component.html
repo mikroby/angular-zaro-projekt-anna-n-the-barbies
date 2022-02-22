@@ -31,7 +31,7 @@
       <mat-form-field appearance="standard" class="ml-4">
         <mat-label>oszlopok megjelenítése</mat-label>
         <mat-select [(value)]="selectedColumns" multiple
-          (closed)="colSelectionChanged()">          
+          (selectionChange)="colSelectionChanged()">          
           <mat-option *ngFor="let key of keys" [value]="key">
             {{key | titlecase }}
           </mat-option>
