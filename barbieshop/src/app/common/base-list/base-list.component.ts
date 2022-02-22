@@ -52,7 +52,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.selectedColumns = [...this.keys];
-    this.displayedColumns = [...this.selectedColumns, 'Options'];
+    this.displayedColumns = [...this.selectedColumns, 'options'];
     this.ngOnInit();
   }
 
@@ -103,15 +103,22 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   colSelectionChanged(): void {
 
-    // if (this.selectedColumns.length) {return false};
+    // console.log('indulás: ',this.selectedColumns)
+    
+    if (!this.selectedColumns.length) {
+      this.selectedColumns.push('id');
+    };
 
+    // console.log('felt. után: ',this.selectedColumns)
+    
     const contains = this.displayedColumns.filter(item =>
-      item === 'Options' ? true : this.selectedColumns.includes(item));
+      item === 'options' ? true : this.selectedColumns.includes(item));
 
     const differs = this.selectedColumns
-      .filter(item => !(this.displayedColumns.includes(item)))
+    .filter(item => !(this.displayedColumns.includes(item)))
+    
+    this.displayedColumns = [...contains, ...differs];    
 
-    this.displayedColumns = [...contains, ...differs];
-    // return true;
+    // console.log('displayed:', this.displayedColumns)
   }
 }
