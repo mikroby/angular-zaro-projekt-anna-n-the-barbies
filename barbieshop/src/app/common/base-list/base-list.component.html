@@ -30,8 +30,8 @@
       
       <mat-form-field appearance="standard" class="ml-4">
         <mat-label>oszlopok megjelenítése</mat-label>
-        <mat-select [(ngModel)]="selectedColumns" multiple
-          (selectionChange)="colSelectionChanged()">          
+        <mat-select [(value)]="selectedColumns" multiple
+          (selectionChange)="colSelectionChanged()">           
           <mat-option *ngFor="let key of keys" [value]="key">
             {{key | titlecase }}
           </mat-option>
