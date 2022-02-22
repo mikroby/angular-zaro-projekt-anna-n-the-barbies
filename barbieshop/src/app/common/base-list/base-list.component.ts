@@ -102,12 +102,16 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   colSelectionChanged(): void {
+
+    // if (this.selectedColumns.length) {return false};
+
     const contains = this.displayedColumns.filter(item =>
       item === 'Options' ? true : this.selectedColumns.includes(item));
 
-    const difference = this.selectedColumns
+    const differs = this.selectedColumns
       .filter(item => !(this.displayedColumns.includes(item)))
 
-    this.displayedColumns = [...contains, ...difference];
+    this.displayedColumns = [...contains, ...differs];
+    // return true;
   }
 }
