@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
       <div class="row mb-3 ml-3">
-        <div class="col-12">
+        <div *ngIf="bill" class="col-12">
           <form #billForm="ngForm" (ngSubmit)="onAddBill(bill)">
 
             <input [(ngModel)]="bill.id" type="hidden" name="id">
@@ -61,7 +61,7 @@
 
             <div>
               <button [disabled]="billForm.invalid" class="btn btn-rose" type="submit">Mentés</button>
-              <button [routerLink]="['/bill']" class="btn btn-secondary" type="button">Mégsem</button>
+              <button routerLink="/bill" class="btn btn-secondary" type="button">Mégsem</button>
             </div>
           </form>
         </div>
