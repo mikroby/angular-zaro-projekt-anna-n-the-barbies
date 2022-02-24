@@ -5,6 +5,8 @@ import { Observable, switchMap } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
 import { DateService } from 'src/app/service/date.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'
 
 @Component({
   selector: 'app-edit-customer',
@@ -22,6 +24,7 @@ export class EditCustomerComponent implements OnInit {
     private dateService: DateService,
     private router: Router,
     private toastr: ToastrService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -61,14 +64,24 @@ export class EditCustomerComponent implements OnInit {
 
 
   onRemoveCustomer(customer: Customer): void {
-    this.customerService.delete(customer.id).subscribe(
-      customer => {
-        this.router.navigate(['/', 'customer']);
-        this.toastr.error('A törlés megtörtént!', 'Törlés');
-        this.dateService.setToLocalStorage('customer')
-      },
-      err => console.error(err)
-    )
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Megerősítés',
+        message: 'Biztos vagy benne, hogy törölni szeretnéd?'
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.customerService.delete(customer.id).subscribe(
+          customer => {
+            this.router.navigate(['/', 'customer']);
+            this.toastr.error('A törlés megtörtént!', 'Törlés');
+            this.dateService.setToLocalStorage('customer')
+          },
+          err => console.error(err)
+        )
+      }
+    });
 }
 
 }
