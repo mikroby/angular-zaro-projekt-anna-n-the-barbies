@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'
 
 @Component({
   selector: 'app-base-list',
@@ -35,7 +37,9 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   filterKey: string = '';
   phrase: string = '';
 
-  constructor() {
+  constructor(
+    private dialog: MatDialog
+  ) {
   }
 
   ngOnInit(): void {
@@ -89,9 +93,26 @@ export class BaseListComponent implements OnInit, AfterViewInit {
     moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
   }
 
+  /*onRemove(id: number): void {
+    if(confirm("Biztos vagy benne, hogy törölni szeretnéd?")) {
+      this.removeById.emit(id);
+    }
+  }*/
+
   onRemove(id: number): void {
-    this.removeById.emit(id);
+      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+        data: {
+          title: 'Megerősítés',
+          message: 'Biztos vagy benne, hogy törölni szeretnéd?'
+        }
+      });
+      confirmDialog.afterClosed().subscribe(result => {
+        if (result === true) {
+          this.removeById.emit(id);
+        }
+      });
   }
+
 
   isBoolean(value: any): boolean {
     return (typeof value === 'boolean');

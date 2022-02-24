@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ChartModule } from 'angular2-chartjs';
@@ -58,6 +59,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     OrderCardComponent,
     BillCardComponent,
     CustomerGeochartComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -118,6 +121,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DragDropModule,
     MatSelectModule,
     MatTooltipModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -125,6 +129,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       useValue: MyGoogleChartsSettings,
     },
   ],
+  entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

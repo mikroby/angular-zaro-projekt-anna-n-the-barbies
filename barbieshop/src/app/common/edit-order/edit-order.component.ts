@@ -5,6 +5,8 @@ import { Observable, switchMap } from 'rxjs';
 import { Order, statusKeys } from 'src/app/model/order';
 import { DateService } from 'src/app/service/date.service';
 import { OrderService } from 'src/app/service/order.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'
 
 @Component({
   selector: 'app-edit-order',
@@ -28,6 +30,7 @@ export class EditOrderComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
+    private dialog: MatDialog
   ) { }
 
 
@@ -64,9 +67,22 @@ export class EditOrderComponent implements OnInit {
   }
 
   onRemoveOrder(order: Order): void {
-    this.orderService.delete(order.id).subscribe(
-      response => this.router.navigate(['/', 'order']));
-      this.toastr.error('A törlés megtörtént!', 'Törlés');
-      this.dateService.setToLocalStorage('order')
-  }
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Megerősítés',
+        message: 'Biztos vagy benne, hogy törölni szeretnéd?'
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.orderService.delete(order.id).subscribe(
+          response => this.router.navigate(['/', 'order']));
+          this.toastr.error('A törlés megtörtént!', 'Törlés');
+          this.dateService.setToLocalStorage('order')
+      }
+    });
+}
+
+
+
 }

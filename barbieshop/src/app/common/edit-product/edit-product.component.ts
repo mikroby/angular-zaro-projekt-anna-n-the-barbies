@@ -6,6 +6,8 @@ import { Product } from 'src/app/model/product';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DateService } from 'src/app/service/date.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'
 
 
 @Component({
@@ -25,6 +27,7 @@ export class EditProductComponent implements OnInit {
     private dateService: DateService,
     private router: Router,
     private toastr: ToastrService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -61,12 +64,23 @@ export class EditProductComponent implements OnInit {
   }
 
   onRemove(product: Product): void {
-    this.productService.delete(product.id).subscribe(
-      product => {
-        this.router.navigate(['/', 'product']);
-        this.toastr.error('A törlés megtörtént!', 'Törlés');
-        this.dateService.setToLocalStorage('product')
-      });
-  }
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Megerősítés',
+        message: 'Biztos vagy benne, hogy törölni szeretnéd?'
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.productService.delete(product.id).subscribe(
+          product => {
+            this.router.navigate(['/', 'product']);
+            this.toastr.error('A törlés megtörtént!', 'Törlés');
+            this.dateService.setToLocalStorage('product')
+          });
+      }
+    });
+}
+
 }
 
