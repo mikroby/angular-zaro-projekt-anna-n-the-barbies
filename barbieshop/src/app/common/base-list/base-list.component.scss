@@ -1,15 +1,14 @@
-// @use "@material/tooltip";
-
 thead tr th:not(:last-child) {
   cursor: pointer;
 }
 
-// .tooltip-red {
-//   @include fill-color($color:red);
-//   @include label-ink-color($color:white);
-// }
+@media only screen and (max-width: 768px) {
+  .mat-cell {
+    font-size: 0.75rem;
+  }
+  .lead {
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
 
-// .tooltip-blue {
-//   @include fill-color($color:blue);
-//   @include label-ink-color($color:white);
-// }
+}

@@ -78,6 +78,11 @@
             </ng-template>
 
           </td>
+
+          <td mat-footer-cell *matFooterCellDef>
+            Érték
+          </td>
+
         </ng-container>
 
         <ng-container matColumnDef="options">
@@ -106,10 +111,14 @@
               </button>
             </div>
           </td>
+          <td mat-footer-cell *matFooterCellDef>
+            <span class="font-weight-bold">Összesen</span>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky:true"></tr>
 
 
         <!-- Row shown when there is no matching data. -->

@@ -106,10 +106,10 @@
                 </div>
               </div>
 
-              <div class="form-check col-3 offset-1">
-                <label for="customerActive" class="form-check-label">Elérhető</label>
-                <input class="form-control" [(ngModel)]="customer['active']" type="checkbox" name="active"
+              <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" [(ngModel)]="customer.active" type="checkbox" name="active"
                   id="customerActive">
+                <label class="custom-control-label" for="customerActive">Elérhető</label>
               </div>
             </div>
 
