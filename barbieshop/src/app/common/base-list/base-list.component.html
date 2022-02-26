@@ -8,8 +8,8 @@
     </button>
   </div>
 
-  <div class="card-content mt-4 table-responsive-md">
-
+  <div class="card-content mt-4">
+    
     <div *ngIf="tableEnabled; else spinner">
 
       <mat-form-field appearance="standard" class="float-left ml-4">
@@ -41,13 +41,14 @@
         </mat-select>
       </mat-form-field>
 
+      <div  class="table-responsive">
 
       <table mat-table [dataSource]="List"
-        fixedLayout
+        class="mat-elevation-z8 w-100"        
         matSort
         cdkDropList
         cdkDropListOrientation="horizontal"
-        (cdkDropListDropped)="drop($event)" class="mat-elevation-z8 w-100">
+        (cdkDropListDropped)="drop($event)">
 
         <ng-container *ngFor="let col of selectedColumns" [matColumnDef]="col">
 
@@ -139,8 +140,11 @@
       </table>
       
     </div>
+
+    </div>
     
     <mat-paginator
+      class="w-100"
       [hidden]="!tableEnabled"
       showFirstLastButtons
       [pageSize]="10"
@@ -148,7 +152,7 @@
       [length]="List?.data?.length">
     </mat-paginator>
    
-  </div>
+  </div>  
 
 </div>
 
