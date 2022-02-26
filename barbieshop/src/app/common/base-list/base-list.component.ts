@@ -1,3 +1,4 @@
+import { SummaryService } from './../../service/summary.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -37,6 +38,9 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   filterKey: string = '';
   phrase: string = '';
 
+  numberOfRow!: number
+  sumOfAmount!: number
+
   constructor(
     private dialog: MatDialog
   ) {
@@ -45,11 +49,13 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.List$.subscribe(
       result => {
-        this.List = new MatTableDataSource<any>(result);
+        this.List = new MatTableDataSource<any>(result)
         this.List.paginator = this.paginator;
         this.List.sort = this.sort;
         this.tableEnabled = true;
         this.List.filterPredicate = this.filterFunction;
+        this.numberOfRow = this.List.data.length;
+        this.sumOfAmount = this.List.data.map(item => item['amount']).reduce((a, b) => a + b)
       }
     );
   }
@@ -92,12 +98,6 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
   }
-
-  /*onRemove(id: number): void {
-    if(confirm("Biztos vagy benne, hogy törölni szeretnéd?")) {
-      this.removeById.emit(id);
-    }
-  }*/
 
   onRemove(id: number): void {
       const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
