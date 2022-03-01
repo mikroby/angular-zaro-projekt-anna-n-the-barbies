@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'
 
@@ -41,6 +41,8 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   numberOfRow!: number
   sumOfAmount!: number
 
+  total!: any
+
   constructor(
     private dialog: MatDialog
   ) {
@@ -69,6 +71,8 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   applyFilter() {
     const jsonString = JSON.stringify({ phrase: this.phrase, filterKey: this.filterKey })
     this.List.filter = jsonString;
+    this.numberOfRow = this.List.filteredData.filter(item => Object.values(item).join(' '.trim()).toLowerCase().includes(this.phrase)).length
+    this.sumOfAmount = this.List.filteredData.map(item => item['amount']).reduce((a, b) => a + b)
 
     if (this.List.paginator) {
       this.List.paginator.firstPage();
