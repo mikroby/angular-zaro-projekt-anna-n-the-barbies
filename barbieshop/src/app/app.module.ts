@@ -60,6 +60,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
+import { CustomNumberPipe } from './pipe/custom-number.pipe';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.c
     OrderCardComponent,
     BillCardComponent,
     CustomerGeochartComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    CustomNumberPipe
   ],
   imports: [
     BrowserModule,

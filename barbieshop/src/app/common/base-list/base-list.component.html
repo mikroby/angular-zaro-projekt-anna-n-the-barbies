@@ -14,8 +14,7 @@
 
       <mat-form-field appearance="standard" class="float-left ml-4">
         <mat-label>Keresés</mat-label>
-        <input matInput (keyup)="applyFilter()" [(ngModel)]="phrase"
-        placeholder="kifejezés..." #input>
+        <input matInput (keyup)="applyFilter()" [(ngModel)]="phrase" placeholder="kifejezés..." #input>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="ml-4">
@@ -27,14 +26,12 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      
+
       <mat-form-field appearance="standard" class="ml-4">
         <mat-label>oszlopok megjelenítése</mat-label>
-        <mat-select [(value)]="selectedColumns" multiple
-          (selectionChange)="colSelectionChanged()"
-          matTooltip="min. egy oszlopot ki kell választania az adatok megjelenítéséhez!"
-          matTooltipPosition="above"
-          TooltipTouchGestures ="auto">          
+        <mat-select [(value)]="selectedColumns" multiple (selectionChange)="colSelectionChanged()"
+          matTooltip="min. egy oszlopot ki kell választania az adatok megjelenítéséhez!" matTooltipPosition="above"
+          TooltipTouchGestures="auto">
           <mat-option *ngFor="let key of keys" [value]="key">
             {{key | titlecase }}
           </mat-option>
@@ -43,12 +40,17 @@
 
       <div  class="table-responsive">
 
+<<<<<<< HEAD
       <table mat-table [dataSource]="List"
         class="mat-elevation-z8 w-100"        
         matSort
         cdkDropList
         cdkDropListOrientation="horizontal"
         (cdkDropListDropped)="drop($event)">
+=======
+      <table mat-table [dataSource]="List" fixedLayout matSort cdkDropList cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)" class="mat-elevation-z8 w-100">
+>>>>>>> main
 
         <ng-container *ngFor="let col of selectedColumns" [matColumnDef]="col">
 
@@ -83,38 +85,38 @@
 
           </td>
 
-          <td mat-footer-cell *matFooterCellDef>
-            Érték
+          <td mat-footer-cell *matFooterCellDef class="font-weight-bold">
+            <ng-container *ngIf="col === 'id'; else noId">
+              {{ numberOfRow | customNumber }} db
+            </ng-container>
+            <ng-template #noId>
+              <ng-container *ngIf="col === 'amount'; else noSum">
+                {{ sumOfAmount | customCurrency }}
+              </ng-container>
+              <ng-template #noSum>
+                {{ '-' }}
+              </ng-template>
+            </ng-template>
           </td>
 
         </ng-container>
 
         <ng-container matColumnDef="options">
           <th mat-header-cell cdkDrag *matHeaderCellDef
-            matTooltip="az oszlopok sorrendje tetszőlegesen változtatható! (drag-drop)"
-            matTooltipPosition="above"
-            TooltipTouchGestures ="auto">
+            matTooltip="az oszlopok sorrendje tetszőlegesen változtatható! (drag-drop)" matTooltipPosition="above"
+            TooltipTouchGestures="auto">
             <span class="lead">Options</span>
           </th>
           <td mat-cell *matCellDef="let item">
             <div class="btn-group">
               <button mat-icon-button [hidden]="buttonHiddenOpts.edit"
-                [routerLink]="['/', 'edit-'+[componentName], item.id]"
-                color="primary"
-                matTooltip="Szerkesztés"
-                matTooltipPosition="above"
-                TooltipTouchGestures ="auto"
-                matTooltipClass="bg-primary">
-                  <span class="material-icons">edit</span>
+                [routerLink]="['/', 'edit-'+[componentName], item.id]" color="primary" matTooltip="Szerkesztés"
+                matTooltipPosition="above" TooltipTouchGestures="auto" matTooltipClass="bg-primary">
+                <span class="material-icons">edit</span>
               </button>
-              <button mat-icon-button [disabled]="buttonHiddenOpts.delete"
-                (click)="onRemove(item.id)"
-                color="warn"
-                matTooltip="Törlés"
-                matTooltipPosition="above"
-                TooltipTouchGestures ="auto"
-                matTooltipClass="bg-danger">                
-                  <span class="material-icons">delete</span>              
+              <button mat-icon-button [disabled]="buttonHiddenOpts.delete" (click)="onRemove(item.id)" color="warn"
+                matTooltip="Törlés" matTooltipPosition="above" TooltipTouchGestures="auto" matTooltipClass="bg-danger">
+                <span class="material-icons">delete</span>
               </button>
             </div>
           </td>
@@ -132,15 +134,16 @@
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="5">
             <span class="lead">
-              Nincs találat erre a kifejezésre: "{{input.value}}"          
+              Nincs találat erre a kifejezésre: "{{input.value}}"
             </span>
           </td>
         </tr>
 
       </table>
-      
+
     </div>
 
+<<<<<<< HEAD
     </div>
     
     <mat-paginator      
@@ -152,6 +155,13 @@
     </mat-paginator>
    
   </div>  
+=======
+    <mat-paginator [hidden]="!tableEnabled" showFirstLastButtons [pageSize]="10"
+      [pageSizeOptions]="[10, 25, 50, 100, 250, 500, 1000]" [length]="List?.data?.length">
+    </mat-paginator>
+
+  </div>
+>>>>>>> main
 
 </div>
 
