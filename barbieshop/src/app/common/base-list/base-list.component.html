@@ -77,7 +77,7 @@
 
           <td mat-footer-cell *matFooterCellDef class="font-weight-bold">
             <ng-container *ngIf="col === 'id'; else noId">
-              {{ numberOfRow }} db
+              {{ numberOfRow | customNumber }} db
             </ng-container>
             <ng-template #noId>
               <ng-container *ngIf="col === 'amount'; else noSum">
