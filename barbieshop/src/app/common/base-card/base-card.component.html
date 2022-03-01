@@ -10,14 +10,14 @@
         <div class="card-body">
           <div class="d-flex flex-row">
             <h3 class="col-6 card-title mt-2">{{ cardTitle1 }}</h3>
-            <h2 class="col-6 card-title text-right">{{ cardTitleValue1$ | async }} {{ valueType }}</h2>
+            <h2 class="col-6 card-title text-right">{{ cardTitleValue1$ | async | customNumber}} {{ valueType }}</h2>
           </div>
           <div class="d-flex flex-row" *ngIf="row === 2">
             <h4 class="col-6 card-title mt-2">{{ cardTitle2 }}</h4>
-            <h3 *ngIf="title != 'Számlák'" class="col-6 card-title text-right">{{ cardTitleValue2$ | async }} {{
-              valueType }}</h3>
-            <h3 *ngIf="title === 'Számlák'" class="col-6 card-title text-right">{{ cardTitleValue2$ | async }} {{
-              valueType2 }}</h3>
+            <h3 *ngIf="title != 'Számlák'" class="col-6 card-title text-right">{{ cardTitleValue2$ | async |
+              customNumber }} {{ valueType }}</h3>
+            <h3 *ngIf="title === 'Számlák'" class="col-6 card-title text-right">{{ cardTitleValue2$ | async |
+              customCurrency }} </h3>
           </div>
           <table class="table table-bordered table-striped text-center mt-4">
             <thead>
@@ -29,13 +29,13 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{ cardTableValue1$ | async }} {{ valueType }}</td>
-                <td>{{ cardTableValue2$ | async }} {{ valueType }}</td>
-                <td *ngIf="title === 'Rendelések'">{{ cardTableValue3$ | async }} {{ valueType }}</td>
+                <td>{{ cardTableValue1$ | async | customNumber }} {{ valueType }}</td>
+                <td>{{ cardTableValue2$ | async | customNumber }} {{ valueType }}</td>
+                <td *ngIf="title === 'Rendelések'">{{ cardTableValue3$ | async | customNumber}} {{ valueType }}</td>
               </tr>
               <tr *ngIf="title === 'Számlák'">
-                <td>{{ cardTableValue3$ | async }} {{ valueType2 }} </td>
-                <td>{{ cardTableValue4$ | async }} {{ valueType2 }} </td>
+                <td>{{ cardTableValue3$ | async | customCurrency }} </td>
+                <td>{{ cardTableValue4$ | async | customCurrency }} </td>
               </tr>
               <tr *ngIf="title === 'Vásárlók'" class="my-5">
               </tr>

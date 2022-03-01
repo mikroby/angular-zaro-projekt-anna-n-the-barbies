@@ -24,7 +24,6 @@ export class BillCardComponent implements OnInit {
   cardTableValue3$: Observable<Number> = this.billService.getSumValue('status', 'new', 'amount');
   cardTableValue4$: Observable<Number> = this.billService.getSumValue('status', 'paid', 'amount');
   valueType: string = 'db';
-  valueType2: string = 'Ft';
 
   diagrammTitle: string = 'Számlák összegének eloszlása';
   number: number = 1;
