@@ -3,7 +3,12 @@
     <div class="card-icon">
       <i class="material-icons">{{ materialIcon }}</i>
     </div>
-    <h4 class="card-title text-right h2">{{ cardValue$ | async }} {{ valueType }}</h4>
+    <h4 *ngIf="materialIcon == 'storage'" class="card-title text-right h2">{{ cardValue$ | async | customCurrency }}
+    </h4>
+    <h4 *ngIf="materialIcon != 'storage'" class="card-title text-right h2">{{ cardValue$ | async | customNumber}}
+      {{
+      valueType }}
+    </h4>
   </div>
   <div class="card-body">
     <h5>{{ cardBodyTitle }}</h5>

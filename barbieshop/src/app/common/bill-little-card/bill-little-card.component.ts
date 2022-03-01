@@ -14,7 +14,6 @@ export class BillLittleCardComponent implements OnInit {
   materialIcon: string = "storage";
   newBillAmountSum$:  Observable<Number> = this.billService.getSumValue('status', 'new', 'amount')
   cardBodyTitle: string = "Még nem fizetett számlák összege"
-  valueType: string = "Ft"
 
   timeNumber!: number
   timeFormat!: string
