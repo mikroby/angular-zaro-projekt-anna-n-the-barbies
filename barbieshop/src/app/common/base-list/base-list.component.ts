@@ -25,6 +25,8 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   @Input() componentName!: string;
   @Input() buttonHiddenOpts: { edit: boolean, delete: boolean } = { edit: false, delete: false };
   @Input() currencyPipeOn?: string = '';
+  @Input() columnAmountOn?: string = '';
+  @Input() valueType?: string;
 
   @Output() removeById: EventEmitter<number> = new EventEmitter();
 
@@ -39,8 +41,6 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   numberOfRow!: number
   sumOfAmount!: number
-
-  total!: any
 
   constructor(
     private dialog: MatDialog
@@ -71,11 +71,9 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   applyFilter() {
     const jsonString = JSON.stringify({ phrase: this.phrase, filterKey: this.filterKey })
     this.List.filter = jsonString;
-    this.numberOfRow = this.List.filteredData
-      .filter(item => Object.values(item).join(' '.trim()).toLowerCase()
-        .includes(this.phrase)).length
-    this.sumOfAmount = this.List.filteredData
-      .map(item => item['amount']).reduce((a, b) => a + b)
+    this.numberOfRow = this.List.filteredData.length
+    this.sumOfAmount = (this.List.filteredData.length != 0) ? this.List.filteredData
+      .map(item => item[this.columnAmountOn as string]).reduce((a, b) => a + b) : 0
 
     if (this.List.paginator) {
       this.List.paginator.firstPage();
