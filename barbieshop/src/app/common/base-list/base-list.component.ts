@@ -26,6 +26,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   @Input() buttonHiddenOpts: { edit: boolean, delete: boolean } = { edit: false, delete: false };
   @Input() currencyPipeOn?: string = '';
   @Input() columnAmountOn?: string = '';
+  @Input() valueType?: string;
 
   @Output() removeById: EventEmitter<number> = new EventEmitter();
 
