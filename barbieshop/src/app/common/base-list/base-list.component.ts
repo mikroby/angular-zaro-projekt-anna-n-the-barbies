@@ -1,10 +1,9 @@
-import { SummaryService } from './../../service/summary.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, EventEmitter, Input, OnInit, Output, AfterViewInit, ViewChild } from '@angular/core';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component'
 
@@ -57,7 +56,8 @@ export class BaseListComponent implements OnInit, AfterViewInit {
         this.tableEnabled = true;
         this.List.filterPredicate = this.filterFunction;
         this.numberOfRow = this.List.data.length;
-        this.sumOfAmount = this.List.data.map(item => item['amount']).reduce((a, b) => a + b)
+        this.sumOfAmount = this.List.data.map(item => item['amount'])
+          .reduce((a, b) => a + b)
       }
     );
   }
@@ -71,8 +71,11 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   applyFilter() {
     const jsonString = JSON.stringify({ phrase: this.phrase, filterKey: this.filterKey })
     this.List.filter = jsonString;
-    this.numberOfRow = this.List.filteredData.filter(item => Object.values(item).join(' '.trim()).toLowerCase().includes(this.phrase)).length
-    this.sumOfAmount = this.List.filteredData.map(item => item['amount']).reduce((a, b) => a + b)
+    this.numberOfRow = this.List.filteredData
+      .filter(item => Object.values(item).join(' '.trim()).toLowerCase()
+        .includes(this.phrase)).length
+    this.sumOfAmount = this.List.filteredData
+      .map(item => item['amount']).reduce((a, b) => a + b)
 
     if (this.List.paginator) {
       this.List.paginator.firstPage();
