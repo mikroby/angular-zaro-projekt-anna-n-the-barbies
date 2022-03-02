@@ -50,7 +50,7 @@ import { CustomerCardComponent } from './common/customer-card/customer-card.comp
 import { OrderCardComponent } from './common/order-card/order-card.component';
 import { BillCardComponent } from './common/bill-card/bill-card.component';
 import { CustomerGeochartComponent } from './common/customer-geochart/customer-geochart.component';
-// táblázat moduljai
+// modules for mat-table
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
