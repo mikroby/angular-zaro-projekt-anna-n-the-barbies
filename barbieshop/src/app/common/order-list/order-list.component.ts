@@ -21,6 +21,7 @@ export class OrderListComponent implements OnInit {
   keys: string[] = Object.keys(new Order());
   componentName = 'order';
   buttonHiddenOpts = { edit: false, delete: false };
+  columnAmountOn = 'amount'
 
   constructor(
     private orderService: OrderService,
