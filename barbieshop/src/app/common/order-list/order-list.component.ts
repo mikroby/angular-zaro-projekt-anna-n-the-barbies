@@ -22,6 +22,7 @@ export class OrderListComponent implements OnInit {
   componentName = 'order';
   buttonHiddenOpts = { edit: false, delete: false };
   columnAmountOn = 'amount'
+  valueType = 'db'
 
   constructor(
     private orderService: OrderService,

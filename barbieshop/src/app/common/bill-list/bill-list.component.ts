@@ -23,6 +23,7 @@ export class BillListComponent implements OnInit {
   buttonHiddenOpts = { edit: false, delete: true };
   currencyPipeOn = 'amount';
   columnAmountOn = 'amount'
+  valueType = 'Ft';
 
   constructor(
     private billService: BillService,
