@@ -22,6 +22,7 @@ export class BillListComponent implements OnInit {
   componentName = 'bill';
   buttonHiddenOpts = { edit: false, delete: true };
   currencyPipeOn = 'amount';
+  columnAmountOn = 'amount'
 
   constructor(
     private billService: BillService,
