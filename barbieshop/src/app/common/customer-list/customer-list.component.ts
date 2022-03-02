@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { map, Observable } from 'rxjs';
-import { Address } from 'src/app/model/address';
+import { Observable } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
 import { DateService } from 'src/app/service/date.service';
@@ -22,6 +21,7 @@ export class CustomerListComponent implements OnInit {
   keys: string[] = Object.keys(new Customer());
   componentName = 'customer';
   buttonHiddenOpts = { edit: false, delete: false };
+  sortPropIfObject ='country';
 
   constructor(
     private customerService: CustomerService,

@@ -27,6 +27,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   @Input() currencyPipeOn?: string = '';
   @Input() columnAmountOn?: string = '';
   @Input() valueType?: string;
+  @Input() sortPropIfObject!:string;
 
   @Output() removeById: EventEmitter<number> = new EventEmitter();
 
@@ -44,28 +45,37 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private dialog: MatDialog
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.List$.subscribe(
       result => {
         this.List = new MatTableDataSource<any>(result)
-        this.List.paginator = this.paginator;
-        this.List.sort = this.sort;
         this.tableEnabled = true;
+        this.List.paginator = this.paginator;
         this.List.filterPredicate = this.filterFunction;
+        this.sort.disableClear = true;
+        this.List.sort = this.sort;
+        this.List.sortingDataAccessor = this.sortWithNestedObject;
         this.numberOfRow = this.List.data.length;
         this.sumOfAmount = this.List.data.map(item => item['amount'])
           .reduce((a, b) => a + b)
       }
-    );
+      );
+    }
+    
+    ngAfterViewInit() {
+      this.selectedColumns = [...this.keys];
+      this.displayedColumns = [...this.selectedColumns, 'options'];
+      this.ngOnInit();        
   }
 
-  ngAfterViewInit() {
-    this.selectedColumns = [...this.keys];
-    this.displayedColumns = [...this.selectedColumns, 'options'];
-    this.ngOnInit();
+  sortWithNestedObject(row: any, colName: string): string {    
+    if (typeof row[colName] === 'object') {      
+      return row[colName].full as string
+    }
+
+    return row[colName] as string;
   }
 
   applyFilter() {
@@ -105,17 +115,17 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   onRemove(id: number): void {
-      const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-        data: {
-          title: 'Megerősítés',
-          message: 'Biztos vagy benne, hogy törölni szeretnéd?'
-        }
-      });
-      confirmDialog.afterClosed().subscribe(result => {
-        if (result === true) {
-          this.removeById.emit(id);
-        }
-      });
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Megerősítés',
+        message: 'Biztos vagy benne, hogy törölni szeretnéd?'
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.removeById.emit(id);
+      }
+    });
   }
 
 
@@ -129,7 +139,7 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   colSelectionChanged(): void {
 
-    if (!this.selectedColumns.length) {this.selectedColumns.push(this.keys[0])};
+    if (!this.selectedColumns.length) { this.selectedColumns.push(this.keys[0]) };
 
     const contains = this.displayedColumns.filter(item =>
       item === 'options' ? true : this.selectedColumns.includes(item));
