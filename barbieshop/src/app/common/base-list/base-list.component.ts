@@ -27,11 +27,11 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   @Input() currencyPipeOn?: string = '';
   @Input() columnAmountOn?: string = '';
   @Input() valueType?: string;
-  @Input() sortPropIfObject!:string;
+  @Input() sortPropIfObject!: string;
 
   @Output() removeById: EventEmitter<number> = new EventEmitter();
 
-  @ViewChild(MatSort) sort: MatSort = new MatSort();
+  @ViewChild(MatSort) sort: MatSort = new MatSort();  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   displayedColumns!: string[];
@@ -45,37 +45,41 @@ export class BaseListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private dialog: MatDialog
-  ) {}
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.List$.subscribe(
       result => {
         this.List = new MatTableDataSource<any>(result)
         this.tableEnabled = true;
+        
+        this.paginator._intl.itemsPerPageLabel = 'Sor / lap:';
+        this.paginator._intl.nextPageLabel = 'Következő lap';
+        this.paginator._intl.previousPageLabel = 'Előző lap';
+        this.paginator._intl.lastPageLabel = 'Utolsó lap';
+        this.paginator._intl.firstPageLabel = 'Első lap';
+        
         this.List.paginator = this.paginator;
         this.List.filterPredicate = this.filterFunction;
         this.sort.disableClear = true;
-        this.List.sort = this.sort;
-        this.List.sortingDataAccessor = this.sortWithNestedObject;
+        this.List.sort = this.sort;        
+        this.List.sortingDataAccessor = (row: any, colName: string): string => {
+          if (typeof row[colName] === 'object') {            
+            return row[colName][this.sortPropIfObject] as string
+          }
+          return row[colName] as string;
+        }
         this.numberOfRow = this.List.data.length;
         this.sumOfAmount = this.List.data.map(item => item['amount'])
           .reduce((a, b) => a + b)
       }
-      );
-    }
-    
-    ngAfterViewInit() {
-      this.selectedColumns = [...this.keys];
-      this.displayedColumns = [...this.selectedColumns, 'options'];
-      this.ngOnInit();        
+    );
   }
 
-  sortWithNestedObject(row: any, colName: string): string {    
-    if (typeof row[colName] === 'object') {      
-      return row[colName].full as string
-    }
-
-    return row[colName] as string;
+  ngAfterViewInit() {    
+    this.selectedColumns = [...this.keys];
+    this.displayedColumns = [...this.selectedColumns, 'options'];
+    this.ngOnInit();    
   }
 
   applyFilter() {
@@ -138,12 +142,10 @@ export class BaseListComponent implements OnInit, AfterViewInit {
   }
 
   colSelectionChanged(): void {
-
     if (!this.selectedColumns.length) { this.selectedColumns.push(this.keys[0]) };
 
     const contains = this.displayedColumns.filter(item =>
       item === 'options' ? true : this.selectedColumns.includes(item));
-
     const differs = this.selectedColumns
       .filter(item => !(this.displayedColumns.includes(item)))
 

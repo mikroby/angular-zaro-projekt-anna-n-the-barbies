@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { hunActiveKeys } from 'src/app/model/customer';
-import { hunFeaturedKeys } from 'src/app/model/product';
 import { CustomerService } from 'src/app/service/customer.service';
 import { DateService } from 'src/app/service/date.service';
 

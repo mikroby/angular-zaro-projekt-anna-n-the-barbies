@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { Order, statusKeys } from 'src/app/model/order';
 import { DateService } from 'src/app/service/date.service';
 import { OrderService } from 'src/app/service/order.service';
