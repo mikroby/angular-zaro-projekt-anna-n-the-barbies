@@ -40,7 +40,7 @@
         <mat-label>oszlopok megjelenítése</mat-label>
         <mat-select [(value)]="selectedColumns" multiple
           (selectionChange)="colSelectionChanged()"
-          matTooltip="min. egy oszlopot ki kell választania az adatok megjelenítéséhez!"
+          matTooltip="az adatok megjelenítéséhez min. egy oszlopot ki kell választania !"
           matTooltipPosition="above"
           TooltipTouchGestures="auto">
             <mat-option *ngFor="let key of keys" [value]="key">
@@ -61,7 +61,11 @@
           <ng-container *ngFor="let col of selectedColumns" [matColumnDef]="col">
 
             <th mat-header-cell cdkDrag *matHeaderCellDef mat-sort-header>
-              <span class="lead">
+              <span class="lead"
+                [matTooltipDisabled]="!isNestedObject(List.data[0][col])"
+                matTooltip="rendezés: {{sortPropIfObject | uppercase}} tulajdonság szerint"
+                matTooltipPosition="above"
+                TooltipTouchGestures="auto">
                 {{ col | titlecase }}
               </span>
             </th>
