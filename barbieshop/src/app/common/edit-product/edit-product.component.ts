@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs';
 import { Product } from 'src/app/model/product';
-import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DateService } from 'src/app/service/date.service';
 import { MatDialog } from '@angular/material/dialog';
