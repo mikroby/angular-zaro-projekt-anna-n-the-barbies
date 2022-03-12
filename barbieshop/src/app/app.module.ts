@@ -10,7 +10,7 @@ import { ChartModule } from 'angular2-chartjs';
 import { Ng2GoogleChartsModule, GoogleChartsSettings } from 'ng2-google-charts';
 
 const MyGoogleChartsSettings: GoogleChartsSettings = {
-  mapsApiKey: 'AIzaSyCPJLJGPXHCk7ywVXIzX3gmMozvXHCrBNs',
+  mapsApiKey: 'YOUR API KEY',
   googleChartsVersion: '46.2',
   language: 'en',
 };
