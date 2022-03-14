@@ -1,4 +1,6 @@
 .spinner {
+  width: 75px;
+  height: 75px;
   animation: rotate 1s linear infinite;
 
   & .path {
